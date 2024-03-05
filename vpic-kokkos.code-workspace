@@ -4,7 +4,10 @@
 			"path": "."
 		},
 		{
-			"path": "../../vpic-kokkos"
+			"path": "../../src/vpic-kokkos"
+		},
+		{
+			"path": "../../src/warpx"
 		},
 	],
 	"settings": {}
