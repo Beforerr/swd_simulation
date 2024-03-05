@@ -1,0 +1,33 @@
+#!/bin/bash
+### Job Name
+#PBS -N translate
+### Project code
+#PBS -A UCLA0040
+#PBS -l walltime=01:00:00
+#PBS -q main
+### Merge output and error files
+#PBS -j oe
+#PBS -k eod
+### Select N nodes with 36 CPUs each for a total of M MPI processes
+#PBS -l select=1:ncpus=128:mpiprocs=128
+### Send email on abort, begin and end
+#PBS -m abe
+### Specify mail recipient
+#PBS -M xinan@epss.ucla.edu
+
+### module swap netcdf netcdf-mpi
+module list
+
+export DATADIR=/glade/derecho/scratch/xinan/low2high/hvpic/1
+mkdir -p $DATADIR/data
+
+### current directory
+CUDIR="$(pwd)"
+
+### Copy input deck and change to data directory
+cd $DATADIR
+cp $CUDIR/conf_particles.dat $DATADIR/
+
+### Run the executable
+mpiexec -n 128 -ppn 128 $CUDIR/pppp 2>&1 | tee particles.out
+
