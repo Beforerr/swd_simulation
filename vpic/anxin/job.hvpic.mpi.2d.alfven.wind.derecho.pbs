@@ -13,12 +13,12 @@
 ### Send email on abort, begin and end
 #PBS -m abe
 ### Specify mail recipient
-#PBS -M xinan@epss.ucla.edu
+#PBS -M zijin@ucla.edu
 
 ### module swap netcdf netcdf-mpi
 module list
 
-export DATADIR=/glade/derecho/scratch/xinan/low2high/hvpic/1
+export DATADIR=/glade/derecho/scratch/$USER/low2high/hvpic/1
 rm -rf $DATADIR
 mkdir -p $DATADIR
 ### mkdir -p $DATADIR/data

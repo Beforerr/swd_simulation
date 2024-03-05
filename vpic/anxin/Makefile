@@ -3,7 +3,7 @@ SHELL=bash
 
 # Directory of precompiled VPIC libraries:
 
-PROJECTDIR=/glade/u/home/xinan/vpic-kokkos-dev/build/bin
+PROJECTDIR=${HOME}/vpic-kokkos/build/bin
 
 h1d:
 	${PROJECTDIR}/vpic low2high_1d.cxx	
@@ -24,7 +24,7 @@ h2d_mpause:
 	${PROJECTDIR}/vpic low2high_2d_alfven_mpause.cxx	
 
 h2d_wind:
-	${PROJECTDIR}/vpic low2high_2d_alfven_wind.cxx	
+	${PROJECTDIR}/vpic low2high_2d_alfven_wind.cxx.vpic
 
 cleanall: 	
 #	cd translate; make clean 
