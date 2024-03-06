@@ -2,9 +2,9 @@ name: warpx
 channels:
   - conda-forge
 dependencies:
-  - warpx
-  - mpi4py
-  - mpich
+  # - warpx
+  # - mpi4py
+  # - mpich
 
   - dill
 

@@ -8,8 +8,8 @@ h2d_wind:
 	{{bin}} low2high_2d_alfven_wind.cxx
 
 q-submit:
-    qsub -V job.hvpic.mpi.2d.alfven.wind.derecho.pbs
+  qsub -V job.hvpic.mpi.2d.alfven.wind.derecho.pbs
 
 q-info:
-    qhist -u $USER
-    qstat -u $USER
+  qhist -u $USER
+  qstat -u $USER
