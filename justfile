@@ -34,7 +34,6 @@ install-warpx-ncar:
    # DEBUG: not working
    spack install warpx%dpcpp
 
-
 # not working
 copy:
    ssh-copy-id zijin@derecho.hpc.ucar.edu

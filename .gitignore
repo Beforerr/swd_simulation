@@ -9,3 +9,10 @@ cmake_install.cmake
 build
 *.Linux
 *.Darwin
+
+.spack-env
+
+# Warpx
+diags
+Backtrace*
+*.dpkl
