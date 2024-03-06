@@ -10,22 +10,11 @@
 
 warpx installed by `conda` has no `MPI` support.
 
-`OpenMPI requires both C and Fortran compilers!`
+Notes:
 
-```
-spack env create -d .
-spack env activate .
-spack add warpx~openpmd
-spack add py-warpx
-spack add openblas~fortran
-spack concretize
-for i in {1..4}; do nohup spack install >> install.txt 2>&1 & done
-spack install
-```
-
-Installed by `spack` with `gcc` has bugs when compiling `openblas`
-
-- [openblas 0.3.24 fails to build on aarch64-apple-darwin (all versions) in Homebrew · OpenMathLib/OpenBLAS](https://github.com/OpenMathLib/OpenBLAS/issues/4212) #issue
+- `OpenMPI requires both C and Fortran compilers!`
+- `gcc` is not well supported in macOS: Installed by `spack` with `gcc` has bugs when compiling `openblas`.
+    - [openblas 0.3.24 fails to build on aarch64-apple-darwin (all versions) in Homebrew · OpenMathLib/OpenBLAS](https://github.com/OpenMathLib/OpenBLAS/issues/4212) #issue
 
 ```
 spack env create warpx
@@ -37,7 +26,9 @@ for i in {1..4}; do nohup spack install >> install.txt 2>&1 & done
 spack install
 ```
 
-Using pip is slow
+
+Using pip to build is slow
+
 ```
 export BUILD_PARALLEL=8
 export WARPX_MPI=ON

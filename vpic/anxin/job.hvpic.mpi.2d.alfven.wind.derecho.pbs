@@ -10,8 +10,6 @@
 #PBS -k eod
 ### Select N nodes with 128 CPUs each for a total of 128*N MPI processes
 #PBS -l select=8:ncpus=128:mpiprocs=128 
-### Send email on abort, begin and end
-#PBS -m abe
 ### Specify mail recipient
 #PBS -M zijin@ucla.edu
 
