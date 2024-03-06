@@ -13,3 +13,7 @@ spack add warpx%gcc
 spack install
 # despacktivate && spack env remove warpx-gcc
 ```
+
+installed by `spack` with `gcc` has bugs when compiling `openblas`
+
+- [openblas 0.3.24 fails to build on aarch64-apple-darwin (all versions) in Homebrew · OpenMathLib/OpenBLAS](https://github.com/OpenMathLib/OpenBLAS/issues/4212) #issue
