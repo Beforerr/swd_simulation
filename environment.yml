@@ -2,5 +2,16 @@ name: warpx
 channels:
   - conda-forge
 dependencies:
+  - python<=3.11
+  
+  - compilers
+  - ccache
+  - cmake
+  - llvm-openmp # OpenMP support
+  - ninja
+
+  - mpi4py
+
   - dill
   - jupyter
+  

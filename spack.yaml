@@ -5,7 +5,10 @@
 spack:
   # add package specs to the `specs` list
   specs:
-  - warpx~openpmd
+  # BUG: openblas can not be installed successfully
+  # - warpx~openpmd 
+  - cmake
+  - mpi
   view: true
   concretizer:
     unify: true
