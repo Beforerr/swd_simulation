@@ -2,29 +2,15 @@ name: warpx
 channels:
   - conda-forge
 dependencies:
-  - python<=3.11
-  - pydantic
-  
-  - compilers
-  - ccache
-  - cmake
-  - llvm-openmp # OpenMP support
-  - ninja
-
-  - blaspp
-  - lapackpp
-  - fftw=*=mpi_mpich*
-  - pkg-config 
-
-  - mpi4py
-  - mpich
-
+  - python<3.12
+  - jupyter
+  - fastcore
 
   - plasmapy
-
   - dill
-  - jupyter
+
   - yt
-  - h5py=*=mpi_mpich*
-  - openpmd-api=*=mpi_mpich*
-  - fastcore
+
+  - pip
+  - pip:
+    - mpi4py
