@@ -16,9 +16,8 @@ boundary.particle_lo = periodic
 
 # diag1
 diag1.diag_type = Full
-diag1.format = openpmd
+diag1.format = plotfile
 diag1.intervals = 32
-diag1.openpmd_backend = h5
 diag1.write_species = 0
 
 # diagnostics

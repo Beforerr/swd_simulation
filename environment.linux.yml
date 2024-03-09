@@ -1,0 +1,11 @@
+name: warpx
+channels:
+  - conda-forge
+dependencies:
+  - python<3.12
+  - jupyter
+
+  - dill
+  - pip
+  - pip:
+    - mpi4py

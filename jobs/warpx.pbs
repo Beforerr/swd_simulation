@@ -1,0 +1,13 @@
+#!/bin/bash
+#PBS -l walltime=01:00:00
+#PBS -l select=2:ncpus=128:mpiprocs=1:ompthreads=128
+
+source $HOME/.bashrc
+micromamba activate warpx
+
+module load fftw-mpi
+module swap hdf5 hdf5-mpi
+module swap netcdf netcdf-mpi
+
+jupyter nbconvert --to script inputs.ipynb
+mpiexec -n 2 python inputs.py

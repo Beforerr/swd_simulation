@@ -1,8 +1,0 @@
-run dim="1":
-    mpiexec -n 1 python3 PICMI_inputs.py --dim {{dim}} --bdir z
-
-clean:
-    rm -f *.dpkl
-    rm -f Backtrace.*
-    rm -f warpx_used_inputs
-    rm -rf diags

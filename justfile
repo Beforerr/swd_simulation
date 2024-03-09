@@ -1,41 +1,58 @@
 home_dir := env_var('HOME')
 vpic := home_dir + "/src/vpic-kokkos/build/bin/vpic"
+project := "UCLA0040"
+queue := "main"
 
 compile:
   cd {{invocation_directory()}}; {{vpic}} *.cxx
 
+q-sub:
+  cd {{invocation_directory()}}; qsub -A {{project}} -q {{queue}}  *.pbs
+
+q-subf file:
+  cd {{invocation_directory()}}; qsub -A {{project}} -q {{queue}}  {{file}}
+
 q-info:
   qhist -u $USER
-  qstat -u $USER
+  -qstat -u $USER
 
-env-install:
-   micromamba env create --file environment.yml
+env-install file="environment.yml":
+  micromamba env create --file {{file}}
 
-env-update:
-   micromamba install --file environment.yml
+env-update file="environment.yml":
+  micromamba install --file {{file}}
 
 spack-compilers:
-   code $HOME/.spack/darwin/compilers.yaml
+  code $HOME/.spack/darwin/compilers.yaml
 
 warpx:
-   cd $HOME/src/warpx
-   cmake -S . -B build
-   cmake --build build -j 8
+  cd $HOME/src/warpx
+  cmake -S . -B build
+  cmake --build build -j 8
 
 py-warpx:
-   #!/bin/sh
-   cd $HOME/src/warpx
-   cmake -S . -B build_py \
-      -DWarpX_DIMS="1;2;3" \
-      -DWarpX_PYTHON=ON \
-      -DWarpX_PSATD=ON
-   cmake --build build_py --target pip_install -j 8
+  #!/bin/sh
+  cd $HOME/src/warpx
+  cmake -S . -B build_py \
+    -DWarpX_DIMS="1;2;3" \
+    -DWarpX_PYTHON=ON \
+    -DWarpX_PSATD=ON
+  cmake --build build_py --target pip_install -j 8
 
 install-warpx-ncar:
-   #!/bin/bash
-   # DEBUG: not working
-   spack install warpx%dpcpp
+  #!/bin/bash
+  # DEBUG: not working
+  spack install warpx%dpcpp
 
 # not working
 copy:
-   ssh-copy-id zijin@derecho.hpc.ucar.edu
+  ssh-copy-id zijin@derecho.hpc.ucar.edu
+
+clean:
+  #!/usr/bin/env bash
+  cd {{invocation_directory()}}
+  rm -rf *\.{e,o}*
+  rm -f *.dpkl
+  rm -f Backtrace.*
+  rm -f warpx_used_inputs
+  rm -rf diags
