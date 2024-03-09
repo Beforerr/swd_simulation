@@ -23,10 +23,12 @@ warpx:
    cmake --build build -j 8
 
 py-warpx:
+   #!/bin/sh
    cd $HOME/src/warpx
    cmake -S . -B build_py \
       -DWarpX_DIMS="1;2;3" \
-      -DWarpX_PYTHON=ON 
+      -DWarpX_PYTHON=ON \
+      -DWarpX_PSATD=ON
    cmake --build build_py --target pip_install -j 8
 
 install-warpx-ncar:

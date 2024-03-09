@@ -10,5 +10,10 @@
 			"path": "../../src/warpx"
 		},
 	],
-	"settings": {}
+	"settings": {
+		"files.associations": {
+			"fstream": "cpp",
+			"locale": "cpp"
+		}
+	}
 }

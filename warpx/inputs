@@ -1,0 +1,81 @@
+# algo
+algo.current_deposition = direct
+algo.maxwell_solver = hybrid
+algo.particle_shape = 1
+
+# amr
+amr.max_grid_size = 1024
+amr.max_level = 0
+amr.n_cell = 1024
+
+# boundary
+boundary.field_hi = periodic
+boundary.field_lo = periodic
+boundary.particle_hi = periodic
+boundary.particle_lo = periodic
+
+# diag1
+diag1.diag_type = Full
+diag1.format = openpmd
+diag1.intervals = 32
+diag1.openpmd_backend = h5
+diag1.write_species = 0
+
+# diagnostics
+diagnostics.diags_names = diag1
+
+# geometry
+geometry.dims = 1
+geometry.prob_hi = 0.0010963266359389921
+geometry.prob_lo = 0
+
+# hybrid_pic_model
+hybrid_pic_model.elec_temp = 0.0025549947499808206
+hybrid_pic_model.n0_ref = 9.62361766086056e+24
+hybrid_pic_model.plasma_resistivity(rho,J) = 1e-07
+
+# ions
+ions.charge = q_e
+ions.density = 9.62361766086056e+24
+ions.initialize_self_fields = 0
+ions.injection_style = nrandompercell
+ions.mass = 9.1093837015e-29
+ions.momentum_distribution_type = gaussian
+ions.num_particles_per_cell = 256
+ions.profile = constant
+ions.ux_m = 0.0
+ions.ux_th = 7.071067811865475e-06
+ions.uy_m = 0.0
+ions.uy_th = 7.071067811865475e-06
+ions.uz_m = 0.0
+ions.uz_th = 7.071067811865475e-06
+
+# max_step
+max_step = 38400
+
+# my_constants
+my_constants.k1 = 5731.125288037999
+my_constants.pert = 1
+my_constants.phi1 = 0
+
+# par_field_data
+par_field_data.intervals = 32
+par_field_data.path = diags/
+par_field_data.probe_geometry = Line
+par_field_data.resolution = 1023
+par_field_data.type = FieldProbe
+par_field_data.z1_probe = 0.0010963266359389921
+par_field_data.z_probe = 0
+
+# particles
+particles.species_names = ions
+
+# warpx
+warpx.B_ext_grid_init_style = parse_b_ext_grid_function
+warpx.Bx_external_grid_function(x,y,z) = pert*(sin(k1*z + phi1))
+warpx.By_external_grid_function(x,y,z) = pert*(cos(k1*z + phi1))
+warpx.Bz_external_grid_function(x,y,z) = 1.0
+warpx.const_dt = 2.7909271506861014e-11
+warpx.reduced_diags_names = par_field_data
+warpx.serialize_initial_conditions = 1
+warpx.verbose = 0

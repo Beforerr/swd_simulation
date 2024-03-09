@@ -3,6 +3,7 @@ channels:
   - conda-forge
 dependencies:
   - python<=3.11
+  - pydantic
   
   - compilers
   - ccache
@@ -10,8 +11,20 @@ dependencies:
   - llvm-openmp # OpenMP support
   - ninja
 
+  - blaspp
+  - lapackpp
+  - fftw=*=mpi_mpich*
+  - pkg-config 
+
   - mpi4py
+  - mpich
+
+
+  - plasmapy
 
   - dill
   - jupyter
-  
+  - yt
+  - h5py=*=mpi_mpich*
+  - openpmd-api=*=mpi_mpich*
+  - fastcore

@@ -291,7 +291,7 @@ class EMModes(object):
             simulation.add_diagnostic(line_diag)
         else:
             # install a custom "reduced diagnostic" to save the average field
-            # callbacks.installafterEsolve(self._record_average_fields)
+            callbacks.installafterEsolve(self._record_average_fields)
             try:
                 os.mkdir("diags")
             except OSError:
