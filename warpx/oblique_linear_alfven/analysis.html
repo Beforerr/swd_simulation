@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.547">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Warpx</li><li class="breadcrumb-item"><a href="../../warpx/oblique_linear_alfven/analysis.html">Oblique Linear Alfven</a></li><li class="breadcrumb-item"><a href="../../warpx/oblique_linear_alfven/analysis.html">Analysis</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Warpx</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">EMModes</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../warpx/EMModes/inputs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inputs</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Oblique Linear Alfven</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../warpx/oblique_linear_alfven/analysis.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../warpx/oblique_linear_alfven/inputs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inputs</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link active" data-scroll-target="#analysis">Analysis</a>
+  <ul class="collapse">
+  <li><a href="#io" id="toc-io" class="nav-link" data-scroll-target="#io">IO</a>
+  <ul class="collapse">
+  <li><a href="#yt" id="toc-yt" class="nav-link" data-scroll-target="#yt">yt</a></li>
+  <li><a href="#openpmd" id="toc-openpmd" class="nav-link" data-scroll-target="#openpmd">OpenPMD</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Warpx</li><li class="breadcrumb-item"><a href="../../warpx/oblique_linear_alfven/analysis.html">Oblique Linear Alfven</a></li><li class="breadcrumb-item"><a href="../../warpx/oblique_linear_alfven/analysis.html">Analysis</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="analysis" class="level1">
+<h1>Analysis</h1>
+<div id="cell-1" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-2" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load simulation parameters</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"sim_parameters.json"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    sim <span class="op">=</span> json.load(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-3" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>{'dim': 2,
+ 'diag': True,
+ 'n0': 100000000.0,
+ 'm_ion_norm': 100,
+ 'm_ion': 9.1093837015e-29,
+ 'v_ti': 207957.64245251397,
+ 'nz': 32,
+ 'nx': 1024,
+ 'nppc': 64,
+ 'diag_steps': 64,
+ 'beta': 0.1,
+ 'vA': 930014.8499288347,
+ 'plasma_resistivity': 1e-07,
+ 'T_plasma': 24.588292599321438,
+ 'Te': 24.588292599321438,
+ 't_ci': 0.035723867528782094,
+ 'd_i': 5314.093261582036,
+ 'time_norm': 100.0,
+ 'dt_norm': 0.015625,
+ 'diag_time_norm': 1,
+ 'Lz_norm': 4,
+ 'Lx_norm': 128,
+ 'dz_norm': 0.125,
+ 'test': True,
+ 'B0': 1.0000000000000001e-07,
+ 'vA_over_c': None,
+ 'A': 0.1,
+ 'w_ci': 175.88200107721636,
+ 'w_pi': 56414.602311806266,
+ 'dz': 664.2616576977545,
+ 'Lz': 21256.373046328143,
+ 'Lx': 680203.9374825006,
+ 'k': 9.237208079733046e-06}</code></pre>
+</div>
+</div>
+<div id="cell-4" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sim[<span class="st">"Lx"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>680203.9374825006</code></pre>
+</div>
+</div>
+<section id="io" class="level2">
+<h2 class="anchored" data-anchor-id="io">IO</h2>
+<section id="yt" class="level3">
+<h3 class="anchored" data-anchor-id="yt">yt</h3>
+<div id="cell-7" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-8" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ts <span class="op">=</span> yt.load(<span class="st">'./diags/diag???????'</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ts = yt.load('./diags/diag???0032')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-9" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot(ds, normalize <span class="op">=</span> <span class="va">True</span>):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    ad <span class="op">=</span> ds.all_data()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> ad[<span class="st">"x"</span>]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> normalize:</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> x <span class="op">/</span> sim[<span class="st">'d_i'</span>]</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> plt.subplot()</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> field <span class="kw">in</span> [<span class="st">"Bx"</span>, <span class="st">"By"</span>, <span class="st">"Bz"</span>]:</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        ax.plot(x, ad[field], label<span class="op">=</span>field)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hodogram(ds, comp1<span class="op">=</span><span class="st">"By"</span>, comp2<span class="op">=</span><span class="st">"Bz"</span>):</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    time <span class="op">=</span> ds.current_time</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    time_norm <span class="op">=</span> time.value <span class="op">/</span> sim[<span class="st">'t_ci'</span>]</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    ad <span class="op">=</span> ds.all_data()</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    plt.plot(ad[comp1], ad[comp2], label<span class="op">=</span><span class="ss">f"t=</span><span class="sc">{</span>time_norm<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(comp1)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(comp2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-10" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>i<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for ds in ts[i:i+1]:</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ds <span class="kw">in</span> ts[<span class="dv">0</span>:i]:</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    plot(ds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>yt : [INFO     ] 2024-03-14 10:08:01,766 Parameters: current_time              = 0.0
+yt : [INFO     ] 2024-03-14 10:08:01,767 Parameters: domain_dimensions         = [1024   32    1]
+yt : [INFO     ] 2024-03-14 10:08:01,768 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 10:08:01,769 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 10:08:01,840 Parameters: current_time              = 0.035723867528782094
+yt : [INFO     ] 2024-03-14 10:08:01,841 Parameters: domain_dimensions         = [1024   32    1]
+yt : [INFO     ] 2024-03-14 10:08:01,842 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 10:08:01,842 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/cell-9-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-11" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>i<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for ds in ts[i:i+1]:</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ds <span class="kw">in</span> ts[<span class="dv">0</span>:i]:</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    plot(ds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>yt : [INFO     ] 2024-03-14 10:08:02,391 Parameters: current_time              = 0.0
+yt : [INFO     ] 2024-03-14 10:08:02,392 Parameters: domain_dimensions         = [1024   32    1]
+yt : [INFO     ] 2024-03-14 10:08:02,392 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 10:08:02,393 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 10:08:02,460 Parameters: current_time              = 0.035723867528782094
+yt : [INFO     ] 2024-03-14 10:08:02,461 Parameters: domain_dimensions         = [1024   32    1]
+yt : [INFO     ] 2024-03-14 10:08:02,461 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 10:08:02,461 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 10:08:02,525 Parameters: current_time              = 0.07144773505756419
+yt : [INFO     ] 2024-03-14 10:08:02,525 Parameters: domain_dimensions         = [1024   32    1]
+yt : [INFO     ] 2024-03-14 10:08:02,526 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 10:08:02,526 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/cell-10-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-12" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>i<span class="op">=</span><span class="dv">4</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for ds in ts[i:i+1]:</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ds <span class="kw">in</span> ts[<span class="dv">0</span>:i]:</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    plot(ds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>yt : [INFO     ] 2024-03-14 10:07:58,686 Parameters: current_time              = 0.0
+yt : [INFO     ] 2024-03-14 10:07:58,686 Parameters: domain_dimensions         = [1024   32    1]
+yt : [INFO     ] 2024-03-14 10:07:58,687 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 10:07:58,688 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 10:07:58,759 Parameters: current_time              = 0.035723867528782094
+yt : [INFO     ] 2024-03-14 10:07:58,760 Parameters: domain_dimensions         = [1024   32    1]
+yt : [INFO     ] 2024-03-14 10:07:58,760 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 10:07:58,761 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 10:07:58,913 Parameters: current_time              = 0.07144773505756419
+yt : [INFO     ] 2024-03-14 10:07:58,913 Parameters: domain_dimensions         = [1024   32    1]
+yt : [INFO     ] 2024-03-14 10:07:58,913 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 10:07:58,914 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 10:07:58,980 Parameters: current_time              = 0.10717160258634628
+yt : [INFO     ] 2024-03-14 10:07:58,980 Parameters: domain_dimensions         = [1024   32    1]
+yt : [INFO     ] 2024-03-14 10:07:58,980 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 10:07:58,980 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/cell-11-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-13" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> ts[i]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>ad <span class="op">=</span> ds.all_data()</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>ad[<span class="st">"B_x"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>yt : [INFO     ] 2024-03-13 19:52:44,658 Parameters: current_time              = 0.014289547011512778
+yt : [INFO     ] 2024-03-13 19:52:44,659 Parameters: domain_dimensions         = [1024   32    1]
+yt : [INFO     ] 2024-03-13 19:52:44,659 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-13 19:52:44,660 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>unyt_array([nan, nan, nan, ..., nan, nan, nan], 'T')</code></pre>
+</div>
+</div>
+<div id="cell-14" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ds <span class="kw">in</span> ts:</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    hodogram(ds)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>yt : [INFO     ] 2024-03-13 19:52:39,551 Parameters: current_time              = 0.0
+yt : [INFO     ] 2024-03-13 19:52:39,552 Parameters: domain_dimensions         = [1024   32    1]
+yt : [INFO     ] 2024-03-13 19:52:39,552 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-13 19:52:39,553 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-13 19:52:39,722 Parameters: current_time              = 0.007144773505756403
+yt : [INFO     ] 2024-03-13 19:52:39,723 Parameters: domain_dimensions         = [1024   32    1]
+yt : [INFO     ] 2024-03-13 19:52:39,723 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-13 19:52:39,724 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-13 19:52:39,793 Parameters: current_time              = 0.014289547011512778
+yt : [INFO     ] 2024-03-13 19:52:39,794 Parameters: domain_dimensions         = [1024   32    1]
+yt : [INFO     ] 2024-03-13 19:52:39,794 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-13 19:52:39,795 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-15" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ds.current_time</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="60">
+<pre><code>unyt_quantity(1.31178042, 'code_time')</code></pre>
+</div>
+</div>
+<div id="cell-16" class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ds.field_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="61">
+<pre><code>[('boxlib', 'Bx'),
+ ('boxlib', 'By'),
+ ('boxlib', 'Bz'),
+ ('boxlib', 'Ex'),
+ ('boxlib', 'Ey'),
+ ('boxlib', 'Ez'),
+ ('boxlib', 'jx'),
+ ('boxlib', 'jy'),
+ ('boxlib', 'jz')]</code></pre>
+</div>
+</div>
+<div id="cell-17" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>yt.SlicePlot(ds, <span class="st">"z"</span>, (<span class="st">"boxlib"</span>, <span class="st">"Bz"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>yt : [INFO     ] 2024-03-13 17:10:23,638 xlim = -728644.160452 728644.160452
+yt : [INFO     ] 2024-03-13 17:10:23,639 ylim = 0.000000 45540.260028
+yt : [INFO     ] 2024-03-13 17:10:23,640 xlim = -728644.160452 728644.160452
+yt : [INFO     ] 2024-03-13 17:10:23,641 ylim = 0.000000 45540.260028
+yt : [INFO     ] 2024-03-13 17:10:23,643 Making a fixed resolution buffer of (('boxlib', 'Bz')) 800 by 800</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<img style="max-width:100%;max-height:100%;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABD0AAACRCAYAAADAZcP+AAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/H5lhTAAAACXBIWXMAAA9hAAAPYQGoP6dpAAAzt0lEQVR4nO3deVyU1f4H8M8AA4IIiiIFggKugKYGGVKCGyaalZro1VzKlK52c09LIcmkwiw1MZbSqxWmXjOviuXPhFyuQSmIGpBLigJCJtuwOpzfH75mEhl2mJln/Lxfr3kpz1nnOQwzz3fOc45MCCFARERERERERGRgjHTdASIiIiIiIiKi1sCgBxEREREREREZJAY9iIiIiIiIiMggmei6A81RVlaGrKwsFBQUoLS0FG3btkXnzp3x6KOP6rprRERERERERE3G692WIamgR1lZGeLi4rBv3z78/PPPuHz5Mqqqqmrka9OmDTw9PTF06FBMmjQJbm5uOugtERERERERUcPwerd1yKSwe0thYSHWr1+PDRs2QKlUYtCgQRgwYACcnZ3x6KOPwsLCAnK5HCUlJSgoKEBmZiYuXryIpKQkpKWlYfDgwVi1ahVGjRql66dCREREREREpMbr3dal9zM9Dh48iNmzZ2Pw4MGIjY3FsGHDYGpq2uDy169fR2xsLIKCgtC/f39ERUXB1ta2FXtMREREREREVD9e77Y+vZ7pERwcjBMnTmDDhg3o27dvs+q6e/cuIiIiEBMTg507d3IKEBEREREREekMr3e1Q2+DHmFhYaioqEBwcDBkMlmL1Xvp0iW89tpriIqKgrOzc4vVS0RERERERNQQvN7VHr0NevznP//BhAkTWqXu/Px8JCcnw8/Pr1XqJyIiIiIiIqoNr3e1R2+DHkREREREREREzWGk6w60pt27d+u6C0RERERERER1UiqVyMnJwc2bN3XdFYNj0DM9Bg4ciDNnzui6G0RERERERETV+Pn5ITc3FwUFBXB0dISLiwtGjx6Nl156SdddMyh6v2VtbbKzs3Hw4EHcunULSqWyRnphYSFSU1N10DMiIiIiIiKiuv3000949tlnsWPHDlhZWem6OwZLkjM9Tpw4gYCAACgUCtTVfZlMpjEgQkRERERERKRLpqamyMrKQqdOnXTdFYMmyaDHkCFDUFpaivHjx8POzg7GxsY18hQU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dyI/Px/AvVtIfvrpJwDAkSNH8Nxzz6kX7XRycoK3tzd27tzZ7HbHjBkDe3t7REdH10hLSEjA4sWLkZqaioqKCpiZmcHDwwORkZGwtbWFp6cn8vLyAABWVlZ47rnn8Pbbb2P69Ok4f/68+rYZd3d3LFiwAP369cO8efNw7tw5VFRUwMjICH379sWKFSvwyCOPVGvr/rTAwMAafevTpw9efPFFhIaGNvscEBER0cOBQQ8iIqKHzM6dO7Fw4ULcuHFDvV2svrt27Rq6deuGc+fOoW/fvrruDhEREUkEb28hIiJ6yEycOBFt2rRpld1hWsvOnTvh7e3NgAcRERE1Cmd6EBERPYR27tyJdevWISkpSe/XyKisrESPHj0QERGBgIAAXXeHiIiIJIQzPYiIiB5CkydPhr29PaKionTdlXpt2bIFjz32GAMeRERE1Gic6UFERPSQKiwshL+/PyIjI/HYY4/pujsaXbp0Cc8//zyOHj0KOzs7XXeHiIiIJIYzPYiIiB5SVlZWOHjwIFavXl1j+1l9cOfOHQQFBSE2NpYBDyIiImoSzvQgIiIivXTs2DE4OTnB1dVV110hIiIiiWLQg4iIiIiIiIgMEm9vISIiIiIiIiKDxKAHERERERERERkkBj2IiIiIiIiIyCAx6EFEREREREREBolBDyIiIiIiIiIySAx6EBEREREREZFBYtCDiIiIiIiIiAwSgx5EREREREREZJAY9CAiIiIiIiIig8SgBxEREREREREZJAY9iIiIiIiIiMggMehBRERERERERAaJQQ8iIiIiIiIiMkgMehARERERERGRQWLQg4iIiIiIiIgMEoMeRERERERERGSQGPQgIiIiIiIiIoPEoAcRERERERERGSQGPYiIiIiIiIjIIDHoQUREREREREQGiUEPIiIiIiIiIjJIDHoQERERERERkUFi0IOIiIiIiIiIDBKDHkRERERERERkkBj0ICIiIiIiIiKDxKAHERERERERERkkBj2IiIiIiIiIyCD9P0K5DHhg3BRoAAAAAElFTkSuQmCC"><br>
+</div>
+</div>
+</section>
+<section id="openpmd" class="level3">
+<h3 class="anchored" data-anchor-id="openpmd">OpenPMD</h3>
+<div id="cell-19" class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openpmd_api <span class="im">as</span> io</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># example: data handling</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-20" class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>openpmd_backend <span class="op">=</span> <span class="st">"h5"</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>series <span class="op">=</span> io.Series(<span class="ss">f"diags/diag1/openpmd_%06T.</span><span class="sc">{</span>openpmd_backend<span class="sc">}</span><span class="ss">"</span>, io.Access.read_only)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: Read Error in frontend 
+Object type:    File
+Error type: Inaccessible
+Further description:    Supplied directory is not valid: diags/diag1/</code></pre>
+</div>
+</div>
+<div id="cell-21" class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"openPMD version: "</span>, series.openPMD)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>openPMD version:  1.1.0</code></pre>
+</div>
+</div>
+<div id="cell-22" class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(series.iterations)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> series.iterations[<span class="dv">64</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-23" class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># record</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> i.meshes[<span class="st">"B"</span>]</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>B.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>SyntaxError: invalid syntax (401656362.py, line 3)</code></pre>
+</div>
+</div>
+<div id="cell-24" class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># record</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> i.meshes[<span class="st">"B"</span>]</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># record components</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>B_x <span class="op">=</span> B[<span class="st">"x"</span>]</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>B_y <span class="op">=</span> B[<span class="st">"y"</span>]</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>B_z <span class="op">=</span> B[<span class="st">"z"</span>]</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>B_x_data <span class="op">=</span> B_x.load_chunk()</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>B_y_data <span class="op">=</span> B_y.load_chunk()</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>B_z_data <span class="op">=</span> B_z.load_chunk()</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>series.flush()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-25" class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>plt.plot(B_x_data)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>plt.plot(B_y_data)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>plt.plot(B_z_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>[&lt;matplotlib.lines.Line2D at 0x2bdebd4d0&gt;]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/cell-23-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-26" class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dill</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pywarpx <span class="im">import</span> picmi</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>constants <span class="op">=</span> picmi.constants</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>matplotlib.rcParams.update({<span class="st">"font.size"</span>: <span class="dv">20</span>})</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="co"># load simulation parameters</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"sim_parameters.dpkl"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>    sim <span class="op">=</span> dill.load(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-27" class="cell" data-execution_count="82">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> sim.B_dir <span class="op">==</span> <span class="st">'z'</span>:</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    field_idx_dict <span class="op">=</span> {<span class="st">'z'</span>: <span class="dv">4</span>, <span class="st">'Ez'</span>: <span class="dv">7</span>, <span class="st">'Bx'</span>: <span class="dv">8</span>, <span class="st">'By'</span>: <span class="dv">9</span>}</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> np.loadtxt(<span class="st">"diags/par_field_data.txt"</span>, skiprows<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> sim.dim <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>        field_idx_dict <span class="op">=</span> {<span class="st">'z'</span>: <span class="dv">4</span>, <span class="st">'Ez'</span>: <span class="dv">7</span>, <span class="st">'Bx'</span>: <span class="dv">8</span>, <span class="st">'By'</span>: <span class="dv">9</span>}</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>        field_idx_dict <span class="op">=</span> {<span class="st">'z'</span>: <span class="dv">2</span>, <span class="st">'Ez'</span>: <span class="dv">3</span>, <span class="st">'Bx'</span>: <span class="dv">4</span>, <span class="st">'By'</span>: <span class="dv">5</span>}</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> np.loadtxt(<span class="st">"diags/perp_field_data.txt"</span>, skiprows<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-28" class="cell" data-execution_count="83">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step, t, z, Ez, Bx, By = raw_data.T</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>step <span class="op">=</span> data[:,<span class="dv">0</span>]</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>num_steps <span class="op">=</span> <span class="bu">len</span>(np.unique(step))</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="co"># get the spatial resolution</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>resolution <span class="op">=</span> <span class="bu">len</span>(np.where(step <span class="op">==</span> <span class="dv">0</span>)[<span class="dv">0</span>]) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="co"># reshape to separate spatial and time coordinates</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>sim_data <span class="op">=</span> data.reshape((num_steps, resolution<span class="op">+</span><span class="dv">1</span>, data.shape[<span class="dv">1</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-29" class="cell" data-execution_count="96">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>z_grid[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="96">
+<pre><code>array([0.00000000e+00, 1.71636264e-06, 3.43272528e-06, 5.14908792e-06,
+       6.86545056e-06, 8.58181320e-06, 1.02981758e-05, 1.20145385e-05,
+       1.37309011e-05, 1.54472638e-05])</code></pre>
+</div>
+</div>
+<div id="cell-30" class="cell" data-execution_count="84">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>z_grid <span class="op">=</span> sim_data[<span class="dv">1</span>, :, field_idx_dict[<span class="st">'z'</span>]]</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> np.argsort(z_grid)[<span class="dv">1</span>:]</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>dz <span class="op">=</span> np.mean(np.diff(z_grid[idx]))</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> np.mean(np.diff(sim_data[:,<span class="dv">0</span>,<span class="dv">1</span>]))</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.zeros((num_steps, resolution, <span class="dv">3</span>))</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_steps):</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>    data[i,:,<span class="dv">0</span>] <span class="op">=</span> sim_data[i,idx,field_idx_dict[<span class="st">'Bx'</span>]]</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>    data[i,:,<span class="dv">1</span>] <span class="op">=</span> sim_data[i,idx,field_idx_dict[<span class="st">'By'</span>]]</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>    data[i,:,<span class="dv">2</span>] <span class="op">=</span> sim_data[i,idx,field_idx_dict[<span class="st">'Ez'</span>]]</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Data file contains </span><span class="sc">{</span>num_steps<span class="sc">}</span><span class="ss"> time snapshots."</span>)</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Spatial resolution is </span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Data file contains 1757 time snapshots.
+Spatial resolution is 1022</code></pre>
+</div>
+</div>
+<div id="cell-31" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_analytic_R_mode(w):</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w <span class="op">/</span> np.sqrt(<span class="fl">1.0</span> <span class="op">+</span> <span class="bu">abs</span>(w))</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_analytic_L_mode(w):</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w <span class="op">/</span> np.sqrt(<span class="fl">1.0</span> <span class="op">-</span> <span class="bu">abs</span>(w))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-32" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> sim.B_dir <span class="op">==</span> <span class="st">'z'</span>:</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    global_norm <span class="op">=</span> (</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>        <span class="fl">1.0</span> <span class="op">/</span> (<span class="fl">2.0</span><span class="op">*</span>constants.mu0)</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>        <span class="op">/</span> ((<span class="fl">3.0</span><span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>sim.n0<span class="op">*</span>sim.T_plasma<span class="op">*</span>constants.q_e)</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    global_norm <span class="op">=</span> (</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>        constants.ep0 <span class="op">/</span> <span class="fl">2.0</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">/</span> ((<span class="fl">3.0</span><span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>sim.n0<span class="op">*</span>sim.T_plasma<span class="op">*</span>constants.q_e)</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> sim.B_dir <span class="op">==</span> <span class="st">'z'</span>:</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>    Bl <span class="op">=</span> (data[:, :, <span class="dv">0</span>] <span class="op">+</span> <span class="ot">1.0j</span> <span class="op">*</span> data[:, :, <span class="dv">1</span>]) <span class="op">/</span> np.sqrt(<span class="fl">2.0</span>)</span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>    field_kw <span class="op">=</span> np.fft.fftshift(np.fft.fft2(Bl))</span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>    field_kw <span class="op">=</span> np.fft.fftshift(np.fft.fft2(data[:, :, <span class="dv">2</span>]))</span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>w_norm <span class="op">=</span> sim.w_ci</span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> sim.B_dir <span class="op">==</span> <span class="st">'z'</span>:</span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>    k_norm <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> sim.l_i</span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>    k_norm <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> sim.rho_i</span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.pi <span class="op">*</span> np.fft.fftshift(np.fft.fftfreq(resolution, dz)) <span class="op">/</span> k_norm</span>
+<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.pi <span class="op">*</span> np.fft.fftshift(np.fft.fftfreq(num_steps, dt)) <span class="op">/</span> w_norm</span>
+<span id="cb46-26"><a href="#cb46-26" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="op">-</span>np.flipud(w)</span>
+<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-28"><a href="#cb46-28" aria-hidden="true" tabindex="-1"></a><span class="co"># aspect = (xmax-xmin)/(ymax-ymin) / aspect_true</span></span>
+<span id="cb46-29"><a href="#cb46-29" aria-hidden="true" tabindex="-1"></a>extent <span class="op">=</span> [k[<span class="dv">0</span>], k[<span class="op">-</span><span class="dv">1</span>], w[<span class="dv">0</span>], w[<span class="op">-</span><span class="dv">1</span>]]</span>
+<span id="cb46-30"><a href="#cb46-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-31"><a href="#cb46-31" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="fl">7.25</span>))</span>
+<span id="cb46-32"><a href="#cb46-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-33"><a href="#cb46-33" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> sim.B_dir <span class="op">==</span> <span class="st">'z'</span> <span class="kw">and</span> sim.dim <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb46-34"><a href="#cb46-34" aria-hidden="true" tabindex="-1"></a>    vmin <span class="op">=</span> <span class="op">-</span><span class="dv">3</span></span>
+<span id="cb46-35"><a href="#cb46-35" aria-hidden="true" tabindex="-1"></a>    vmax <span class="op">=</span> <span class="fl">3.5</span></span>
+<span id="cb46-36"><a href="#cb46-36" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb46-37"><a href="#cb46-37" aria-hidden="true" tabindex="-1"></a>    vmin <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb46-38"><a href="#cb46-38" aria-hidden="true" tabindex="-1"></a>    vmax <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb46-39"><a href="#cb46-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-40"><a href="#cb46-40" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax1.imshow(</span>
+<span id="cb46-41"><a href="#cb46-41" aria-hidden="true" tabindex="-1"></a>    np.log10(np.<span class="bu">abs</span>(field_kw<span class="op">**</span><span class="dv">2</span>) <span class="op">*</span> global_norm), extent<span class="op">=</span>extent,</span>
+<span id="cb46-42"><a href="#cb46-42" aria-hidden="true" tabindex="-1"></a>    aspect<span class="op">=</span><span class="st">"equal"</span>, cmap<span class="op">=</span><span class="st">'inferno'</span>, vmin<span class="op">=</span>vmin, vmax<span class="op">=</span>vmax</span>
+<span id="cb46-43"><a href="#cb46-43" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb46-44"><a href="#cb46-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-45"><a href="#cb46-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Colorbars</span></span>
+<span id="cb46-46"><a href="#cb46-46" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(right<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb46-47"><a href="#cb46-47" aria-hidden="true" tabindex="-1"></a>cbar_ax <span class="op">=</span> fig.add_axes([<span class="fl">0.525</span>, <span class="fl">0.15</span>, <span class="fl">0.03</span>, <span class="fl">0.7</span>])</span>
+<span id="cb46-48"><a href="#cb46-48" aria-hidden="true" tabindex="-1"></a>fig.colorbar(im, cax<span class="op">=</span>cbar_ax, orientation<span class="op">=</span><span class="st">'vertical'</span>)</span>
+<span id="cb46-49"><a href="#cb46-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-50"><a href="#cb46-50" aria-hidden="true" tabindex="-1"></a><span class="co">#cbar_lab = r'$\log_{10}(\frac{|B_{R/L}|^2}{2\mu_0}\frac{2}{3n_0k_BT_e})$'</span></span>
+<span id="cb46-51"><a href="#cb46-51" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> sim.B_dir <span class="op">==</span> <span class="st">'z'</span>:</span>
+<span id="cb46-52"><a href="#cb46-52" aria-hidden="true" tabindex="-1"></a>    cbar_lab <span class="op">=</span> <span class="vs">r'$\log_</span><span class="sc">{10}</span><span class="vs">(\beta_{R/L})$'</span></span>
+<span id="cb46-53"><a href="#cb46-53" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb46-54"><a href="#cb46-54" aria-hidden="true" tabindex="-1"></a>    cbar_lab <span class="op">=</span> <span class="vs">r'$\log_</span><span class="sc">{10}</span><span class="vs">(\varepsilon_0|E_z|^2/(3n_0k_BT_e))$'</span></span>
+<span id="cb46-55"><a href="#cb46-55" aria-hidden="true" tabindex="-1"></a>cbar_ax.set_ylabel(cbar_lab, rotation<span class="op">=</span><span class="dv">270</span>, labelpad<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb46-56"><a href="#cb46-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-57"><a href="#cb46-57" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> sim.B_dir <span class="op">==</span> <span class="st">'z'</span>:</span>
+<span id="cb46-58"><a href="#cb46-58" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plot the L mode</span></span>
+<span id="cb46-59"><a href="#cb46-59" aria-hidden="true" tabindex="-1"></a>    ax1.plot(get_analytic_L_mode(w), np.<span class="bu">abs</span>(w), c<span class="op">=</span><span class="st">'limegreen'</span>, ls<span class="op">=</span><span class="st">'--'</span>, lw<span class="op">=</span><span class="fl">1.25</span>,</span>
+<span id="cb46-60"><a href="#cb46-60" aria-hidden="true" tabindex="-1"></a>            label<span class="op">=</span><span class="st">'L mode:</span><span class="ch">\n</span><span class="st">'</span><span class="op">+</span><span class="vs">r'$(kl_i)^2=\frac{(\omega/\Omega_i)^2}{1-\omega/\Omega_i}$'</span>)</span>
+<span id="cb46-61"><a href="#cb46-61" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plot the R mode</span></span>
+<span id="cb46-62"><a href="#cb46-62" aria-hidden="true" tabindex="-1"></a>    ax1.plot(get_analytic_R_mode(w), <span class="op">-</span>np.<span class="bu">abs</span>(w), c<span class="op">=</span><span class="st">'limegreen'</span>, ls<span class="op">=</span><span class="st">'-.'</span>, lw<span class="op">=</span><span class="fl">1.25</span>,</span>
+<span id="cb46-63"><a href="#cb46-63" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="st">'R mode:</span><span class="ch">\n</span><span class="st">'</span><span class="op">+</span><span class="vs">r'$(kl_i)^2=\frac{(\omega/\Omega_i)^2}{1+\omega/\Omega_i}$'</span>)</span>
+<span id="cb46-64"><a href="#cb46-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-65"><a href="#cb46-65" aria-hidden="true" tabindex="-1"></a>    ax1.plot(k,<span class="fl">1.0</span><span class="op">+</span><span class="fl">3.0</span><span class="op">*</span>sim.v_ti<span class="op">/</span>w_norm<span class="op">*</span>k<span class="op">*</span>k_norm, c<span class="op">=</span><span class="st">'limegreen'</span>, ls<span class="op">=</span><span class="st">':'</span>, lw<span class="op">=</span><span class="fl">1.25</span>, label <span class="op">=</span> <span class="vs">r'$\omega = \Omega_i + 3v_{th,i} k$'</span>)</span>
+<span id="cb46-66"><a href="#cb46-66" aria-hidden="true" tabindex="-1"></a>    ax1.plot(k,<span class="fl">1.0</span><span class="op">-</span><span class="fl">3.0</span><span class="op">*</span>sim.v_ti<span class="op">/</span>w_norm<span class="op">*</span>k<span class="op">*</span>k_norm, c<span class="op">=</span><span class="st">'limegreen'</span>, ls<span class="op">=</span><span class="st">':'</span>, lw<span class="op">=</span><span class="fl">1.25</span>)</span>
+<span id="cb46-67"><a href="#cb46-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-68"><a href="#cb46-68" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb46-69"><a href="#cb46-69" aria-hidden="true" tabindex="-1"></a>    <span class="co"># digitized values from Munoz et al. (2018)</span></span>
+<span id="cb46-70"><a href="#cb46-70" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> [<span class="fl">0.006781609195402272</span>, <span class="fl">0.1321379310344828</span>, <span class="fl">0.2671034482758621</span>, <span class="fl">0.3743678160919539</span>, <span class="fl">0.49689655172413794</span>, <span class="fl">0.6143908045977011</span>, <span class="fl">0.766022988505747</span>, <span class="fl">0.885448275862069</span>, <span class="fl">1.0321149425287355</span>, <span class="fl">1.193862068965517</span>, <span class="fl">1.4417701149425288</span>, <span class="fl">1.7736781609195402</span>]</span>
+<span id="cb46-71"><a href="#cb46-71" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> [<span class="op">-</span><span class="fl">0.033194664836814436</span>, <span class="fl">0.5306857657503109</span>, <span class="fl">1.100227301968521</span>, <span class="fl">1.5713856842646996</span>, <span class="fl">2.135780760818287</span>, <span class="fl">2.675601492473303</span>, <span class="fl">3.3477291246729854</span>, <span class="fl">3.8469357121413563</span>, <span class="fl">4.4317021915340735</span>, <span class="fl">5.1079898786293265</span>, <span class="fl">6.10275764463696</span>, <span class="fl">7.310074194793499</span>]</span>
+<span id="cb46-72"><a href="#cb46-72" aria-hidden="true" tabindex="-1"></a>    ax1.plot(x, y, c<span class="op">=</span><span class="st">'limegreen'</span>, ls<span class="op">=</span><span class="st">'-.'</span>, lw<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="st">"X mode"</span>)</span>
+<span id="cb46-73"><a href="#cb46-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-74"><a href="#cb46-74" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> [<span class="fl">3.9732873563218387</span>, <span class="fl">3.6515862068965514</span>, <span class="fl">3.306275862068966</span>, <span class="fl">2.895655172413793</span>, <span class="fl">2.4318850574712645</span>, <span class="fl">2.0747586206896553</span>, <span class="fl">1.8520229885057473</span>, <span class="fl">1.6589195402298849</span>, <span class="fl">1.4594942528735633</span>, <span class="fl">1.2911724137931033</span>, <span class="fl">1.1551264367816092</span>, <span class="fl">1.0335402298850576</span>, <span class="fl">0.8961149425287356</span>, <span class="fl">0.7419770114942528</span>, <span class="fl">0.6141379310344828</span>, <span class="fl">0.4913103448275862</span>]</span>
+<span id="cb46-75"><a href="#cb46-75" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> [<span class="fl">1.1145945018655916</span>, <span class="fl">1.1193978642192393</span>, <span class="fl">1.1391259596002916</span>, <span class="fl">1.162971222713042</span>, <span class="fl">1.1986533430544237</span>, <span class="fl">1.230389844319595</span>, <span class="fl">1.2649997855641806</span>, <span class="fl">1.3265857528841618</span>, <span class="fl">1.3706737573444268</span>, <span class="fl">1.4368486511986962</span>, <span class="fl">1.4933310460179268</span>, <span class="fl">1.5485268259210019</span>, <span class="fl">1.6386327572157655</span>, <span class="fl">1.7062658146416778</span>, <span class="fl">1.7828194021529358</span>, <span class="fl">1.8533687867221342</span>]</span>
+<span id="cb46-76"><a href="#cb46-76" aria-hidden="true" tabindex="-1"></a>    ax1.plot(x, y, c<span class="op">=</span><span class="st">'limegreen'</span>, ls<span class="op">=</span><span class="st">':'</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Bernstein modes"</span>)</span>
+<span id="cb46-77"><a href="#cb46-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-78"><a href="#cb46-78" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> [<span class="fl">3.9669885057471266</span>, <span class="fl">3.6533333333333333</span>, <span class="fl">3.3213563218390805</span>, <span class="fl">2.9646896551724136</span>, <span class="fl">2.6106436781609195</span>, <span class="fl">2.2797011494252875</span>, <span class="fl">1.910919540229885</span>, <span class="fl">1.6811724137931034</span>, <span class="fl">1.4499540229885057</span>, <span class="fl">1.2577011494252872</span>, <span class="fl">1.081057471264368</span>, <span class="fl">0.8791494252873564</span>, <span class="fl">0.7153103448275862</span>]</span>
+<span id="cb46-79"><a href="#cb46-79" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> [<span class="fl">2.2274306300124374</span>, <span class="fl">2.2428271218424327</span>, <span class="fl">2.272505039241755</span>, <span class="fl">2.3084873697302397</span>, <span class="fl">2.3586224642964364</span>, <span class="fl">2.402667581592829</span>, <span class="fl">2.513873997512545</span>, <span class="fl">2.5859673199811297</span>, <span class="fl">2.6586610627439207</span>, <span class="fl">2.7352146502551786</span>, <span class="fl">2.8161427284813656</span>, <span class="fl">2.887850066475104</span>, <span class="fl">2.9455761890466183</span>]</span>
+<span id="cb46-80"><a href="#cb46-80" aria-hidden="true" tabindex="-1"></a>    ax1.plot(x, y, c<span class="op">=</span><span class="st">'limegreen'</span>, ls<span class="op">=</span><span class="st">':'</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb46-81"><a href="#cb46-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-82"><a href="#cb46-82" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> [<span class="fl">3.9764137931034487</span>, <span class="fl">3.702022988505747</span>, <span class="fl">3.459793103448276</span>, <span class="fl">3.166712643678161</span>, <span class="fl">2.8715862068965516</span>, <span class="fl">2.5285057471264367</span>, <span class="fl">2.2068505747126435</span>, <span class="fl">1.9037011494252871</span>, <span class="fl">1.6009885057471265</span>, <span class="fl">1.3447816091954023</span>, <span class="fl">1.1538850574712645</span>, <span class="fl">0.9490114942528736</span>]</span>
+<span id="cb46-83"><a href="#cb46-83" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> [<span class="fl">3.3231976669382854</span>, <span class="fl">3.34875841660591</span>, <span class="fl">3.378865205643951</span>, <span class="fl">3.424454260839731</span>, <span class="fl">3.474160483767209</span>, <span class="fl">3.522194107303684</span>, <span class="fl">3.6205343740618434</span>, <span class="fl">3.7040356821203417</span>, <span class="fl">3.785435519149119</span>, <span class="fl">3.868851052879873</span>, <span class="fl">3.9169704507440923</span>, <span class="fl">3.952481022429987</span>]</span>
+<span id="cb46-84"><a href="#cb46-84" aria-hidden="true" tabindex="-1"></a>    ax1.plot(x, y, c<span class="op">=</span><span class="st">'limegreen'</span>, ls<span class="op">=</span><span class="st">':'</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb46-85"><a href="#cb46-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-86"><a href="#cb46-86" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> [<span class="fl">3.953609195402299</span>, <span class="fl">3.7670114942528734</span>, <span class="fl">3.5917471264367817</span>, <span class="fl">3.39735632183908</span>, <span class="fl">3.1724137931034484</span>, <span class="fl">2.9408045977011494</span>, <span class="fl">2.685977011494253</span>, <span class="fl">2.4593563218390804</span>, <span class="fl">2.2203218390804595</span>, <span class="fl">2.0158850574712646</span>, <span class="fl">1.834183908045977</span>, <span class="fl">1.6522758620689655</span>, <span class="fl">1.4937471264367814</span>, <span class="fl">1.3427586206896551</span>, <span class="fl">1.2075402298850575</span>]</span>
+<span id="cb46-87"><a href="#cb46-87" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> [<span class="fl">4.427971008277223</span>, <span class="fl">4.458335120298495</span>, <span class="fl">4.481579963117039</span>, <span class="fl">4.495861388686366</span>, <span class="fl">4.544581206844791</span>, <span class="fl">4.587425483552773</span>, <span class="fl">4.638160998413175</span>, <span class="fl">4.698631899472488</span>, <span class="fl">4.757987734271133</span>, <span class="fl">4.813955483123902</span>, <span class="fl">4.862332203971352</span>, <span class="fl">4.892481880173264</span>, <span class="fl">4.9247759145687695</span>, <span class="fl">4.947934983059571</span>, <span class="fl">4.953124329888064</span>]</span>
+<span id="cb46-88"><a href="#cb46-88" aria-hidden="true" tabindex="-1"></a>    ax1.plot(x, y, c<span class="op">=</span><span class="st">'limegreen'</span>, ls<span class="op">=</span><span class="st">':'</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb46-89"><a href="#cb46-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-90"><a href="#cb46-90" aria-hidden="true" tabindex="-1"></a><span class="co"># ax1.legend(loc='upper left')</span></span>
+<span id="cb46-91"><a href="#cb46-91" aria-hidden="true" tabindex="-1"></a>fig.legend(loc<span class="op">=</span><span class="dv">7</span>, fontsize<span class="op">=</span><span class="dv">18</span>)</span>
+<span id="cb46-92"><a href="#cb46-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-93"><a href="#cb46-93" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> sim.B_dir <span class="op">==</span> <span class="st">'z'</span>:</span>
+<span id="cb46-94"><a href="#cb46-94" aria-hidden="true" tabindex="-1"></a>    ax1.set_xlabel(<span class="vs">r'$k l_i$'</span>)</span>
+<span id="cb46-95"><a href="#cb46-95" aria-hidden="true" tabindex="-1"></a>    ax1.set_title(<span class="st">'$B_{R/L} = B_x \pm iB_y$'</span>)</span>
+<span id="cb46-96"><a href="#cb46-96" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(<span class="st">"Parallel EM modes"</span>)</span>
+<span id="cb46-97"><a href="#cb46-97" aria-hidden="true" tabindex="-1"></a>    ax1.set_xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb46-98"><a href="#cb46-98" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylim(<span class="op">-</span><span class="dv">6</span>, <span class="dv">3</span>)</span>
+<span id="cb46-99"><a href="#cb46-99" aria-hidden="true" tabindex="-1"></a>    dir_str <span class="op">=</span> <span class="st">'par'</span></span>
+<span id="cb46-100"><a href="#cb46-100" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb46-101"><a href="#cb46-101" aria-hidden="true" tabindex="-1"></a>    ax1.set_xlabel(<span class="vs">r'$k \rho_i$'</span>)</span>
+<span id="cb46-102"><a href="#cb46-102" aria-hidden="true" tabindex="-1"></a>    ax1.set_title(<span class="st">'$E_z(k, \omega)$'</span>)</span>
+<span id="cb46-103"><a href="#cb46-103" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(<span class="ss">f"Perpendicular EM modes (ion Bernstein) - </span><span class="sc">{</span>sim<span class="sc">.</span>dim<span class="sc">}</span><span class="ss">D"</span>)</span>
+<span id="cb46-104"><a href="#cb46-104" aria-hidden="true" tabindex="-1"></a>    ax1.set_xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb46-105"><a href="#cb46-105" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylim(<span class="dv">0</span>, <span class="dv">8</span>)</span>
+<span id="cb46-106"><a href="#cb46-106" aria-hidden="true" tabindex="-1"></a>    dir_str <span class="op">=</span> <span class="st">'perp'</span></span>
+<span id="cb46-107"><a href="#cb46-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-108"><a href="#cb46-108" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="vs">r'$\omega / \Omega_i$'</span>)</span>
+<span id="cb46-109"><a href="#cb46-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-110"><a href="#cb46-110" aria-hidden="true" tabindex="-1"></a>plt.savefig(</span>
+<span id="cb46-111"><a href="#cb46-111" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"spectrum_</span><span class="sc">{</span>dir_str<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>sim<span class="sc">.</span>dim<span class="sc">}</span><span class="ss">d_</span><span class="sc">{</span>sim<span class="sc">.</span>substeps<span class="sc">}</span><span class="ss">_substeps_</span><span class="sc">{</span>sim<span class="sc">.</span>eta<span class="sc">}</span><span class="ss">_eta.png"</span>,</span>
+<span id="cb46-112"><a href="#cb46-112" aria-hidden="true" tabindex="-1"></a>    bbox_inches<span class="op">=</span><span class="st">'tight'</span></span>
+<span id="cb46-113"><a href="#cb46-113" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb46-114"><a href="#cb46-114" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> sim.test:</span>
+<span id="cb46-115"><a href="#cb46-115" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/tg/rfd0nr_970s3mv1fspgvkkxm0000gn/T/ipykernel_56467/195135233.py:5: RuntimeWarning: invalid value encountered in sqrt
+  return w / np.sqrt(1.0 - abs(w))</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/cell-30-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-33" class="cell" data-execution_count="92">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>idx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="92">
+<pre><code>array([1022,    1,    2, ..., 1019, 1020, 1021])</code></pre>
+</div>
+</div>
+<div id="cell-34" class="cell" data-execution_count="101">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>plt.plot(idx, data[<span class="dv">1200</span>,:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/cell-32-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-35" class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> sim.test:</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> os</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> sys</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> checksumAPI</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>    sys.path.insert(<span class="dv">1</span>, <span class="st">'../../../../warpx/Regression/Checksum/'</span>)</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this will be the name of the plot file</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>    fn <span class="op">=</span> sys.argv[<span class="dv">1</span>]</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>    test_name <span class="op">=</span> os.path.split(os.getcwd())[<span class="dv">1</span>]</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>    checksumAPI.evaluate_checksum(test_name, fn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
