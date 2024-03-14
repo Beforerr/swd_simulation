@@ -1,0 +1,21 @@
+# dependencies for macOS
+name: warpx
+channels:
+  - conda-forge
+dependencies:
+  - python<3.12
+  
+  - compilers
+  - ccache
+  - cmake
+  - llvm-openmp # OpenMP support
+  - ninja
+
+  - blaspp
+  - lapackpp
+  - pkg-config 
+
+  - openmpi
+  - fftw=*=mpi_openmpi*
+  # - h5py=*=mpi_mpich*
+  # - openpmd-api=*=mpi_mpich*

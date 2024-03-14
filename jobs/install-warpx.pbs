@@ -11,8 +11,7 @@ module swap hdf5 hdf5-mpi
 module swap netcdf netcdf-mpi
 
 cd $HOME/src/warpx
-cmake -S . -B build_py \
+cmake -S . -B build \
   -DWarpX_DIMS="1;2;3" \
-  -DWarpX_PYTHON=ON \
-  -DWarpX_PSATD=ON
-cmake --build build_py --target pip_install -j 32
+  -DWarpX_PYTHON=ON
+cmake --build build --target pip_install -j 32

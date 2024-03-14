@@ -4,19 +4,7 @@ channels:
   - conda-forge
 dependencies:
   - python<3.12
-  
-  - compilers
-  - ccache
-  - cmake
-  - llvm-openmp # OpenMP support
-  - ninja
+  - warpx
 
-  - blaspp
-  - lapackpp
-  - fftw=*=mpi_mpich*
-  - pkg-config 
-
-  - mpich
-
-  - h5py=*=mpi_mpich*
-  - openpmd-api=*=mpi_mpich*
+  # - h5py=*=mpi_mpich*
+  # - openpmd-api=*=mpi_mpich*

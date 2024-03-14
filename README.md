@@ -8,7 +8,7 @@
 
 ### Local Development (macOS)
 
-warpx installed by `conda` has no `MPI` support.
+warpx installed by `conda` has no `MPI` and `2d/3d` support.
 
 Notes:
 

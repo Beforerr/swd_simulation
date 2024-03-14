@@ -26,18 +26,18 @@ spack-compilers:
   code $HOME/.spack/darwin/compilers.yaml
 
 warpx:
-  cd $HOME/src/warpx
+  cd $HOME/src/WarpX
   cmake -S . -B build
   cmake --build build -j 8
 
 py-warpx:
   #!/bin/sh
-  cd $HOME/src/warpx
-  cmake -S . -B build_py \
+  cd $HOME/src/WarpX
+  cmake -S . -B build \
     -DWarpX_DIMS="1;2;3" \
     -DWarpX_PYTHON=ON \
-    -DWarpX_PSATD=ON
-  cmake --build build_py --target pip_install -j 8
+    -DWarpX_MPI=OFF
+  cmake --build build --target pip_install -j 8
 
 install-warpx-ncar:
   #!/bin/bash

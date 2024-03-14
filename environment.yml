@@ -5,6 +5,7 @@ dependencies:
   - python<3.12
   - jupyter
   - fastcore
+  - pydantic
 
   - plasmapy
   - dill
@@ -14,3 +15,5 @@ dependencies:
   - pip
   - pip:
     - mpi4py
+    - h5py
+    - openpmd-api
