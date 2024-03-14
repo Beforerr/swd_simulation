@@ -308,7 +308,8 @@ class EMModes(object):
         #######################################################################
 
         simulation.initialize_inputs()
-        simulation.initialize_warpx()
+        simulation.write_input_file()
+        # simulation.initialize_warpx()
 
     def _record_average_fields(self):
         """A custom reduced diagnostic to store the average E&M fields in a
@@ -371,4 +372,4 @@ args, left = parser.parse_known_args()
 sys.argv = sys.argv[:1]+left
 
 run = EMModes(test=args.test, dim=args.dim, B_dir=args.bdir, verbose=args.verbose)
-simulation.step()
+# simulation.step()

@@ -35,8 +35,7 @@ py-warpx:
   cd $HOME/src/WarpX
   cmake -S . -B build \
     -DWarpX_DIMS="1;2;3" \
-    -DWarpX_PYTHON=ON \
-    -DWarpX_MPI=OFF
+    -DWarpX_PYTHON=ON
   cmake --build build --target pip_install -j 8
 
 install-warpx-ncar:
@@ -54,5 +53,8 @@ clean:
   rm -rf *\.{e,o}*
   rm -f *.dpkl
   rm -f Backtrace.*
-  rm -f warpx_used_inputs
   rm -rf diags
+  find . -type f -name 'warpx_used_inputs' -exec rm {} +
+
+preview:
+  quarto preview --no-render

@@ -1,0 +1,65 @@
+# algo
+algo.current_deposition = direct
+algo.maxwell_solver = hybrid
+algo.particle_shape = 1
+
+# amr
+amr.max_grid_size = 32
+amr.max_level = 0
+amr.n_cell = 8 1024
+
+# boundary
+boundary.field_hi = periodic periodic
+boundary.field_lo = periodic periodic
+boundary.particle_hi = periodic periodic
+boundary.particle_lo = periodic periodic
+
+# diag1
+diag1.diag_type = Full
+diag1.format = plotfile
+diag1.intervals = 200
+diag1.write_species = 0
+
+# diagnostics
+diagnostics.diags_names = diag1
+
+# geometry
+geometry.dims = 2
+geometry.prob_hi = 2.7408165898474804e-05 0.00701649047000955
+geometry.prob_lo = -2.7408165898474804e-05 0
+
+# hybrid_pic_model
+hybrid_pic_model.elec_temp = 0.0025549947499808206
+hybrid_pic_model.n0_ref = 6.01476103803785e+23
+hybrid_pic_model.n_floor = 6.014761038037851e+21
+hybrid_pic_model.plasma_resistivity(rho,J) = 1e-07
+
+# ions
+ions.charge = q_e
+ions.density = 6.01476103803785e+23
+ions.initialize_self_fields = 0
+ions.injection_style = nrandompercell
+ions.mass = 9.1093837015e-29
+ions.momentum_distribution_type = gaussian
+ions.num_particles_per_cell = 256
+ions.profile = constant
+ions.ux_m = 0.0
+ions.ux_th = 7.071067811865475e-06
+ions.uy_m = 0.0
+ions.uy_th = 7.071067811865475e-06
+ions.uz_m = 0.0
+ions.uz_th = 7.071067811865475e-06
+
+# max_step
+max_step = 60000
+
+# particles
+particles.species_names = ions
+
+# warpx
+warpx.B_ext_grid_init_style = parse_b_ext_grid_function
+warpx.Bx_external_grid_function(x,y,z) = 0.0
+warpx.By_external_grid_function(x,y,z) = 0.0
+warpx.Bz_external_grid_function(x,y,z) = 0.25
+warpx.const_dt = 7.14477350575642e-11
+warpx.serialize_initial_conditions = 1
