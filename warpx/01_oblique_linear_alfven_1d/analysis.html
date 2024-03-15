@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.547">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Warpx</li><li class="breadcrumb-item"><a href="../../warpx/01_oblique_linear_alfven_1d/analysis.html">01 Oblique Linear Alfven 1d</a></li><li class="breadcrumb-item"><a href="../../warpx/01_oblique_linear_alfven_1d/analysis.html">Analysis</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Warpx</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">00 EMModes</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../warpx/00_EMModes/inputs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inputs</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">01 Oblique Linear Alfven 1d</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../warpx/01_oblique_linear_alfven_1d/analysis.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../warpx/01_oblique_linear_alfven_1d/inputs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inputs</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">02 Oblique Linear Alfven</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../warpx/02_oblique_linear_alfven/analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../warpx/02_oblique_linear_alfven/inputs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inputs</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link active" data-scroll-target="#analysis">Analysis</a>
+  <ul class="collapse">
+  <li><a href="#io" id="toc-io" class="nav-link" data-scroll-target="#io">IO</a>
+  <ul class="collapse">
+  <li><a href="#yt" id="toc-yt" class="nav-link" data-scroll-target="#yt">yt</a></li>
+  </ul></li>
+  <li><a href="#fields" id="toc-fields" class="nav-link" data-scroll-target="#fields">Fields</a></li>
+  <li><a href="#particles" id="toc-particles" class="nav-link" data-scroll-target="#particles">Particles</a>
+  <ul class="collapse">
+  <li><a href="#openpmd" id="toc-openpmd" class="nav-link" data-scroll-target="#openpmd">OpenPMD</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Warpx</li><li class="breadcrumb-item"><a href="../../warpx/01_oblique_linear_alfven_1d/analysis.html">01 Oblique Linear Alfven 1d</a></li><li class="breadcrumb-item"><a href="../../warpx/01_oblique_linear_alfven_1d/analysis.html">Analysis</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="analysis" class="level1">
+<h1>Analysis</h1>
+<div id="cell-1" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-2" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load simulation parameters</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"sim_parameters.json"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    sim <span class="op">=</span> json.load(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-3" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>{'dim': 1,
+ 'diag': True,
+ 'n0': 100000000.0,
+ 'm_ion_norm': 100,
+ 'm_ion': 9.1093837015e-29,
+ 'v_ti': 207957.64245251397,
+ 'nz': 512,
+ 'nx': None,
+ 'nppc': 256,
+ 'diag_steps': 256,
+ 'beta': 0.1,
+ 'B0': 1.0000000000000001e-07,
+ 'vA': 930014.8499288347,
+ 'vA_over_c': None,
+ 'plasma_resistivity': 1e-07,
+ 'T_plasma': 24.588292599321438,
+ 'Te': 24.588292599321438,
+ 't_ci': 0.035723867528782094,
+ 'd_i': 5314.093261582036,
+ 'time_norm': 100.0,
+ 'dt_norm': 0.00390625,
+ 'diag_time_norm': 1,
+ 'substeps': 10,
+ 'Lz_norm': 128,
+ 'Lx_norm': 0,
+ 'dz_norm': 0.25,
+ 'test': True,
+ 'A': 0.5,
+ 'theta': 0.0,
+ 'wave_number': 3,
+ 'w_ci': 175.88200107721636,
+ 'w_pi': 56414.602311806266,
+ 'dt': 0.00013954635753430505,
+ 'dz': 1328.523315395509,
+ 'Lz': 680203.9374825006,
+ 'Lx': 0.0,
+ 'k': 2.771162423919914e-05}</code></pre>
+</div>
+</div>
+<div id="cell-4" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sim[<span class="st">'time_norm'</span>] <span class="op">/</span> sim[<span class="st">'dt_norm'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>25600.0</code></pre>
+</div>
+</div>
+<div id="cell-5" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sim[<span class="st">"Lx"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>0.0</code></pre>
+</div>
+</div>
+<section id="io" class="level2">
+<h2 class="anchored" data-anchor-id="io">IO</h2>
+<section id="yt" class="level3">
+<h3 class="anchored" data-anchor-id="yt">yt</h3>
+<div id="cell-8" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-9" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ts <span class="op">=</span> yt.load(<span class="st">'./diags/diag1??????'</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ts = yt.load('./diags/diag???0032')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-10" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot(ds, normalize <span class="op">=</span> <span class="va">True</span>, <span class="op">**</span>kwargs):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    ad <span class="op">=</span> ds.all_data()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    fields <span class="op">=</span> [<span class="st">"Bx"</span>, <span class="st">"By"</span>, <span class="st">"Bz"</span>]</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> ad[<span class="st">"x"</span>]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> normalize:</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> x <span class="op">/</span> sim[<span class="st">'d_i'</span>]</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> field <span class="kw">in</span> fields:</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        plt.plot(x, ad[field], label<span class="op">=</span>field, <span class="op">**</span>kwargs)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"x ($d_i$)"</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hodogram(ds, comp1<span class="op">=</span><span class="st">"By"</span>, comp2<span class="op">=</span><span class="st">"Bz"</span>):</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    time <span class="op">=</span> ds.current_time</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    time_norm <span class="op">=</span> time.value <span class="op">/</span> sim[<span class="st">'t_ci'</span>]</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    ad <span class="op">=</span> ds.all_data()</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    plt.plot(ad[comp1], ad[comp2], label<span class="op">=</span><span class="ss">f"t=</span><span class="sc">{</span>time_norm<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(comp1)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(comp2)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_ts(ts, i <span class="op">=</span> <span class="dv">0</span>, j <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>, <span class="op">**</span>kwargs):</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    _ts <span class="op">=</span> ts[i:j]</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, ds <span class="kw">in</span> <span class="bu">enumerate</span>(_ts):</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>        alpha <span class="op">=</span> (i <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> (<span class="bu">len</span>(_ts)<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>        plot(ds, alpha<span class="op">=</span>alpha)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>        plt.gca().set_prop_cycle(<span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-11" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>j <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plot_ts(ts, i, j)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>yt : [INFO     ] 2024-03-14 13:42:26,073 Parameters: current_time              = 0.0
+yt : [INFO     ] 2024-03-14 13:42:26,074 Parameters: domain_dimensions         = [512   1   1]
+yt : [INFO     ] 2024-03-14 13:42:26,076 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2024-03-14 13:42:26,078 Parameters: domain_right_edge         = [6.80203937e+05 1.00000000e+00 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:42:26,171 Parameters: current_time              = 0.035723867528782094
+yt : [INFO     ] 2024-03-14 13:42:26,177 Parameters: domain_dimensions         = [512   1   1]
+yt : [INFO     ] 2024-03-14 13:42:26,187 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2024-03-14 13:42:26,189 Parameters: domain_right_edge         = [6.80203937e+05 1.00000000e+00 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:42:26,285 Parameters: current_time              = 0.07144773505756374
+yt : [INFO     ] 2024-03-14 13:42:26,286 Parameters: domain_dimensions         = [512   1   1]
+yt : [INFO     ] 2024-03-14 13:42:26,287 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2024-03-14 13:42:26,287 Parameters: domain_right_edge         = [6.80203937e+05 1.00000000e+00 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:42:26,445 Parameters: current_time              = 0.10717160258634406
+yt : [INFO     ] 2024-03-14 13:42:26,454 Parameters: domain_dimensions         = [512   1   1]
+yt : [INFO     ] 2024-03-14 13:42:26,454 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2024-03-14 13:42:26,455 Parameters: domain_right_edge         = [6.80203937e+05 1.00000000e+00 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:42:26,556 Parameters: current_time              = 0.14289547011512438
+yt : [INFO     ] 2024-03-14 13:42:26,566 Parameters: domain_dimensions         = [512   1   1]
+yt : [INFO     ] 2024-03-14 13:42:26,571 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2024-03-14 13:42:26,575 Parameters: domain_right_edge         = [6.80203937e+05 1.00000000e+00 1.00000000e+00]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/cell-10-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-12" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>j <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plot_ts(ts, i, j)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>yt : [INFO     ] 2024-03-14 13:42:26,787 Parameters: current_time              = 0.1786193376439047
+yt : [INFO     ] 2024-03-14 13:42:26,788 Parameters: domain_dimensions         = [512   1   1]
+yt : [INFO     ] 2024-03-14 13:42:26,789 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2024-03-14 13:42:26,790 Parameters: domain_right_edge         = [6.80203937e+05 1.00000000e+00 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:42:26,876 Parameters: current_time              = 0.21434320517268501
+yt : [INFO     ] 2024-03-14 13:42:26,877 Parameters: domain_dimensions         = [512   1   1]
+yt : [INFO     ] 2024-03-14 13:42:26,877 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2024-03-14 13:42:26,878 Parameters: domain_right_edge         = [6.80203937e+05 1.00000000e+00 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:42:26,937 Parameters: current_time              = 0.25006707270146533
+yt : [INFO     ] 2024-03-14 13:42:26,938 Parameters: domain_dimensions         = [512   1   1]
+yt : [INFO     ] 2024-03-14 13:42:26,938 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2024-03-14 13:42:26,939 Parameters: domain_right_edge         = [6.80203937e+05 1.00000000e+00 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:42:26,998 Parameters: current_time              = 0.28579094023025275
+yt : [INFO     ] 2024-03-14 13:42:26,999 Parameters: domain_dimensions         = [512   1   1]
+yt : [INFO     ] 2024-03-14 13:42:27,015 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2024-03-14 13:42:27,031 Parameters: domain_right_edge         = [6.80203937e+05 1.00000000e+00 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:42:27,121 Parameters: current_time              = 0.3215148077590402
+yt : [INFO     ] 2024-03-14 13:42:27,122 Parameters: domain_dimensions         = [512   1   1]
+yt : [INFO     ] 2024-03-14 13:42:27,122 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2024-03-14 13:42:27,123 Parameters: domain_right_edge         = [6.80203937e+05 1.00000000e+00 1.00000000e+00]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/cell-11-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-13" class="cell" data-execution_count="188">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ds <span class="kw">in</span> ts:</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    hodogram(ds)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>yt : [INFO     ] 2024-03-14 13:06:31,200 Parameters: current_time              = 0.0
+yt : [INFO     ] 2024-03-14 13:06:31,201 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 13:06:31,202 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 13:06:31,202 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:06:31,281 Parameters: current_time              = 0.035723867528782094
+yt : [INFO     ] 2024-03-14 13:06:31,283 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 13:06:31,284 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 13:06:31,288 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:06:31,378 Parameters: current_time              = 0.07144773505756374
+yt : [INFO     ] 2024-03-14 13:06:31,378 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 13:06:31,379 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 13:06:31,379 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:06:31,435 Parameters: current_time              = 0.10717160258634406
+yt : [INFO     ] 2024-03-14 13:06:31,435 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 13:06:31,435 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 13:06:31,435 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:06:31,491 Parameters: current_time              = 0.14289547011512438
+yt : [INFO     ] 2024-03-14 13:06:31,491 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 13:06:31,491 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 13:06:31,491 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:06:31,544 Parameters: current_time              = 0.1786193376439047
+yt : [INFO     ] 2024-03-14 13:06:31,544 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 13:06:31,545 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 13:06:31,545 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:06:31,600 Parameters: current_time              = 0.21434320517268501
+yt : [INFO     ] 2024-03-14 13:06:31,600 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 13:06:31,600 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 13:06:31,600 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:06:31,654 Parameters: current_time              = 0.25006707270146533
+yt : [INFO     ] 2024-03-14 13:06:31,654 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 13:06:31,655 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 13:06:31,655 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/cell-12-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-14" class="cell" data-execution_count="192">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ds <span class="kw">in</span> ts[<span class="dv">0</span>:i]:</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    hodogram(ds)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>yt : [INFO     ] 2024-03-14 13:06:57,828 Parameters: current_time              = 0.0
+yt : [INFO     ] 2024-03-14 13:06:57,829 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 13:06:57,830 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 13:06:57,832 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:06:57,904 Parameters: current_time              = 0.035723867528782094
+yt : [INFO     ] 2024-03-14 13:06:57,905 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 13:06:57,906 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 13:06:57,906 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:06:57,961 Parameters: current_time              = 0.07144773505756374
+yt : [INFO     ] 2024-03-14 13:06:57,962 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 13:06:57,962 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 13:06:57,963 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:06:58,015 Parameters: current_time              = 0.10717160258634406
+yt : [INFO     ] 2024-03-14 13:06:58,015 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 13:06:58,016 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 13:06:58,016 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 13:06:58,071 Parameters: current_time              = 0.14289547011512438
+yt : [INFO     ] 2024-03-14 13:06:58,071 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 13:06:58,071 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 13:06:58,072 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-15" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ds.fields</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>TypeError: 'FieldTypeContainer' object is not subscriptable</code></pre>
+</div>
+</div>
+<div id="cell-16" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ds[(<span class="st">"mesh"</span>, <span class="st">"Bx"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>KeyError: ('mesh', 'Bx')</code></pre>
+</div>
+</div>
+<div id="cell-17" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>yt.SlicePlot(ds, <span class="st">"z"</span>, (<span class="st">"boxlib"</span>, <span class="st">"Bz"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>yt : [INFO     ] 2024-03-13 17:10:23,638 xlim = -728644.160452 728644.160452
+yt : [INFO     ] 2024-03-13 17:10:23,639 ylim = 0.000000 45540.260028
+yt : [INFO     ] 2024-03-13 17:10:23,640 xlim = -728644.160452 728644.160452
+yt : [INFO     ] 2024-03-13 17:10:23,641 ylim = 0.000000 45540.260028
+yt : [INFO     ] 2024-03-13 17:10:23,643 Making a fixed resolution buffer of (('boxlib', 'Bz')) 800 by 800</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<img style="max-width:100%;max-height:100%;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABD0AAACRCAYAAADAZcP+AAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/H5lhTAAAACXBIWXMAAA9hAAAPYQGoP6dpAAAzt0lEQVR4nO3deVyU1f4H8M8AA4IIiiIFggKugKYGGVKCGyaalZro1VzKlK52c09LIcmkwiw1MZbSqxWmXjOviuXPhFyuQSmIGpBLigJCJtuwOpzfH75mEhl2mJln/Lxfr3kpz1nnOQwzz3fOc45MCCFARERERERERGRgjHTdASIiIiIiIiKi1sCgBxEREREREREZJAY9iIiIiIiIiMggmei6A81RVlaGrKwsFBQUoLS0FG3btkXnzp3x6KOP6rprRERERERERE3G692WIamgR1lZGeLi4rBv3z78/PPPuHz5Mqqqqmrka9OmDTw9PTF06FBMmjQJbm5uOugtERERERERUcPwerd1yKSwe0thYSHWr1+PDRs2QKlUYtCgQRgwYACcnZ3x6KOPwsLCAnK5HCUlJSgoKEBmZiYuXryIpKQkpKWlYfDgwVi1ahVGjRql66dCREREREREpMbr3dal9zM9Dh48iNmzZ2Pw4MGIjY3FsGHDYGpq2uDy169fR2xsLIKCgtC/f39ERUXB1ta2FXtMREREREREVD9e77Y+vZ7pERwcjBMnTmDDhg3o27dvs+q6e/cuIiIiEBMTg507d3IKEBEREREREekMr3e1Q2+DHmFhYaioqEBwcDBkMlmL1Xvp0iW89tpriIqKgrOzc4vVS0RERERERNQQvN7VHr0NevznP//BhAkTWqXu/Px8JCcnw8/Pr1XqJyIiIiIiIqoNr3e1R2+DHkREREREREREzWGk6w60pt27d+u6C0RERERERER1UiqVyMnJwc2bN3XdFYNj0DM9Bg4ciDNnzui6G0RERERERETV+Pn5ITc3FwUFBXB0dISLiwtGjx6Nl156SdddMyh6v2VtbbKzs3Hw4EHcunULSqWyRnphYSFSU1N10DMiIiIiIiKiuv3000949tlnsWPHDlhZWem6OwZLkjM9Tpw4gYCAACgUCtTVfZlMpjEgQkRERERERKRLpqamyMrKQqdOnXTdFYMmyaDHkCFDUFpaivHjx8POzg7GxsY18hQU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dyI/Px/AvVtIfvrpJwDAkSNH8Nxzz6kX7XRycoK3tzd27tzZ7HbHjBkDe3t7REdH10hLSEjA4sWLkZqaioqKCpiZmcHDwwORkZGwtbWFp6cn8vLyAABWVlZ47rnn8Pbbb2P69Ok4f/68+rYZd3d3LFiwAP369cO8efNw7tw5VFRUwMjICH379sWKFSvwyCOPVGvr/rTAwMAafevTpw9efPFFhIaGNvscEBER0cOBQQ8iIqKHzM6dO7Fw4ULcuHFDvV2svrt27Rq6deuGc+fOoW/fvrruDhEREUkEb28hIiJ6yEycOBFt2rRpld1hWsvOnTvh7e3NgAcRERE1Cmd6EBERPYR27tyJdevWISkpSe/XyKisrESPHj0QERGBgIAAXXeHiIiIJIQzPYiIiB5CkydPhr29PaKionTdlXpt2bIFjz32GAMeRERE1Gic6UFERPSQKiwshL+/PyIjI/HYY4/pujsaXbp0Cc8//zyOHj0KOzs7XXeHiIiIJIYzPYiIiB5SVlZWOHjwIFavXl1j+1l9cOfOHQQFBSE2NpYBDyIiImoSzvQgIiIivXTs2DE4OTnB1dVV110hIiIiiWLQg4iIiIiIiIgMEm9vISIiIiIiIiKDxKAHERERERERERkkBj2IiIiIiIiIyCAx6EFEREREREREBolBDyIiIiIiIiIySAx6EBEREREREZFBYtCDiIiIiIiIiAwSgx5EREREREREZJAY9CAiIiIiIiIig8SgBxEREREREREZJAY9iIiIiIiIiMggMehBRERERERERAaJQQ8iIiIiIiIiMkgMehARERERERGRQWLQg4iIiIiIiIgMEoMeRERERERERGSQGPQgIiIiIiIiIoPEoAcRERERERERGSQGPYiIiIiIiIjIIDHoQUREREREREQGiUEPIiIiIiIiIjJIDHoQERERERERkUFi0IOIiIiIiIiIDBKDHkRERERERERkkBj0ICIiIiIiIiKDxKAHERERERERERkkBj2IiIiIiIiIyCD9P0K5DHhg3BRoAAAAAElFTkSuQmCC"><br>
+</div>
+</div>
+</section>
+</section>
+<section id="fields" class="level2">
+<h2 class="anchored" data-anchor-id="fields">Fields</h2>
+<div id="cell-19" class="cell" data-execution_count="143">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ts <span class="op">=</span> yt.load(<span class="st">'./diags/diag1??????'</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ts = yt.load('./diags/diag???0032')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-20" class="cell" data-execution_count="144">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fields <span class="op">=</span> [</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"boxlib"</span>, <span class="st">"Bx"</span>),</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"boxlib"</span>, <span class="st">"By"</span>),</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"boxlib"</span>, <span class="st">"Bz"</span>),</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"boxlib"</span>, <span class="st">"Ex"</span>),</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"boxlib"</span>, <span class="st">"Ey"</span>),</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"boxlib"</span>, <span class="st">"Ez"</span>),</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"mesh"</span>, <span class="st">"magnetic_field_strength"</span>),</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ds <span class="kw">in</span> ts.piter():</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    slc <span class="op">=</span> yt.SlicePlot(</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>        ds,</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">"z"</span>,</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>        fields,</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>        origin<span class="op">=</span><span class="st">"native"</span>,</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    )  <span class="co"># Create a sliceplot object</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    slc.set_axes_unit(<span class="st">"km"</span>)</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>    slc.save(<span class="st">"figures/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>yt : [INFO     ] 2024-03-14 12:48:41,015 Parameters: current_time              = 0.0
+yt : [INFO     ] 2024-03-14 12:48:41,016 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 12:48:41,017 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 12:48:41,018 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 12:48:41,175 xlim = -340101.968741 340101.968741
+yt : [INFO     ] 2024-03-14 12:48:41,175 ylim = 0.000000 21256.373046
+yt : [INFO     ] 2024-03-14 12:48:41,176 xlim = -340101.968741 340101.968741
+yt : [INFO     ] 2024-03-14 12:48:41,176 ylim = 0.000000 21256.373046
+yt : [INFO     ] 2024-03-14 12:48:41,177 Making a fixed resolution buffer of (('boxlib', 'Ey')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:41,202 Making a fixed resolution buffer of (('boxlib', 'Ex')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:41,225 Making a fixed resolution buffer of (('boxlib', 'Bz')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:41,251 Making a fixed resolution buffer of (('boxlib', 'Ez')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:41,272 Making a fixed resolution buffer of (('boxlib', 'By')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:41,332 Making a fixed resolution buffer of (('mesh', 'magnetic_field_strength')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:41,372 Making a fixed resolution buffer of (('boxlib', 'Bx')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:42,035 Saving plot figures/diag1000000_Slice_z_Ey.png
+yt : [INFO     ] 2024-03-14 12:48:42,072 Saving plot figures/diag1000000_Slice_z_Ex.png
+yt : [INFO     ] 2024-03-14 12:48:42,110 Saving plot figures/diag1000000_Slice_z_Bz.png
+yt : [INFO     ] 2024-03-14 12:48:42,146 Saving plot figures/diag1000000_Slice_z_Ez.png
+yt : [INFO     ] 2024-03-14 12:48:42,182 Saving plot figures/diag1000000_Slice_z_By.png
+yt : [INFO     ] 2024-03-14 12:48:42,252 Saving plot figures/diag1000000_Slice_z_magnetic_field_strength.png
+yt : [INFO     ] 2024-03-14 12:48:42,304 Saving plot figures/diag1000000_Slice_z_Bx.png
+yt : [INFO     ] 2024-03-14 12:48:42,359 Parameters: current_time              = 0.035723867528782094
+yt : [INFO     ] 2024-03-14 12:48:42,360 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 12:48:42,361 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 12:48:42,361 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 12:48:42,408 xlim = -340101.968741 340101.968741
+yt : [INFO     ] 2024-03-14 12:48:42,408 ylim = 0.000000 21256.373046
+yt : [INFO     ] 2024-03-14 12:48:42,409 xlim = -340101.968741 340101.968741
+yt : [INFO     ] 2024-03-14 12:48:42,410 ylim = 0.000000 21256.373046
+yt : [INFO     ] 2024-03-14 12:48:42,412 Making a fixed resolution buffer of (('boxlib', 'Ey')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:42,487 Making a fixed resolution buffer of (('boxlib', 'Ex')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:42,558 Making a fixed resolution buffer of (('boxlib', 'Bz')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:42,626 Making a fixed resolution buffer of (('boxlib', 'Ez')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:42,700 Making a fixed resolution buffer of (('boxlib', 'By')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:42,768 Making a fixed resolution buffer of (('mesh', 'magnetic_field_strength')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:42,811 Making a fixed resolution buffer of (('boxlib', 'Bx')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:44,173 Saving plot figures/diag1000256_Slice_z_Ey.png
+yt : [INFO     ] 2024-03-14 12:48:44,251 Saving plot figures/diag1000256_Slice_z_Ex.png
+yt : [INFO     ] 2024-03-14 12:48:44,335 Saving plot figures/diag1000256_Slice_z_Bz.png
+yt : [INFO     ] 2024-03-14 12:48:44,405 Saving plot figures/diag1000256_Slice_z_Ez.png
+yt : [INFO     ] 2024-03-14 12:48:44,488 Saving plot figures/diag1000256_Slice_z_By.png
+yt : [INFO     ] 2024-03-14 12:48:44,570 Saving plot figures/diag1000256_Slice_z_magnetic_field_strength.png
+yt : [INFO     ] 2024-03-14 12:48:44,631 Saving plot figures/diag1000256_Slice_z_Bx.png
+yt : [INFO     ] 2024-03-14 12:48:44,702 Parameters: current_time              = 0.07144773505756374
+yt : [INFO     ] 2024-03-14 12:48:44,702 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 12:48:44,702 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 12:48:44,703 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 12:48:44,748 xlim = -340101.968741 340101.968741
+yt : [INFO     ] 2024-03-14 12:48:44,748 ylim = 0.000000 21256.373046
+yt : [INFO     ] 2024-03-14 12:48:44,749 xlim = -340101.968741 340101.968741
+yt : [INFO     ] 2024-03-14 12:48:44,750 ylim = 0.000000 21256.373046
+yt : [INFO     ] 2024-03-14 12:48:44,751 Making a fixed resolution buffer of (('boxlib', 'Ey')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:44,824 Making a fixed resolution buffer of (('boxlib', 'Ex')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:44,904 Making a fixed resolution buffer of (('boxlib', 'Bz')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:44,977 Making a fixed resolution buffer of (('boxlib', 'Ez')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:45,037 Making a fixed resolution buffer of (('boxlib', 'By')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:45,094 Making a fixed resolution buffer of (('mesh', 'magnetic_field_strength')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:45,128 Making a fixed resolution buffer of (('boxlib', 'Bx')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:46,456 Saving plot figures/diag1000512_Slice_z_Ey.png
+yt : [INFO     ] 2024-03-14 12:48:46,544 Saving plot figures/diag1000512_Slice_z_Ex.png
+yt : [INFO     ] 2024-03-14 12:48:46,639 Saving plot figures/diag1000512_Slice_z_Bz.png
+yt : [INFO     ] 2024-03-14 12:48:46,711 Saving plot figures/diag1000512_Slice_z_Ez.png
+yt : [INFO     ] 2024-03-14 12:48:46,794 Saving plot figures/diag1000512_Slice_z_By.png
+yt : [INFO     ] 2024-03-14 12:48:46,901 Saving plot figures/diag1000512_Slice_z_magnetic_field_strength.png
+yt : [INFO     ] 2024-03-14 12:48:46,969 Saving plot figures/diag1000512_Slice_z_Bx.png
+yt : [INFO     ] 2024-03-14 12:48:47,039 Parameters: current_time              = 0.10717160258634406
+yt : [INFO     ] 2024-03-14 12:48:47,039 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 12:48:47,040 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 12:48:47,040 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 12:48:47,089 xlim = -340101.968741 340101.968741
+yt : [INFO     ] 2024-03-14 12:48:47,089 ylim = 0.000000 21256.373046
+yt : [INFO     ] 2024-03-14 12:48:47,090 xlim = -340101.968741 340101.968741
+yt : [INFO     ] 2024-03-14 12:48:47,091 ylim = 0.000000 21256.373046
+yt : [INFO     ] 2024-03-14 12:48:47,092 Making a fixed resolution buffer of (('boxlib', 'Ey')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:47,167 Making a fixed resolution buffer of (('boxlib', 'Ex')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:47,236 Making a fixed resolution buffer of (('boxlib', 'Bz')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:47,329 Making a fixed resolution buffer of (('boxlib', 'Ez')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:47,405 Making a fixed resolution buffer of (('boxlib', 'By')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:47,462 Making a fixed resolution buffer of (('mesh', 'magnetic_field_strength')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:47,496 Making a fixed resolution buffer of (('boxlib', 'Bx')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:48,831 Saving plot figures/diag1000768_Slice_z_Ey.png
+yt : [INFO     ] 2024-03-14 12:48:48,917 Saving plot figures/diag1000768_Slice_z_Ex.png
+yt : [INFO     ] 2024-03-14 12:48:49,004 Saving plot figures/diag1000768_Slice_z_Bz.png
+yt : [INFO     ] 2024-03-14 12:48:49,074 Saving plot figures/diag1000768_Slice_z_Ez.png
+yt : [INFO     ] 2024-03-14 12:48:49,154 Saving plot figures/diag1000768_Slice_z_By.png
+yt : [INFO     ] 2024-03-14 12:48:49,241 Saving plot figures/diag1000768_Slice_z_magnetic_field_strength.png
+yt : [INFO     ] 2024-03-14 12:48:49,297 Saving plot figures/diag1000768_Slice_z_Bx.png
+yt : [INFO     ] 2024-03-14 12:48:49,376 Parameters: current_time              = 0.14289547011512438
+yt : [INFO     ] 2024-03-14 12:48:49,377 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 12:48:49,377 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 12:48:49,378 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 12:48:49,448 xlim = -340101.968741 340101.968741
+yt : [INFO     ] 2024-03-14 12:48:49,449 ylim = 0.000000 21256.373046
+yt : [INFO     ] 2024-03-14 12:48:49,451 xlim = -340101.968741 340101.968741
+yt : [INFO     ] 2024-03-14 12:48:49,452 ylim = 0.000000 21256.373046
+yt : [INFO     ] 2024-03-14 12:48:49,453 Making a fixed resolution buffer of (('boxlib', 'Ey')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:49,544 Making a fixed resolution buffer of (('boxlib', 'Ex')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:49,644 Making a fixed resolution buffer of (('boxlib', 'Bz')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:49,741 Making a fixed resolution buffer of (('boxlib', 'Ez')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:49,828 Making a fixed resolution buffer of (('boxlib', 'By')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:49,901 Making a fixed resolution buffer of (('mesh', 'magnetic_field_strength')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:49,947 Making a fixed resolution buffer of (('boxlib', 'Bx')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:51,077 Saving plot figures/diag1001024_Slice_z_Ey.png
+yt : [INFO     ] 2024-03-14 12:48:51,166 Saving plot figures/diag1001024_Slice_z_Ex.png
+yt : [INFO     ] 2024-03-14 12:48:51,248 Saving plot figures/diag1001024_Slice_z_Bz.png
+yt : [INFO     ] 2024-03-14 12:48:51,323 Saving plot figures/diag1001024_Slice_z_Ez.png
+yt : [INFO     ] 2024-03-14 12:48:51,409 Saving plot figures/diag1001024_Slice_z_By.png
+yt : [INFO     ] 2024-03-14 12:48:51,492 Saving plot figures/diag1001024_Slice_z_magnetic_field_strength.png
+yt : [INFO     ] 2024-03-14 12:48:51,728 Saving plot figures/diag1001024_Slice_z_Bx.png
+yt : [INFO     ] 2024-03-14 12:48:51,811 Parameters: current_time              = 0.1786193376439047
+yt : [INFO     ] 2024-03-14 12:48:51,811 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 12:48:51,811 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 12:48:51,812 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 12:48:51,858 xlim = -340101.968741 340101.968741
+yt : [INFO     ] 2024-03-14 12:48:51,858 ylim = 0.000000 21256.373046
+yt : [INFO     ] 2024-03-14 12:48:51,859 xlim = -340101.968741 340101.968741
+yt : [INFO     ] 2024-03-14 12:48:51,859 ylim = 0.000000 21256.373046
+yt : [INFO     ] 2024-03-14 12:48:51,860 Making a fixed resolution buffer of (('boxlib', 'Ey')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:51,941 Making a fixed resolution buffer of (('boxlib', 'Ex')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:52,008 Making a fixed resolution buffer of (('boxlib', 'Bz')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:52,075 Making a fixed resolution buffer of (('boxlib', 'Ez')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:52,141 Making a fixed resolution buffer of (('boxlib', 'By')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:52,203 Making a fixed resolution buffer of (('mesh', 'magnetic_field_strength')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:52,242 Making a fixed resolution buffer of (('boxlib', 'Bx')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:53,509 Saving plot figures/diag1001280_Slice_z_Ey.png
+yt : [INFO     ] 2024-03-14 12:48:53,600 Saving plot figures/diag1001280_Slice_z_Ex.png
+yt : [INFO     ] 2024-03-14 12:48:53,693 Saving plot figures/diag1001280_Slice_z_Bz.png
+yt : [INFO     ] 2024-03-14 12:48:53,763 Saving plot figures/diag1001280_Slice_z_Ez.png
+yt : [INFO     ] 2024-03-14 12:48:53,847 Saving plot figures/diag1001280_Slice_z_By.png
+yt : [INFO     ] 2024-03-14 12:48:53,952 Saving plot figures/diag1001280_Slice_z_magnetic_field_strength.png
+yt : [INFO     ] 2024-03-14 12:48:54,014 Saving plot figures/diag1001280_Slice_z_Bx.png
+yt : [INFO     ] 2024-03-14 12:48:54,071 Parameters: current_time              = 0.21434320517268501
+yt : [INFO     ] 2024-03-14 12:48:54,072 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 12:48:54,072 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 12:48:54,073 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 12:48:54,148 xlim = -340101.968741 340101.968741
+yt : [INFO     ] 2024-03-14 12:48:54,149 ylim = 0.000000 21256.373046
+yt : [INFO     ] 2024-03-14 12:48:54,151 xlim = -340101.968741 340101.968741
+yt : [INFO     ] 2024-03-14 12:48:54,152 ylim = 0.000000 21256.373046
+yt : [INFO     ] 2024-03-14 12:48:54,153 Making a fixed resolution buffer of (('boxlib', 'Ey')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:54,240 Making a fixed resolution buffer of (('boxlib', 'Ex')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:54,478 Making a fixed resolution buffer of (('boxlib', 'Bz')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:54,549 Making a fixed resolution buffer of (('boxlib', 'Ez')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:54,612 Making a fixed resolution buffer of (('boxlib', 'By')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:54,673 Making a fixed resolution buffer of (('mesh', 'magnetic_field_strength')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:54,713 Making a fixed resolution buffer of (('boxlib', 'Bx')) 800 by 800
+yt : [INFO     ] 2024-03-14 12:48:55,906 Saving plot figures/diag1001536_Slice_z_Ey.png
+yt : [INFO     ] 2024-03-14 12:48:55,998 Saving plot figures/diag1001536_Slice_z_Ex.png
+yt : [INFO     ] 2024-03-14 12:48:56,085 Saving plot figures/diag1001536_Slice_z_Bz.png
+yt : [INFO     ] 2024-03-14 12:48:56,155 Saving plot figures/diag1001536_Slice_z_Ez.png
+yt : [INFO     ] 2024-03-14 12:48:56,323 Saving plot figures/diag1001536_Slice_z_By.png
+yt : [INFO     ] 2024-03-14 12:48:56,414 Saving plot figures/diag1001536_Slice_z_magnetic_field_strength.png
+yt : [INFO     ] 2024-03-14 12:48:56,467 Saving plot figures/diag1001536_Slice_z_Bx.png</code></pre>
+</div>
+</div>
+</section>
+<section id="particles" class="level2">
+<h2 class="anchored" data-anchor-id="particles">Particles</h2>
+<div id="cell-22" class="cell" data-execution_count="125">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ts <span class="op">=</span> yt.load(<span class="st">'./diags/diag2??????'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-23" class="cell" data-execution_count="135">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich <span class="im">import</span> <span class="bu">print</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-24" class="cell" data-execution_count="136">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> info(ts):</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    ds <span class="op">=</span> ts[<span class="dv">0</span>]</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(ds.current_time)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(ds.field_list)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>info(ts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>yt : [INFO     ] 2024-03-14 12:43:32,695 Parameters: current_time              = 0.0
+yt : [INFO     ] 2024-03-14 12:43:32,700 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 12:43:32,705 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 12:43:32,709 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.0</span> code_time
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">[</span>
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'all'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_cpu'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'all'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_id'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'all'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_momentum_x'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'all'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_momentum_y'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'all'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_momentum_z'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'all'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_position_x'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'all'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_position_y'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'all'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_weight'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'ions'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_cpu'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'ions'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_id'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'ions'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_momentum_x'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'ions'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_momentum_y'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'ions'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_momentum_z'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'ions'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_position_x'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'ions'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_position_y'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'ions'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_weight'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'nbody'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_cpu'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'nbody'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_id'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'nbody'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_momentum_x'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'nbody'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_momentum_y'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'nbody'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_momentum_z'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'nbody'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_position_x'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'nbody'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_position_y'</span><span style="font-weight: bold">)</span>,
+    <span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'nbody'</span>, <span style="color: #008000; text-decoration-color: #008000">'particle_weight'</span><span style="font-weight: bold">)</span>
+<span style="font-weight: bold">]</span>
+</pre>
+</div>
+</div>
+<div id="cell-25" class="cell" data-execution_count="141">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>fields <span class="op">=</span> [</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"ions"</span>, <span class="st">'particle_momentum_x'</span>),</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>direction <span class="op">=</span> <span class="st">"z"</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>ps <span class="op">=</span> <span class="st">"ions"</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> ts[<span class="dv">0</span>]</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co"># slc = yt.SlicePlot(ds, direction, fields, origin="native")</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> yt.ParticlePlot(</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    ds,</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    (ps, <span class="st">"particle_position_x"</span>),</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    (ps, <span class="st">"particle_position_y"</span>),</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>    (ps, <span class="st">"particle_weight"</span>),</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>yt : [INFO     ] 2024-03-14 12:47:10,796 Parameters: current_time              = 0.0
+yt : [INFO     ] 2024-03-14 12:47:10,797 Parameters: domain_dimensions         = [512  16   1]
+yt : [INFO     ] 2024-03-14 12:47:10,798 Parameters: domain_left_edge          = [-340101.96874125       0.               0.        ]
+yt : [INFO     ] 2024-03-14 12:47:10,799 Parameters: domain_right_edge         = [3.40101969e+05 2.12563730e+04 1.00000000e+00]
+yt : [INFO     ] 2024-03-14 12:47:10,853 xlim = -340101.968741 340101.968741
+yt : [INFO     ] 2024-03-14 12:47:10,854 ylim = 0.000000 21256.373046
+yt : [INFO     ] 2024-03-14 12:47:10,854 xlim = -340101.968741 340101.968741
+yt : [INFO     ] 2024-03-14 12:47:10,855 ylim = 0.000000 21256.373046
+yt : [INFO     ] 2024-03-14 12:47:10,856 Splatting (('ions', 'particle_weight')) onto a 800 by 800 mesh using method 'ngp'</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="141">
+<img style="max-width:100%;max-height:100%;" src="data:image/png;base64,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"><br>
+</div>
+</div>
+<section id="openpmd" class="level3">
+<h3 class="anchored" data-anchor-id="openpmd">OpenPMD</h3>
+<div id="cell-27" class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openpmd_api <span class="im">as</span> io</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># example: data handling</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-28" class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>openpmd_backend <span class="op">=</span> <span class="st">"h5"</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>series <span class="op">=</span> io.Series(<span class="ss">f"diags/diag1/openpmd_%06T.</span><span class="sc">{</span>openpmd_backend<span class="sc">}</span><span class="ss">"</span>, io.Access.read_only)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: Read Error in frontend 
+Object type:    File
+Error type: Inaccessible
+Further description:    Supplied directory is not valid: diags/diag1/</code></pre>
+</div>
+</div>
+<div id="cell-29" class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"openPMD version: "</span>, series.openPMD)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>openPMD version:  1.1.0</code></pre>
+</div>
+</div>
+<div id="cell-30" class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(series.iterations)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> series.iterations[<span class="dv">64</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-31" class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># record</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> i.meshes[<span class="st">"B"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>SyntaxError: invalid syntax (401656362.py, line 3)</code></pre>
+</div>
+</div>
+<div id="cell-32" class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># record</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> i.meshes[<span class="st">"B"</span>]</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># record components</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>B_x <span class="op">=</span> B[<span class="st">"x"</span>]</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>B_y <span class="op">=</span> B[<span class="st">"y"</span>]</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>B_z <span class="op">=</span> B[<span class="st">"z"</span>]</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>B_x_data <span class="op">=</span> B_x.load_chunk()</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>B_y_data <span class="op">=</span> B_y.load_chunk()</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>B_z_data <span class="op">=</span> B_z.load_chunk()</span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>series.flush()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-33" class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>plt.plot(B_x_data)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>plt.plot(B_y_data)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>plt.plot(B_z_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>[&lt;matplotlib.lines.Line2D at 0x2bdebd4d0&gt;]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/cell-29-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
