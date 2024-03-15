@@ -17,6 +17,8 @@ diags
 Backtrace*
 *.dpkl
 
+*.png
+
 /overleaf/
 /_manuscript/
 *_files/
