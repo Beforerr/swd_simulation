@@ -17,6 +17,7 @@ diags
 Backtrace*
 *.dpkl
 
+# temporarily ignore the following files
 *.png
 
 /overleaf/
