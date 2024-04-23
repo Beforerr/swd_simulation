@@ -36,6 +36,7 @@ warpx:
 
 py-warpx:
   #!/bin/sh
+  mkdir -p $HOME/src/WarpX
   cd $HOME/src/WarpX
   git pull # update the source code
   cmake -S . -B build \
