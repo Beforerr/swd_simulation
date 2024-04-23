@@ -1,5 +1,3 @@
-
-
 ## Installation (VPIC)
 
 `vpic` needs `gcc` to run. `clang` and `oneapi` is not working though it successfully compiles. 

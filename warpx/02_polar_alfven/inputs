@@ -1,0 +1,101 @@
+# algo
+algo.current_deposition = direct
+algo.maxwell_solver = hybrid
+algo.particle_shape = 1
+
+# amr
+amr.max_grid_size = 32
+amr.max_level = 0
+amr.n_cell = 512
+
+# boundary
+boundary.field_hi = periodic
+boundary.field_lo = periodic
+boundary.particle_hi = periodic
+boundary.particle_lo = periodic
+
+# diag1
+diag1.diag_type = Full
+diag1.format = openpmd
+diag1.intervals = 256
+diag1.openpmd_backend = h5
+diag1.write_species = 0
+
+# diag2
+diag2.diag_type = Full
+diag2.format = openpmd
+diag2.intervals = 256
+diag2.openpmd_backend = h5
+diag2.write_species = 0
+
+# diag3
+diag3.diag_type = Full
+diag3.format = openpmd
+diag3.intervals = 256
+diag3.openpmd_backend = h5
+diag3.write_species = 0
+
+# diagnostics
+diagnostics.diags_names = diag1 diag2 diag3
+
+# geometry
+geometry.dims = 1
+geometry.prob_hi = 680203.9374825006
+geometry.prob_lo = 0
+
+# hybrid_pic_model
+hybrid_pic_model.elec_temp = 24.588292599321438
+hybrid_pic_model.n0_ref = 100000000.0
+hybrid_pic_model.n_floor = 1562500.0
+hybrid_pic_model.plasma_hyper_resistivity = 1e-06
+hybrid_pic_model.plasma_resistivity(rho,J) = 1e-06
+hybrid_pic_model.substeps = 10
+
+# ions
+ions.charge = q_e
+ions.charge = q_e
+ions.charge = q_e
+ions.density_function(x,y,z) = 100000000.0
+ions.density_function(x,y,z) = 100000000.0
+ions.density_function(x,y,z) = 100000000.0
+ions.initialize_self_fields = 0
+ions.initialize_self_fields = 0
+ions.initialize_self_fields = 0
+ions.injection_style = nrandompercell
+ions.injection_style = nrandompercell
+ions.injection_style = nrandompercell
+ions.mass = 9.1093837015e-29
+ions.mass = 9.1093837015e-29
+ions.mass = 9.1093837015e-29
+ions.momentum_distribution_type = parse_momentum_function
+ions.momentum_distribution_type = parse_momentum_function
+ions.momentum_distribution_type = parse_momentum_function
+ions.momentum_function_ux(x,y,z) = (465007.42496441735 * (sin(2.771162423919914e-05 * z + 0.0)+sin(3.6948832318932186e-05 * z + 2.0943951023931953)+sin(4.618604039866523e-05 * z + 4.1887902047863905)))/299792458.0
+ions.momentum_function_ux(x,y,z) = (465007.42496441735 * (sin(2.771162423919914e-05 * z + 0.0)+sin(3.6948832318932186e-05 * z + 2.0943951023931953)+sin(4.618604039866523e-05 * z + 4.1887902047863905)))/299792458.0
+ions.momentum_function_ux(x,y,z) = (465007.42496441735 * (sin(2.771162423919914e-05 * z + 0.0)+sin(3.6948832318932186e-05 * z + 2.0943951023931953)+sin(4.618604039866523e-05 * z + 4.1887902047863905)))/299792458.0
+ions.momentum_function_uy(x,y,z) = (-465007.42496441735 * (cos(2.771162423919914e-05 * z + 0.0)+cos(3.6948832318932186e-05 * z + 2.0943951023931953)+cos(4.618604039866523e-05 * z + 4.1887902047863905)))/299792458.0
+ions.momentum_function_uy(x,y,z) = (-465007.42496441735 * (cos(2.771162423919914e-05 * z + 0.0)+cos(3.6948832318932186e-05 * z + 2.0943951023931953)+cos(4.618604039866523e-05 * z + 4.1887902047863905)))/299792458.0
+ions.momentum_function_uy(x,y,z) = (-465007.42496441735 * (cos(2.771162423919914e-05 * z + 0.0)+cos(3.6948832318932186e-05 * z + 2.0943951023931953)+cos(4.618604039866523e-05 * z + 4.1887902047863905)))/299792458.0
+ions.momentum_function_uz(x,y,z) = (0)/299792458.0
+ions.momentum_function_uz(x,y,z) = (0)/299792458.0
+ions.momentum_function_uz(x,y,z) = (0)/299792458.0
+ions.num_particles_per_cell = 64
+ions.num_particles_per_cell = 64
+ions.num_particles_per_cell = 64
+ions.profile = parse_density_function
+ions.profile = parse_density_function
+ions.profile = parse_density_function
+
+# max_step
+max_step = 25600
+
+# particles
+particles.species_names = ions ions ions
+
+# warpx
+warpx.B_ext_grid_init_style = parse_b_ext_grid_function
+warpx.Bx_external_grid_function(x,y,z) = -5.0000000000000004e-08 * (sin(2.771162423919914e-05 * z + 0.0)+sin(3.6948832318932186e-05 * z + 2.0943951023931953)+sin(4.618604039866523e-05 * z + 4.1887902047863905))
+warpx.By_external_grid_function(x,y,z) = 5.0000000000000004e-08 * (cos(2.771162423919914e-05 * z + 0.0)+cos(3.6948832318932186e-05 * z + 2.0943951023931953)+cos(4.618604039866523e-05 * z + 4.1887902047863905))
+warpx.Bz_external_grid_function(x,y,z) = 1.0000000000000001e-07
+warpx.const_dt = 0.00013954635753430505
+warpx.serialize_initial_conditions = 1

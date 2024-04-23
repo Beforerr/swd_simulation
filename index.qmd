@@ -1,3 +1,17 @@
 ---
 title: Alfven Hybrid Simulation
 ---
+
+[Zotero Collection](zotero://select/library/collections/STTJNMAQ/)
+
+- Compare $ \delta v_A ?= \delta v_i $ first
+- One step back, how the RD evolve after generation?
+- Velocity distribution function
+- @omidiRotationalDiscontinuitiesAnisotropic1992 [Zotero](zotero://select/items/1_A8E2L5T7)
+  - Title:: Rotational discontinuities in anisotropic plasmas 
+- @vasquezNonlinearEvolutionAlfven1999
+  - Title:: Nonlinear evolution of Alfvén waves and RDs-hybrid simulations
+
+### BUGS
+
+- [x] beta and ion temperature

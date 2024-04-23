@@ -15,5 +15,5 @@ format:
     theme: cosmo
     toc: true
 
-
-
+bibliography:
+  - ../research.bib

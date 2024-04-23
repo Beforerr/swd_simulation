@@ -4,7 +4,13 @@ channels:
 dependencies:
   - python<3.12
   - jupyter
-  - jupyter_bokeh
+  
+  - rich
+  - loguru
+  - icecream
+  
+  - jupyter_bokeh # VSCode support
+
   - fastcore
   - pydantic
 
@@ -13,8 +19,19 @@ dependencies:
 
   - yt
 
+  - panel
+  - hvplot
+
+  - pyarrow
+
+  # VisualPIC
+  - pyqt
+
   - pip
   - pip:
-    - mpi4py
-    - h5py
-    - openpmd-api
+    - ../space_analysis
+    - git+https://github.com/AngelFP/VisualPIC.git@dev
+    - git+https://bitbucket.org/ecp_warpx/picviewer/
+    # - mpi4py
+    # - h5py
+    # - openpmd-api

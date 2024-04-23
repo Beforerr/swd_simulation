@@ -16,5 +16,5 @@ dependencies:
 
   - openmpi
   - fftw=*=mpi_openmpi*
-  # - h5py=*=mpi_mpich*
+  - h5py=*=mpi_openmpi*
   # - openpmd-api=*=mpi_mpich*
