@@ -48,10 +48,6 @@ install-warpx-ncar:
   # DEBUG: not working
   spack install warpx%dpcpp
 
-# not working
-copy:
-  ssh-copy-id zijin@derecho.hpc.ucar.edu
-
 clean:
   #!/usr/bin/env bash
   cd {{invocation_directory()}}
@@ -71,7 +67,6 @@ preview:
 
 publish:
   quarto publish gh-pages --no-render --no-prompt
-
 
 vpic:
   micromamba env create vtk pyvista pyqt VisualPIC --name vpic

@@ -6,6 +6,9 @@
 
 ### Local Development (macOS)
 
+- run `just env-macos` to setup the environment, then
+- run `just py-warpx` to install `py-warpx`, for more details, see [justfile](justfile).
+
 Notes:
 
 - `OpenMPI requires both C and Fortran compilers!`
