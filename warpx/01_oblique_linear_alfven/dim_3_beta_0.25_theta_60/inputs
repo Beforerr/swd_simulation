@@ -4,9 +4,11 @@ algo.maxwell_solver = hybrid
 algo.particle_shape = 1
 
 # amr
+amr.blocking_factor_x = 4
+amr.blocking_factor_y = 4
 amr.max_grid_size = 32
 amr.max_level = 0
-amr.n_cell = 8 8 128
+amr.n_cell = 4 4 128
 
 # boundary
 boundary.field_hi = periodic periodic periodic
@@ -16,16 +18,16 @@ boundary.particle_lo = periodic periodic periodic
 
 # diag1
 diag1.diag_type = Full
-diag1.format = openpmd
-diag1.intervals = 8
+diag1.format = plotfile
+diag1.intervals = 64
 diag1.openpmd_backend = h5
 diag1.write_species = 0
 
 # diag2
 diag2.diag_type = Full
 diag2.fields_to_plot = none
-diag2.format = openpmd
-diag2.intervals = 8
+diag2.format = plotfile
+diag2.intervals = 64
 diag2.openpmd_backend = h5
 diag2.species = ions
 diag2.write_species = 1
@@ -33,18 +35,22 @@ diag2.write_species = 1
 # diagnostics
 diagnostics.diags_names = diag1 diag2
 
+# field_energy
+field_energy.intervals = 64
+field_energy.type = FieldEnergy
+
 # geometry
 geometry.dims = 3
-geometry.prob_hi = 85025.49218531257 85025.49218531257 2720815.7499300023
-geometry.prob_lo = -85025.49218531257 -85025.49218531257 0
+geometry.prob_hi = 42512.746092656285 42512.746092656285 2720815.7499300023
+geometry.prob_lo = -42512.746092656285 -42512.746092656285 0
 
 # hybrid_pic_model
 hybrid_pic_model.elec_temp = 61.930612282580206
 hybrid_pic_model.n0_ref = 100000000.0
 hybrid_pic_model.n_floor = 1562500.0
-hybrid_pic_model.plasma_hyper_resistivity = 1e-06
-hybrid_pic_model.plasma_resistivity(rho,J) = 0.0
-hybrid_pic_model.substeps = 32
+hybrid_pic_model.plasma_hyper_resistivity = 0.01
+hybrid_pic_model.plasma_resistivity(rho,J) = 1e-06
+hybrid_pic_model.substeps = 8
 
 # ions
 ions.charge = q_e
@@ -59,11 +65,15 @@ ions.momentum_function_uy_m(x,y,z) = (116685.90326276264 * cos(9.237208079733046
 ions.momentum_function_uy_th(x,y,z) = (165018.7869319539)/299792458.0
 ions.momentum_function_uz_m(x,y,z) = (0)/299792458.0
 ions.momentum_function_uz_th(x,y,z) = (165018.7869319539)/299792458.0
-ions.num_particles_per_cell = 256
+ions.num_particles_per_cell = 64
 ions.profile = parse_density_function
 
 # max_step
-max_step = 800
+max_step = 6400
+
+# part_energy
+part_energy.intervals = 64
+part_energy.type = ParticleEnergy
 
 # particles
 particles.species_names = ions
@@ -73,5 +83,6 @@ warpx.B_ext_grid_init_style = parse_b_ext_grid_function
 warpx.Bx_external_grid_function(x,y,z) = 8.660254037844386e-08
 warpx.By_external_grid_function(x,y,z) = 5.0000000000000004e-08 * cos(9.237208079733046e-06 * z)
 warpx.Bz_external_grid_function(x,y,z) = 5.000000000000002e-08
-warpx.const_dt = 0.017861933764391047
+warpx.const_dt = 0.002232741720548881
+warpx.reduced_diags_names = part_energy field_energy
 warpx.serialize_initial_conditions = 1
