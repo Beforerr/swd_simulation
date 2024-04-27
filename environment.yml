@@ -23,6 +23,7 @@ dependencies:
   - hvplot
 
   - pyarrow
+  - polars
 
   # VisualPIC
   - pyqt
