@@ -9,7 +9,7 @@ amr.blocking_factor_y = 4
 amr.max_grid_size = 32
 amr.max_level = 0
 amr.n_cell = 8 8 512
-amr.restart = diags/chkpoint000200
+amr.restart = diags/chkpoint000400
 
 # boundary
 boundary.field_hi = periodic periodic periodic
@@ -20,7 +20,7 @@ boundary.particle_lo = periodic periodic periodic
 # chkpoint
 chkpoint.diag_type = Full
 chkpoint.format = checkpoint
-chkpoint.intervals = 200
+chkpoint.intervals = 400
 
 # diag1
 diag1.diag_type = Full
@@ -75,7 +75,7 @@ ions.num_particles_per_cell = 64
 ions.profile = parse_density_function
 
 # max_step
-max_step = 200
+max_step = 400
 
 # part_energy
 part_energy.intervals = 100

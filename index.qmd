@@ -15,3 +15,22 @@ title: Alfven Hybrid Simulation
 ### BUGS
 
 - [x] beta and ion temperature
+
+
+
+
+
+---
+
+Ion dynamics in the rotational discontinuities
+
+Formation of rotational discontinuities from oblique linearly polarized Alfven wave trains
+And ion dynamics in the vicinity of the rotational discontinuities => Hybrid Simulation
+
+
+> Generally speaking the hybrid model approach has difficulty with Whistler waves that are included in the model physics but because their dispersion runs to the electron cyclotron frequency there is a point where the chosen grid and timestep resolution no longer properly resolves these waves (unless you use a very small timestep in which case the value of the hybrid approach is lost).
+
+Numerical dispersion by whistler waves (up to electron cyclotron frequency)
+
+
+The ponderomotive force (o(OB~l~/Ox) exerted by the first-order wave generates waves with twice its wavenumber which have a compressional component and a wave magnetic field in the z-direction.
