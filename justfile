@@ -3,6 +3,9 @@ vpic := home_dir + "/src/vpic-kokkos/build/bin/vpic"
 project := "UCLA0040"
 queue := "main"
 
+default:
+  just --list
+
 compile:
   cd {{invocation_directory()}}; {{vpic}} *.cxx
 
@@ -28,6 +31,10 @@ env-macos:
 
 spack-compilers:
   code $HOME/.spack/darwin/compilers.yaml
+
+# install/update warpx
+install-warpx:
+  just py-warpx
 
 warpx:
   cd $HOME/src/WarpX
