@@ -16,6 +16,18 @@ ds.assign_coords(time_norm = ds.time / meta["t_ci"])
 import xrft
 import xarray as xr
 
+
+k_norm = 1 / meta["d_i"]
+w_norm = meta["w_ci"]
+
+def normalize_dft_xr(da):
+    for coord in da.coords:
+        if "freq" in coord and "time" in coord:
+            da = da.assign_coords({f"{coord}_norm": 2*np.pi*da[coord] / w_norm})
+        if "freq" in coord and "time" not in coord:
+            da = da.assign_coords({f"{coord}_norm": 2*np.pi*da[coord] / k_norm})    
+    return da
+
 def plot_wk_spectrum(ds: xr.Dataset, fields, step=8):
     fig, axes = plt.subplots(len(fields), 2, figsize=(12, 5))
 
@@ -56,3 +68,20 @@ def plot_wk_spectrum(ds: xr.Dataset, fields, step=8):
 
 fields = ["By", "Bx"]        
 plot_wk_spectrum(ds, fields, step = 16)
+
+
+def _plot_field_with_plasma_profile(ds_field, ds_part, field0, field1, twin=False):
+    # BUG: not working, from_profiles does not support different data sources
+        
+    field_profile = create_field_profile(ds_field.all_data(), fields = field0)
+    part_profile = create_part_profile(ds_part.all_data(), fields=field1)
+    
+    field_label = field0[-1]
+    part_label = field1[-1]
+    
+    p = yt.ProfilePlot.from_profiles(
+        [field_profile, part_profile],
+        labels=[field_label, part_label],
+    )
+
+    return p.figure

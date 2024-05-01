@@ -6,7 +6,7 @@ algo.particle_shape = 1
 # amr
 amr.max_grid_size = 32
 amr.max_level = 0
-amr.n_cell = 512
+amr.n_cell = 256
 
 # boundary
 boundary.field_hi = periodic
@@ -18,7 +18,7 @@ boundary.particle_lo = periodic
 diag1.diag_type = Full
 diag1.fields_to_plot = Bx By Bz Ex Ey Ez jx jy jz rho
 diag1.format = plotfile
-diag1.intervals = 100
+diag1.intervals = 64
 diag1.openpmd_backend = h5
 diag1.write_species = 0
 
@@ -26,7 +26,7 @@ diag1.write_species = 0
 diag2.diag_type = Full
 diag2.fields_to_plot = none
 diag2.format = plotfile
-diag2.intervals = 100
+diag2.intervals = 64
 diag2.openpmd_backend = h5
 diag2.species = ions
 diag2.write_species = 1
@@ -35,12 +35,12 @@ diag2.write_species = 1
 diagnostics.diags_names = diag1 diag2
 
 # field_energy
-field_energy.intervals = 100
+field_energy.intervals = 64
 field_energy.type = FieldEnergy
 
 # geometry
 geometry.dims = 1
-geometry.prob_hi = 5829394.572546054
+geometry.prob_hi = 2914697.286273027
 geometry.prob_lo = 0
 
 # hybrid_pic_model
@@ -49,7 +49,7 @@ hybrid_pic_model.n0_ref = 100000000.0
 hybrid_pic_model.n_floor = 1562500.0
 hybrid_pic_model.plasma_hyper_resistivity = 1e-06
 hybrid_pic_model.plasma_resistivity(rho,J) = 100.0
-hybrid_pic_model.substeps = 8
+hybrid_pic_model.substeps = 16
 
 # ions
 ions.charge = q_e
@@ -68,10 +68,10 @@ ions.num_particles_per_cell = 64
 ions.profile = parse_density_function
 
 # max_step
-max_step = 10000
+max_step = 6400
 
 # part_energy
-part_energy.intervals = 100
+part_energy.intervals = 64
 part_energy.type = ParticleEnergy
 
 # particles
@@ -82,6 +82,6 @@ warpx.B_ext_grid_init_style = parse_b_ext_grid_function
 warpx.Bx_external_grid_function(x,y,z) = 8.660254037844386e-08
 warpx.By_external_grid_function(x,y,z) = 1.0000000000000001e-07 * cos(4.311381038964624e-06 * z)
 warpx.Bz_external_grid_function(x,y,z) = 5.000000000000002e-08
-warpx.const_dt = 0.006559445081070829
+warpx.const_dt = 0.01024913293917317
 warpx.reduced_diags_names = part_energy field_energy
 warpx.serialize_initial_conditions = 1

@@ -4,9 +4,9 @@ from space_analysis.utils.math import cosd, sind
 from space_analysis.simulation.warpx import HybridSimulation
 import os
 from pathlib import Path
+import typer
 
 constants = picmi.constants
-
 
 def init_obl_alfven(
     k,
@@ -33,7 +33,8 @@ def init_obl_alfven(
     Bx_expression = f"{B0k1}"
     pz_expression = 0
     px_expression = 0
-    py_expression = f"{A * vA * cosd(theta)} * cos({k} * z)"
+    # py_expression = f"{A * vA * cosd(theta)} * cos({k} * z)"
+    py_expression = f"{A * vA} * cos({k} * z)"
 
     field = picmi.AnalyticInitialField(
         Bx_expression=Bx_expression,
@@ -62,10 +63,10 @@ class AlfvenModes(HybridSimulation):
 
     A: float = 1  # relative amplitude
     theta: float = 0  # angle with respect to the background magnetic field
-    wave_number: int = 4  # wave number
+    wave_number: int = 2  # wave number
 
     # Spatial domain
-    Lz_norm: float = 256
+    Lz_norm: float = 128
     nx: int = 16  # by default blocking_factor is 8 so at least 16
     ny: int = 16
 
@@ -87,9 +88,6 @@ class AlfvenModes(HybridSimulation):
 
         return self
 
-
-import typer
-
 app = typer.Typer()
 
 
@@ -103,8 +101,9 @@ def main(
     theta: float = 60,
     plasma_resistivity: float = 100,
     dz_norm: float = 0.5,
-    dt_norm: float = 1e-2,
-    substeps: int = 8,
+    dt_norm: float = 1/64,
+    substeps: int = 16,
+    nppc: int = 64,
     dry_run: bool = False,
 ):
 
@@ -125,7 +124,6 @@ def main(
     simulation = AlfvenModes(
         **ctx.params,
         diag_part=True,
-
         # Reduce the number of cells in x and y to accelerate the simulation
         grid_kwargs=grid_kwargs,
         nx=8,
