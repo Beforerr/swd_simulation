@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Alfven Hybrid Simulation</title>
+<title>Circularly polarized Alfvén waves</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,45 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -103,11 +117,11 @@ div.csl-indent {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link active" href="../../about.html" aria-current="page"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -121,7 +135,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Alfven Hybrid Simulation</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../warpx/analysis.html">Warpx</a></li><li class="breadcrumb-item"><a href="../../warpx/02_polar_alfven/inputs.html">02 Polar Alfven</a></li><li class="breadcrumb-item"><a href="../../warpx/02_polar_alfven/inputs.html">Circularly polarized Alfvén waves</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -135,7 +149,7 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
 </li>
@@ -150,19 +164,19 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./warpx/analysis.html" class="sidebar-item-text sidebar-link">
+  <a href="../../warpx/analysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./warpx/analysis_jl.html" class="sidebar-item-text sidebar-link">
+  <a href="../../warpx/analysis_jl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./warpx/inputs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../warpx/inputs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Parameters</span></a>
   </div>
 </li>
@@ -177,7 +191,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./warpx/00_EMModes/inputs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../warpx/00_EMModes/inputs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Inputs</span></a>
   </div>
 </li>
@@ -185,16 +199,16 @@ div.csl-indent {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
  <span class="menu-text">02 Polar Alfven</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./warpx/02_polar_alfven/inputs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../warpx/02_polar_alfven/inputs.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Circularly polarized Alfvén waves</span></a>
   </div>
 </li>
@@ -202,7 +216,7 @@ div.csl-indent {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./warpx/01_oblique_linear_alfven/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../warpx/01_oblique_linear_alfven/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">index.html</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -211,7 +225,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./warpx/01_oblique_linear_alfven/inputs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../warpx/01_oblique_linear_alfven/inputs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Oblique linearly polarized Alfvén wave</span></a>
   </div>
 </li>
@@ -224,21 +238,15 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#bugs" id="toc-bugs" class="nav-link active" data-scroll-target="#bugs">BUGS</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../warpx/analysis.html">Warpx</a></li><li class="breadcrumb-item"><a href="../../warpx/02_polar_alfven/inputs.html">02 Polar Alfven</a></li><li class="breadcrumb-item"><a href="../../warpx/02_polar_alfven/inputs.html">Circularly polarized Alfvén waves</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Alfven Hybrid Simulation</h1>
+<h1 class="title">Circularly polarized Alfvén waves</h1>
 </div>
 
 
@@ -255,46 +263,128 @@ div.csl-indent {
 </header>
 
 
-<p><a href="zotero://select/library/collections/STTJNMAQ/">Zotero Collection</a></p>
-<ul>
-<li>Compare $ v_A ?= v_i $ first</li>
-<li>One step back, how the RD evolve after generation?</li>
-<li>Velocity distribution function</li>
-<li><span class="citation" data-cites="omidiRotationalDiscontinuitiesAnisotropic1992">Omidi (<a href="#ref-omidiRotationalDiscontinuitiesAnisotropic1992" role="doc-biblioref">1992</a>)</span> <a href="zotero://select/items/1_A8E2L5T7">Zotero</a>
-<ul>
-<li>Title:: Rotational discontinuities in anisotropic plasmas</li>
-</ul></li>
-<li><span class="citation" data-cites="vasquezNonlinearEvolutionAlfven1999">Vasquez and Hollweg (<a href="#ref-vasquezNonlinearEvolutionAlfven1999" role="doc-biblioref">1999</a>)</span>
-<ul>
-<li>Title:: Nonlinear evolution of Alfvén waves and RDs-hybrid simulations</li>
-</ul></li>
-</ul>
-<section id="bugs" class="level3">
-<h3 class="anchored" data-anchor-id="bugs">BUGS</h3>
-<ul class="task-list">
-<li><label><input type="checkbox" checked="">beta and ion temperature</label></li>
-</ul>
-<hr>
-<p>Ion dynamics in the rotational discontinuities</p>
-<p>Formation of rotational discontinuities from oblique linearly polarized Alfven wave trains And ion dynamics in the vicinity of the rotational discontinuities =&gt; Hybrid Simulation</p>
-<blockquote class="blockquote">
-<p>Generally speaking the hybrid model approach has difficulty with Whistler waves that are included in the model physics but because their dispersion runs to the electron cyclotron frequency there is a point where the chosen grid and timestep resolution no longer properly resolves these waves (unless you use a very small timestep in which case the value of the hybrid approach is lost).</p>
-</blockquote>
-<p>Numerical dispersion by whistler waves (up to electron cyclotron frequency)</p>
-<p>The ponderomotive force (o(OB<sub>l</sub>/Ox) exerted by the first-order wave generates waves with twice its wavenumber which have a compressional component and a wave magnetic field in the z-direction.</p>
-
-
-
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-omidiRotationalDiscontinuitiesAnisotropic1992" class="csl-entry" role="listitem">
-Omidi, N. 1992. <span>“Rotational Discontinuities in Anisotropic Plasmas.”</span> <em>Geophysical Research Letters</em> 19 (13): 1335–38. <a href="https://doi.org/10.1029/92GL01127">https://doi.org/10.1029/92GL01127</a>.
+<pre><code>#define DBY (-pert*(sin(kx[0]*x+phi[0])+sin(kx[1]*x+phi[1])+sin(kx[2]*x+phi[2])))
+#define DBZ (pert*(cos(kx[0]*x+phi[0])+cos(kx[1]*x+phi[1])+cos(kx[2]*x+phi[2])))</code></pre>
+<div id="cell-2" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pywarpx <span class="im">import</span> picmi</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> space_analysis.simulation.warpx <span class="im">import</span> HybridSimulation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ref-vasquezNonlinearEvolutionAlfven1999" class="csl-entry" role="listitem">
-Vasquez, Bernard J., and Joseph V. Hollweg. 1999. <span>“Nonlinear Evolution of <span class="nocase">Alfv<span class="nocase">é</span>n</span> Waves and <span class="nocase">RDs-hybrid</span> Simulations.”</span> <em>AIP Conference Proceedings</em> 471 (1): 167–72. <a href="https://doi.org/10.1063/1.58745">https://doi.org/10.1063/1.58745</a>.
+<div id="cell-3" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>constants <span class="op">=</span> picmi.constants</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div></section></div></main> <!-- /main -->
+<div id="cell-4" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> init_cp_alfven(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    ks,  <span class="co">#: wave numbers</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    phases,  <span class="co">#: phases</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    B0,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    A,  <span class="co">#: relative amplitude</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    vA,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    n0,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span>kwargs,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Generate field with a wave propagating along the x axis at a large angle `theta` with respect to the background magnetic field lying in the x-z plane.</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">    The initial wave is an Alfven mode in which the magnetic field fluctuation points along the y and z axis and has a relative amplitude $A = \delta B_y / B_0$</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    wx_expression <span class="op">=</span> <span class="st">"+"</span>.join([<span class="ss">f"sin(</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss"> * z + </span><span class="sc">{</span>phi<span class="sc">}</span><span class="ss">)"</span> <span class="cf">for</span> k, phi <span class="kw">in</span> <span class="bu">zip</span>(ks, phases)])</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    wy_expression <span class="op">=</span> <span class="st">"+"</span>.join([<span class="ss">f"cos(</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss"> * z + </span><span class="sc">{</span>phi<span class="sc">}</span><span class="ss">)"</span> <span class="cf">for</span> k, phi <span class="kw">in</span> <span class="bu">zip</span>(ks, phases)])</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    Bz_expression <span class="op">=</span> B0</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    Bx_expression <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span><span class="op">-</span>A <span class="op">*</span> B0<span class="sc">}</span><span class="ss"> * (</span><span class="sc">{</span>wx_expression<span class="sc">}</span><span class="ss">)"</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    By_expression <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>A <span class="op">*</span> B0<span class="sc">}</span><span class="ss"> * (</span><span class="sc">{</span>wy_expression<span class="sc">}</span><span class="ss">)"</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    pz_expression <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    px_expression <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>A <span class="op">*</span> vA<span class="sc">}</span><span class="ss"> * (</span><span class="sc">{</span>wx_expression<span class="sc">}</span><span class="ss">)"</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    py_expression <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span><span class="op">-</span>A <span class="op">*</span> vA<span class="sc">}</span><span class="ss"> * (</span><span class="sc">{</span>wy_expression<span class="sc">}</span><span class="ss">)"</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    momentum_expressions <span class="op">=</span> [px_expression, py_expression, pz_expression]</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    field <span class="op">=</span> picmi.AnalyticInitialField(</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        Bx_expression<span class="op">=</span>Bx_expression,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        By_expression<span class="op">=</span>By_expression,</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        Bz_expression<span class="op">=</span>Bz_expression,</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    dist <span class="op">=</span> picmi.AnalyticDistribution(</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        density_expression<span class="op">=</span>n0,</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>        momentum_expressions<span class="op">=</span>momentum_expressions,</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> field, dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-5" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CPAlfvenModes(HybridSimulation):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Applied field parameters</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    dim: <span class="bu">int</span> <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    B0: <span class="bu">float</span> <span class="op">=</span> <span class="dv">100</span> <span class="op">*</span> <span class="fl">1e-9</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Initial magnetic field strength (T)"""</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    n0: <span class="bu">float</span> <span class="op">=</span> <span class="dv">100</span> <span class="op">*</span> <span class="fl">1e6</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Initial plasma density (m^-3)"""</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    A: <span class="bu">float</span> <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># relative amplitude</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    ks: <span class="bu">list</span>[<span class="bu">float</span>] <span class="op">=</span> <span class="va">None</span>  <span class="co"># wave numbers</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    phases: <span class="bu">list</span>[<span class="bu">float</span>] <span class="op">=</span> <span class="va">None</span>  <span class="co"># phases</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    n_modes: <span class="bu">int</span> <span class="op">=</span> <span class="dv">3</span>  <span class="co"># number of modes</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Spatial domain</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    Lz_norm: <span class="bu">float</span> <span class="op">=</span> <span class="dv">128</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    Lx_norm: <span class="bu">float</span> <span class="op">=</span> <span class="dv">64</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> setup_init_cond(<span class="va">self</span>):</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""setup initial conditions"""</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ks <span class="op">=</span> [</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>            (i <span class="op">+</span> <span class="va">self</span>.n_modes) <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">/</span> <span class="va">self</span>.Lz <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.n_modes)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.phases <span class="op">=</span> [i <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">/</span> <span class="va">self</span>.n_modes <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.n_modes)]</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        B_ext, dist <span class="op">=</span> init_cp_alfven(</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>            ks<span class="op">=</span><span class="va">self</span>.ks,</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>            phases<span class="op">=</span><span class="va">self</span>.phases,</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>            B0<span class="op">=</span><span class="va">self</span>.B0,</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>            A<span class="op">=</span><span class="va">self</span>.A,</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>            vA<span class="op">=</span><span class="va">self</span>.vA,</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>            n0<span class="op">=</span><span class="va">self</span>.n0,</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._B_ext <span class="op">=</span> B_ext</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._dist <span class="op">=</span> dist</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-6" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>simulation <span class="op">=</span> CPAlfvenModes(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    diag_format<span class="op">=</span><span class="st">'openpmd'</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Numerical parameters:
+    dt = 1.4e-04 s
+    total steps = 25600
+
+Initializing simulation with input parameters:
+    Te = 24.588 eV
+    n = 1.0e+02 cm^-3
+    B0 = 100.00 nT
+    M/m = 100
+
+Plasma parameters:
+    d_i = 5.3e+03 m
+    t_ci = 3.6e-02 s
+    v_ti = 2.1e+05 m/s
+    vA = 9.3e+05 m/s
+    vA/c = 0.0031021956193735692
+</code></pre>
+</div>
+</div>
+<div id="cell-7" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>simulation._sim.step()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
