@@ -1,4 +1,3 @@
-
 ## Energy evolution in the system with your input parameters
 import matplotlib.pyplot as plt
 from utils.plot import plot_energy_evolution
@@ -14,22 +13,23 @@ import xarray as xr
 import numpy as np
 import xrft
 
+
 def normalize_dft_xr(da, meta):
     k_norm = 1 / meta["d_i"]
     w_norm = meta["w_ci"]
     for coord in da.coords:
         if "freq" in coord and "time" in coord:
-            da = da.assign_coords({f"{coord}_norm": 2*np.pi*da[coord] / w_norm})
+            da = da.assign_coords({f"{coord}_norm": 2 * np.pi * da[coord] / w_norm})
         if "freq" in coord and "time" not in coord:
-            da = da.assign_coords({f"{coord}_norm": 2*np.pi*da[coord] / k_norm})    
+            da = da.assign_coords({f"{coord}_norm": 2 * np.pi * da[coord] / k_norm})
     return da
 
 
-def plot_wk_spectrum(ds: xr.Dataset, fields, meta, step=8):
-    
+def plot_wk_spectrum_ds(ds: xr.Dataset, fields, meta, step=8):
+
     k_norm = 1 / meta["d_i"]
     w_norm = meta["w_ci"]
-    
+
     fig, axes = plt.subplots(len(fields), 2, figsize=(12, 5))
 
     for i, field in enumerate(fields):
@@ -42,13 +42,18 @@ def plot_wk_spectrum(ds: xr.Dataset, fields, meta, step=8):
         vmin = -3
         ax0 = axes[i][0]
         ax1 = axes[i][1]
-        
+
         ax0.pcolormesh(
-            amp.freq_z_norm, amp.freq_time / w_norm, np.log10(amp / amp.max()), vmin=vmin
+            amp.freq_z_norm,
+            amp.freq_time / w_norm,
+            np.log10(amp / amp.max()),
+            vmin=vmin,
         )
 
         # Power spectrum
-        p_spec: xr.DataArray = xrft.power_spectrum(da, dim="z").pipe(normalize_dft_xr, meta)
+        p_spec: xr.DataArray = xrft.power_spectrum(da, dim="z").pipe(
+            normalize_dft_xr, meta
+        )
         ps_mean = p_spec.mean(["x", "y"])
         ps_mean[::step].plot.line(
             x="freq_z_norm",
@@ -63,71 +68,67 @@ def plot_wk_spectrum(ds: xr.Dataset, fields, meta, step=8):
         ax0.set_xlabel(r"$k d_i$")
         ax0.set_ylabel(r"$\omega / \Omega_i$")
         ax1.set_xlabel(r"$k d_i$")
-        
+
     return fig, axes
+
 
 ###
 
 from functools import partial
+import yt
 
-if direction == "x":
-    n_bins = ds_field.domain_dimensions[0]
-elif direction == "y":
-    n_bins = ds_field.domain_dimensions[1]
-else:
-    n_bins = ds_field.domain_dimensions[2]
+direction = "z"
+ps = "ion"
 
 
-weight_field=("boxlib", "volume")
+_field_weight_field = ("boxlib", "volume")
+_part_weight_field = (ps, "particle_weight")
 
-plot_field = partial(
+plot_field_profile = partial(
     yt.ProfilePlot,
     x_field=direction,
-    weight_field=weight_field,
+    weight_field=_field_weight_field,
     x_log=False,
     y_log=False,
-    n_bins=n_bins,
 )
 
 create_field_profile = partial(
     yt.create_profile,
     bin_fields=direction,
-    weight_field=weight_field,
-    n_bins=n_bins,
+    weight_field=_field_weight_field,
     deposition="cic",
 )
 
-# yt.create_profile()
-# Note: since particle position is continuous, it makes sense to have more bins
-particle_bins = 2 * n_bins
-
 bin_fields = (ps, f"particle_position_{direction}")
-weight_field = (ps, "particle_weight")
 
 plot_particle_profile = partial(
     yt.ProfilePlot,
     x_field=bin_fields,
-    weight_field=weight_field,
+    weight_field=_part_weight_field,
     x_log=False,
     y_log=False,
-    n_bins=particle_bins,
 )
-
-field = "particle_momentum_y"
 
 create_part_profile = partial(
     yt.create_profile,
     bin_fields=bin_fields,
-    weight_field=weight_field,
-    n_bins=particle_bins,
+    weight_field=_part_weight_field,
     deposition="cic",
 )
 
+
+field = "particle_momentum_y"
+
+
 def plot_field_with_plasma_profile(ds_field, ds_part, field0, field1, twin=True):
-    
-    field_profile = create_field_profile(ds_field.all_data(), fields = field0)
+
+    n_bins = ds_field.domain_dimensions[0]
+
+    field_profile = create_field_profile(
+        ds_field.all_data(), fields=field0, n_bins=n_bins
+    )
     part_profile = create_part_profile(ds_part.all_data(), fields=field1)
-    
+
     p0 = yt.ProfilePlot.from_profiles(field_profile)
     p1 = yt.ProfilePlot.from_profiles(part_profile)
     p0.set_log(field0, False)
@@ -139,8 +140,7 @@ def plot_field_with_plasma_profile(ds_field, ds_part, field0, field1, twin=True)
 
     # Customizing the plot
     fig, ax = plt.subplots()
-    ax: Axes
-    
+
     if twin:
         ax2 = ax.twinx()
     else:
@@ -165,10 +165,11 @@ def plot_field_with_plasma_profile(ds_field, ds_part, field0, field1, twin=True)
         ax2.lines[0].set_color("orange")
         # ax2.set_ylim(ax.get_ylim())
         fig.set_size_inches(12, 5)
-    
-    ax.set_ylim(-220, 220)    
+
+    ax.set_ylim(-220, 220)
     ax2.set_ylim(-220, 220)
     return fig
+
 
 def plot_field_with_plasma_profile_ts(
     ts_field,
@@ -187,11 +188,12 @@ def plot_field_with_plasma_profile_ts(
         plt.close(fig)
 
 
-
 ###
 
 import typer
+
 app = typer.Typer()
+
 
 @app.command()
 def main(
@@ -199,45 +201,54 @@ def main(
     beta: float = 0.25,
     theta: float = 60,
     plasma_resistivity: float = 100,
+    export: bool = False,
+    plot_wk_spectrum: bool = False,
 ):
-    
+
     base_dir = Path(os.getcwd()) / "01_oblique_linear_alfven"
     sub_dir = f"dim_{dim}_beta_{beta}_theta_{theta}_eta_{plasma_resistivity}"
     directory = base_dir / sub_dir
     os.chdir(directory)
     os.makedirs("figures", exist_ok=True)
-    
+
     # load simulation parameters
     with open("sim_parameters.json", "rb") as f:
         meta = json.load(f)
 
-
     plot_energy_evolution(meta=meta)
     plt.savefig("figures/energy_evolution.png")
 
-    ts_field, ts_part = load_ts_all(meta) 
-    # export_ts(ts_field)
+    ts_field, ts_part = load_ts_all(meta)
 
-    fields = ["By", "Bx"]        
-    ds = ts2xr(ts_field)
-    plot_wk_spectrum(ds, meta=meta, fields=fields)
+    if export:
+        print("Exporting data...")
+        export_ts(ts_field)
+
+    if plot_wk_spectrum:
+        print("Plotting wk spectrum...")
+        fields = ["By", "Bx"]
+        ds = ts2xr(ts_field)
+        plot_wk_spectrum_ds(ds, meta=meta, fields=fields)
+        plt.savefig("figures/wk_spectrum.png")
+        plt.savefig("figures/wk_spectrum.pdf")
 
 
 def _plot_field_with_plasma_profile(ds_field, ds_part, field0, field1, twin=False):
     # BUG: not working, from_profiles does not support different data sources
-        
-    field_profile = create_field_profile(ds_field.all_data(), fields = field0)
+
+    field_profile = create_field_profile(ds_field.all_data(), fields=field0)
     part_profile = create_part_profile(ds_part.all_data(), fields=field1)
-    
+
     field_label = field0[-1]
     part_label = field1[-1]
-    
+
     p = yt.ProfilePlot.from_profiles(
         [field_profile, part_profile],
         labels=[field_label, part_label],
     )
 
     return p.figure
+
 
 if __name__ == "__main__":
     app()

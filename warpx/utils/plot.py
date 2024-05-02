@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 def read_diag_file(path, rename_func=lambda x: x.split("]")[1].split("(")[0]):
     """
     read the diagnostic file as a dataframe from the path
