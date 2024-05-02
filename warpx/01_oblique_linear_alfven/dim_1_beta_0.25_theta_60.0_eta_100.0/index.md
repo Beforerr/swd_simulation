@@ -1,8 +1,3 @@
-
-$$
-P_{parp} = |P_{xx} \cdot B_x + P_{yy} \cdot B_y + P_{zz} \cdot B_z| / |B|
-$$
-
 ![](figures/energy_evolution.png)
 
 ![](figures/rho_field.png)

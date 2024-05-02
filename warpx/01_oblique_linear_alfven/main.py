@@ -5,6 +5,7 @@ from space_analysis.simulation.warpx import HybridSimulation
 import os
 from pathlib import Path
 import typer
+from rich import print
 
 constants = picmi.constants
 
@@ -131,6 +132,7 @@ def main(
         ny=8,
     )
 
+    print(ctx.params)
     # wavenumber
     print("wavenumer (1 / ion inertial length):", simulation.k * simulation.d_i)
 

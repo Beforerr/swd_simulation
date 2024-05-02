@@ -2,36 +2,29 @@ using DataFrames,
     DataFramesMeta,
     CategoricalArrays
 
-function normalize_df!(df)
-    @transform!(df,
-        :time_norm = :time ./ meta["t_ci"],
-        :z_norm = :z ./ meta["d_i"],
-    )
+function get_avg_fields(df, fields; ids=ids)
+    @chain df begin
+        groupby(ids)
+        combine(fields .=> mean, renamecols=false)
+        stack(fields, ids)
+    end
 end
 
-function process_df!(df)
-    normalize_df!(df)
-
-    B_fields = names(df, r"B")
-    E_field = names(df, r"E")
-    j_field = names(df, r"j")
-
-    transform!(df,
-        B_fields => ByRow(norm ∘ vcat) => :Bmag,
-        E_field => ByRow(norm ∘ vcat) => :Emag,
-        j_field => ByRow(norm ∘ vcat) => :jmag,
-    )
+function select_time(df; start=1, stop=missing, step=1)
+    gdf = groupby(df, :time)
+    if ismissing(stop)
+        stop = lastindex(gdf)
+    end
+    combine(gdf[start:step:stop], names(df))
 end
 
+function plot_fields_time(df, fields; ids=ids, window=missing, norm=false)
 
-function plot_fields_time(df, fields; ids=ids, step=1, norm=false)
+    if !ismissing(window)
+        df = select_time(df; window...)
+    end
 
-    # select subset of the data with step
-    # TODO: implement this in a more efficient way
-    gdf = groupby(df, :time)[begin:step:end]
-    temp_df = combine(gdf, names(df))
-
-    temp_df = get_avg_fields(temp_df, fields, ids=ids)
+    temp_df = get_avg_fields(df, fields, ids=ids)
     temp_df.time_norm = CategoricalArray(temp_df.time_norm .|> floor)
 
     if norm
@@ -42,9 +35,6 @@ function plot_fields_time(df, fields; ids=ids, step=1, norm=false)
         end
     end
 
-    height = 100 * length(unique(temp_df.time_norm))
-    fig_options = (size=(1200, height),)
-
-    plt = data(temp_df) * mapping(:z_norm => z_norm_lab, :value, color=:variable, row=:time_norm) * visual(Lines)
-    draw(plt; figure=fig_options)
+    # height = 200 * length(unique(temp_df.time_norm))
+    data(temp_df) * mapping(:z_norm => z_norm_lab, :value, color=:variable, row=:time_norm) * visual(Lines)
 end

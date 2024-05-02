@@ -1,2 +1,6 @@
 run:
     python main.py
+
+log:
+    python main.py
+    python main.py --nppc 256 --plasma-resistivity 10

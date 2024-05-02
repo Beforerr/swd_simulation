@@ -1,4 +1,4 @@
-max_step = 32000
+max_step = 6400
 warpx.const_dt = 0.01024913293917317
 warpx.serialize_initial_conditions = 1
 warpx.B_ext_grid_init_style = parse_b_ext_grid_function
@@ -28,7 +28,7 @@ ions.mass = 1.672621310227663e-27
 ions.charge = q_e
 ions.injection_style = nrandompercell
 ions.initialize_self_fields = 0
-ions.num_particles_per_cell = 64
+ions.num_particles_per_cell = 256
 ions.momentum_distribution_type = gaussian_parse_momentum_function
 ions.momentum_function_ux_m(x,y,z) = (0) /299792458.0
 ions.momentum_function_uy_m(x,y,z) = (218061.01291934482 * cos(4.311381038964624e-06 * z)) /299792458.0

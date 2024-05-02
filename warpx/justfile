@@ -1,2 +1,3 @@
 plot:
     python plot.py --plot-wk-spectrum --export
+    python plot.py --plasma-resistivity 10 --plot-wk-spectrum --export

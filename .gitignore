@@ -18,7 +18,9 @@ Backtrace*
 *.dpkl
 
 # temporarily ignore the following files
+*.arrow
 *.png
+*.pdf
 
 /overleaf/
 /_manuscript/
