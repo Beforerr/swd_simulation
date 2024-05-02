@@ -102,6 +102,7 @@ def main(
     plasma_resistivity: float = 100,
     dz_norm: float = 0.5,
     dt_norm: float = 1/64,
+    time_norm: float = 100,
     substeps: int = 16,
     nppc: int = 64,
     dry_run: bool = False,

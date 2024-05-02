@@ -1,3 +1,4 @@
+import yt
 from yt.data_objects.time_series import SimulationTimeSeries
 from yt.data_objects.static_output import Dataset
 from yt.frontends.boxlib.data_structures import WarpXDataset
@@ -5,23 +6,59 @@ import pandas as pd
 import xarray as xr
 
 from xarray import DataArray
+from xarray import Dataset as xrDataset
 from pandas import DataFrame
+import logging
 
 
+ytLogger = logging.getLogger("yt")
+ytLogger.setLevel(logging.WARNING)
+
+def load_ts(meta, type="field"):
+    diag_format = meta.get("diag_format")
+    if diag_format == "openpmd":
+        ext = meta.get("diag_openpmd_backend")
+        file_format = f"/{diag_format}*.{ext}"
+    else:
+        file_format = "??????"  # Consider more appropriate fallback or error handling
+
+    paths = {"field": "diags/diag1", "particle": "diags/diag2"}
+
+    return yt.load(f"{paths[type]}{file_format}")
 
 
-def rename(data: DataFrame | DataArray | xr.Dataset, dict):
-    if isinstance(data, (DataArray, xr.Dataset)):
-        return data.rename(dict)
-    elif isinstance(data, DataFrame):
-        return data.rename(columns=dict)
+def load_ts_all(meta):
+    return load_ts(meta, "field"), load_ts(meta, "particle")
 
-def rename_coords(data: DataFrame | DataArray, ds: Dataset):
+
+from plum import dispatch
+
+
+@dispatch
+def _rename(data: xrDataset, dict: dict):
+    return data.rename(dict)
+
+
+@dispatch
+def _rename(data: DataFrame, dict: dict):
+    return data.rename(columns=dict)
+
+
+def rename_coords(data, ds):
     dim = ds.dimensionality
+    if check_ds_type(ds) == "field":
+        prefix = ""
+    else:
+        prefix = "particle_position_"
+
     if isinstance(ds, WarpXDataset):
         if dim == 1 or dim == 2:
-            mapper = {"x": "z", "y": "x", "z": "y", "particle_position_x": "particle_position_z"}
-            data = rename(data, mapper)
+            mapper = {
+                f"{prefix}x": f"{prefix}z",
+                f"{prefix}y": f"{prefix}x",
+                f"{prefix}z": f"{prefix}y",
+            }
+            data = _rename(data, mapper)
     return data
 
 
@@ -32,13 +69,10 @@ def check_ds_type(ds: Dataset):
         return "field"
 
 
-def ds2df(ds: Dataset, type=None, coords=None):
-    type = type or check_ds_type(ds)
-    if type == "particle":
-        fields = ds.field_list
-    elif type == "field":
-        coords = coords or ["x", "y", "z"]
-        fields = ds.field_list + coords
+def ds2df(ds: Dataset, fields: list = None, coords=["x", "y", "z"]):
+    fields = fields or ds.field_list
+    if check_ds_type(ds) == "field":
+        fields = fields + coords
     df: pd.DataFrame = ds.all_data().to_dataframe(fields)
     return df.assign(time=ds.current_time).pipe(rename_coords, ds)
 
@@ -55,11 +89,12 @@ def export_ts(ts: SimulationTimeSeries, **kwargs):
     return [export_ds(ds, **kwargs) for ds in ts.piter()]
 
 
-def ds2xr(ds: Dataset, fields=None):
+def ds2xr(ds: Dataset, fields: list = None) -> xr.Dataset:
     fields = fields or ds.field_list
     grid = ds.covering_grid(0, ds.domain_left_edge, ds.domain_dimensions)
-    da: DataArray = grid.to_xarray(fields)
+    da: xr.Dataset = grid.to_xarray(fields)
     return da.assign_coords(time=ds.current_time).pipe(rename_coords, ds)
+
 
 def ts2xr(ts, fields=None):
     fields = fields or ts[0].field_list

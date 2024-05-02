@@ -1,0 +1,47 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Analysis\n"
+      ],
+      "id": "9ba0d0dc"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "using HDF5"
+      ],
+      "id": "8de4f2dc",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "dim = 3\n",
+        "dir = \"$(@__DIR__)/01_oblique_linear_alfven/dim_$(dim)_beta_0.25_theta_60\"\n",
+        "\n",
+        "filename = joinpath(dir, \"diags/diag2/openpmd_000000.h5\")\n",
+        "fid = h5open(filename)\n",
+        "data = fid[\"data\"]"
+      ],
+      "id": "e2ecc7a1",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "julia-1.9",
+      "language": "julia",
+      "display_name": "Julia 1.9.3",
+      "path": "/Users/zijin/Library/Jupyter/kernels/julia-1.9"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

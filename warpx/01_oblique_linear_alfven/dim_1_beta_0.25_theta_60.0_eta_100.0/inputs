@@ -60,7 +60,7 @@ ions.mass = 1.672621310227663e-27
 ions.momentum_distribution_type = gaussian_parse_momentum_function
 ions.momentum_function_ux_m(x,y,z) = (0)/299792458.0
 ions.momentum_function_ux_th(x,y,z) = (77096.21047383804)/299792458.0
-ions.momentum_function_uy_m(x,y,z) = (109030.50645967244 * cos(4.311381038964624e-06 * z))/299792458.0
+ions.momentum_function_uy_m(x,y,z) = (218061.01291934482 * cos(4.311381038964624e-06 * z))/299792458.0
 ions.momentum_function_uy_th(x,y,z) = (77096.21047383804)/299792458.0
 ions.momentum_function_uz_m(x,y,z) = (0)/299792458.0
 ions.momentum_function_uz_th(x,y,z) = (77096.21047383804)/299792458.0
@@ -68,7 +68,7 @@ ions.num_particles_per_cell = 64
 ions.profile = parse_density_function
 
 # max_step
-max_step = 6400
+max_step = 32000
 
 # part_energy
 part_energy.intervals = 64
