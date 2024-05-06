@@ -9,6 +9,7 @@ from rich import print
 
 constants = picmi.constants
 
+
 def init_obl_alfven(
     k,
     B0,
@@ -33,9 +34,9 @@ def init_obl_alfven(
     By_expression = f"{A * B0} * cos({k} * z)"
     Bx_expression = f"{B0k1}"
     pz_expression = 0
-    px_expression = 0
     # py_expression = f"{A * vA * cosd(theta)} * cos({k} * z)"
     py_expression = f"{A * vA} * cos({k} * z)"
+    px_expression = f"{vA * sind(theta)}"
 
     field = picmi.AnalyticInitialField(
         Bx_expression=Bx_expression,
@@ -48,7 +49,7 @@ def init_obl_alfven(
     dist = picmi.AnalyticDistribution(
         density_expression=n0,
         momentum_expressions=momentum_expressions,
-        warpx_momentum_spread_expressions=rms_velocity,
+        warpx_momentum_spread_expressions=rms_velocity,  #: gamma*velocity spread for each axis
     )
 
     return field, dist
@@ -89,6 +90,7 @@ class AlfvenModes(HybridSimulation):
 
         return self
 
+
 app = typer.Typer()
 
 
@@ -102,7 +104,7 @@ def main(
     theta: float = 60,
     plasma_resistivity: float = 100,
     dz_norm: float = 0.5,
-    dt_norm: float = 1/64,
+    dt_norm: float = 1 / 64,
     time_norm: float = 100,
     substeps: int = 16,
     nppc: int = 64,
