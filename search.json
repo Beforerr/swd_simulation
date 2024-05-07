@@ -282,6 +282,19 @@
     "href": "index.html",
     "title": "Alfven Hybrid Simulation",
     "section": "",
-    "text": "Zotero Collection\n\nCompare $ v_A ?= v_i $ first\nOne step back, how the RD evolve after generation?\nVelocity distribution function\nOmidi (1992) Zotero\n\nTitle:: Rotational discontinuities in anisotropic plasmas\n\nVasquez and Hollweg (1999)\n\nTitle:: Nonlinear evolution of Alfvén waves and RDs-hybrid simulations\n\n\n\nBUGS\n\nbeta and ion temperature\n\n\nIon dynamics in the rotational discontinuities\nFormation of rotational discontinuities from oblique linearly polarized Alfven wave trains And ion dynamics in the vicinity of the rotational discontinuities =&gt; Hybrid Simulation\n\nGenerally speaking the hybrid model approach has difficulty with Whistler waves that are included in the model physics but because their dispersion runs to the electron cyclotron frequency there is a point where the chosen grid and timestep resolution no longer properly resolves these waves (unless you use a very small timestep in which case the value of the hybrid approach is lost).\n\nNumerical dispersion by whistler waves (up to electron cyclotron frequency)\nThe ponderomotive force (o(OBl/Ox) exerted by the first-order wave generates waves with twice its wavenumber which have a compressional component and a wave magnetic field in the z-direction.\n\n\n\n\n\nReferences\n\nOmidi, N. 1992. “Rotational Discontinuities in Anisotropic Plasmas.” Geophysical Research Letters 19 (13): 1335–38. https://doi.org/10.1029/92GL01127.\n\n\nVasquez, Bernard J., and Joseph V. Hollweg. 1999. “Nonlinear Evolution of Alfvén Waves and RDs-hybrid Simulations.” AIP Conference Proceedings 471 (1): 167–72. https://doi.org/10.1063/1.58745."
+    "text": "\\[\nP_{parp} = |P_{xx} \\cdot B_x + P_{xy} \\cdot B_y + P_{xz} \\cdot B_z| / |B|\n\\]\nZotero Collection\n\nCompare $ v_A ?= v_i $ first\nOne step back, how the RD evolve after generation?\nVelocity distribution function\nOmidi (1992) Zotero\n\nTitle:: Rotational discontinuities in anisotropic plasmas\n\nVasquez and Hollweg (1999)\n\nTitle:: Nonlinear evolution of Alfvén waves and RDs-hybrid simulations\n\n\n\nBUGS\n\nbeta and ion temperature\n\n\nIon dynamics in the rotational discontinuities\nFormation of rotational discontinuities from oblique linearly polarized Alfven wave trains And ion dynamics in the vicinity of the rotational discontinuities =&gt; Hybrid Simulation\n\nGenerally speaking the hybrid model approach has difficulty with Whistler waves that are included in the model physics but because their dispersion runs to the electron cyclotron frequency there is a point where the chosen grid and timestep resolution no longer properly resolves these waves (unless you use a very small timestep in which case the value of the hybrid approach is lost).\n\nNumerical dispersion by whistler waves (up to electron cyclotron frequency)\nThe ponderomotive force (o(OBl/Ox) exerted by the first-order wave generates waves with twice its wavenumber which have a compressional component and a wave magnetic field in the z-direction.\n\n\n\n\n\nReferences\n\nOmidi, N. 1992. “Rotational Discontinuities in Anisotropic Plasmas.” Geophysical Research Letters 19 (13): 1335–38. https://doi.org/10.1029/92GL01127.\n\n\nVasquez, Bernard J., and Joseph V. Hollweg. 1999. “Nonlinear Evolution of Alfvén Waves and RDs-hybrid Simulations.” AIP Conference Proceedings 471 (1): 167–72. https://doi.org/10.1063/1.58745."
+  },
+  {
+    "objectID": "warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_100.0/index.html",
+    "href": "warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_100.0/index.html",
+    "title": "Alfven Speed and Plasma Speed",
+    "section": "",
+    "text": "Alfven Speed and Plasma Speed",
+    "crumbs": [
+      "Home",
+      "Warpx",
+      "01 Oblique Linear Alfven",
+      "Alfven Speed and Plasma Speed"
+    ]
   }
 ]
