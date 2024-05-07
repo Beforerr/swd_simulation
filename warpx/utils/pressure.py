@@ -42,6 +42,7 @@ def deposit_part(
 
 
 def calc_pressure(df: pl.DataFrame, mass: float, direction):
+    #: Note: pressure caculation needs to account for particle weight and hypercube volume
 
     return (
         df.with_columns(
@@ -51,6 +52,9 @@ def calc_pressure(df: pl.DataFrame, mass: float, direction):
         )
         .group_by(direction)
         .agg(
+            cs.contains("velocity").mean().sqrt().name.map(
+                lambda x: x.replace("particle_velocity", "velocity_th")
+            ),
             (mass * cs.contains("velocity").sum()).name.map(
                 lambda x: x.replace("particle_velocity", "pressure")
             ),
@@ -82,11 +86,21 @@ def calc_pressure_parp_perp(
         + pl.col("pressure_z")
         - pl.col("pressure_parp")
     ) / 2
+    
+    velocity_th_perp_expr = ((
+        pl.col("velocity_th_x").pow(2)
+        + pl.col("velocity_th_y").pow(2)
+        + pl.col("velocity_th_z").pow(2)
+        - pl.col("velocity_th_parp").pow(2)
+    ) / 2).sqrt()
 
     return (
         p_mesh_df.with_columns(particle_velocity_parp=particle_velocity_parp_expr)
         .pipe(calc_pressure, mass=mass, direction=direction)
-        .with_columns(pressure_perp=pressure_perp_expr)
+        .with_columns(
+            pressure_perp=pressure_perp_expr,
+            velocity_th_perp=velocity_th_perp_expr,
+        )
         .with_columns(anisotropy=pl.col("pressure_perp") / pl.col("pressure_parp"))
     )
 

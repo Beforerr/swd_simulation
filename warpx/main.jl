@@ -22,7 +22,7 @@ include("utils/plot.jl")
 
 # Flags
 """
-@cast function main(; dim::Int=1, beta::Float64=0.25, theta=60.0, eta=10.0)
+@cast function main(; dim::Int=1, beta::Float64=0.25, theta::Float64=60.0, eta::Float64=10.0)
     @show dim beta theta eta
 
     meta = setup(dim, beta, theta, eta)

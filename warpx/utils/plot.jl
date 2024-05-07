@@ -4,28 +4,34 @@ time_norm_lab = L"T~(T_{ci})"
 ids = [:z_norm, :time_norm]
 labs = [z_norm_lab, time_norm_lab]
 
-function plot_fields(df, fields; fig_options = (size = (800, 800),))
+function plot_fields(df, fields; axis=NamedTuple(), figure=NamedTuple(), fig_options=(size=(800, 800),))
 
     temp_df = get_avg_fields(df, fields, ids=ids)
-    plt = data(temp_df) * mapping(Pair.(ids, labs)..., :value, row = :variable) * visual(Heatmap)
+    plt = data(temp_df) * mapping(Pair.(ids, labs)..., :value, layout=:variable) * visual(Heatmap)
 
-    draw(plt; figure = fig_options)
+    draw(plt; figure=figure, axis=axis)
 end
 
 function plot_fields(df)
 
     B_fields = names(df, r"^B(x|y|z|mag)$")
-    E_field = names(df, r"E")
-    j_field = names(df, r"j")
-    rho_field = names(df, r"rho")
+    E_fields = names(df, r"E")
+    j_fields = names(df, r"j")
+    pressure_fields = ["pressure_x", "pressure_y", "pressure_z"]
+    pressure_f_fields = ["pressure_parp", "pressure_perp"]
+    temp_f_fields = ["T_parp", "T_perp"]
+
 
     plot_fields(df, B_fields)
     easy_save("B_field")
-    plot_fields(df, E_field)
+    plot_fields(df, E_fields)
     easy_save("E_field")
-    plot_fields(df, j_field)
+    plot_fields(df, j_fields)
     easy_save("j_field")
-    plot_fields(df, rho_field)
-    easy_save("rho_field")
-end
 
+    plot_fields(df, "rho_n_norm")
+    easy_save("rho_n_norm")
+
+    plot_fields(df, "anisotropy")
+    easy_save("anisotropy")
+end

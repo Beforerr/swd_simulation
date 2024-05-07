@@ -12,6 +12,26 @@ from pathlib import Path
 import typer
 
 app = typer.Typer()
+import os
+import json
+
+def setup(dim, beta, theta, eta):
+    
+    # change to simulation directory and load metadata
+    base_dir = Path(os.getcwd()) / "01_oblique_linear_alfven"
+    sub_dir = f"dim_{dim}_beta_{beta}_theta_{theta}_eta_{eta}"
+    directory = base_dir / sub_dir
+
+    try:
+        os.chdir(directory)    
+        os.makedirs("figures", exist_ok=True)
+    except:
+        pass
+
+    # load simulation metadata (json)
+    with open("sim_parameters.json") as f:
+        data = json.load(f)
+    return data
 
 
 @app.command()
@@ -19,22 +39,14 @@ def main(
     dim: int = 1,
     beta: float = 0.25,
     theta: float = 60,
-    plasma_resistivity: float = 100,
+    eta: float = 100,
     export: bool = True,
     export_pressure: bool = False,
     plot_wk_spectrum: bool = True,
 ):
-
-    base_dir = Path(os.getcwd()) / "01_oblique_linear_alfven"
-    sub_dir = f"dim_{dim}_beta_{beta}_theta_{theta}_eta_{plasma_resistivity}"
-    directory = base_dir / sub_dir
-    os.chdir(directory)
-    os.makedirs("figures", exist_ok=True)
-
-    # load simulation parameters
-    with open("sim_parameters.json", "rb") as f:
-        meta = json.load(f)
-
+    
+    meta = setup(dim, beta, theta, eta)
+    
     plot_energy_evolution(meta=meta)
     plt.savefig("figures/energy_evolution.png")
 
