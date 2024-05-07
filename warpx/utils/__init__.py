@@ -4,6 +4,7 @@ from yt.data_objects.static_output import Dataset
 from yt.frontends.boxlib.data_structures import WarpXDataset
 import pandas as pd
 import xarray as xr
+from tqdm import tqdm
 
 from xarray import DataArray
 from xarray import Dataset as xrDataset
@@ -86,7 +87,7 @@ def export_ds(ds: Dataset, **kwargs):
 
 
 def export_ts(ts: SimulationTimeSeries, **kwargs):
-    return [export_ds(ds, **kwargs) for ds in ts.piter()]
+    return [export_ds(ds, **kwargs) for ds in tqdm(ts.piter())]
 
 
 def ds2xr(ds: Dataset, fields: list = None) -> xr.Dataset:

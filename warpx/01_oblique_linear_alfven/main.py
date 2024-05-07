@@ -48,7 +48,7 @@ def init_obl_alfven(
     rms_velocity = [v_ti, v_ti, v_ti]
     dist = picmi.AnalyticDistribution(
         density_expression=n0,
-        momentum_expressions=momentum_expressions,
+        momentum_expressions=momentum_expressions, #: Analytic expressions describing the gamma*velocity for each axis [m/s]
         warpx_momentum_spread_expressions=rms_velocity,  #: gamma*velocity spread for each axis
     )
 

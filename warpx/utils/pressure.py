@@ -2,70 +2,123 @@ import polars as pl
 import polars.selectors as cs
 from utils import ds2df
 import numpy as np
+from tqdm import tqdm
 
 
-def calc_pressure(ds, direction, breaks=None):
-    df = pl.DataFrame(ds2df(ds))
-    
-    i = 0 if ds.dimensionality == 1 else 2
-    breaks = breaks or np.linspace(
-        ds.domain_left_edge[i], ds.domain_right_edge[i], ds.domain_dimensions[i] + 1
+def momentum2velocity(
+    df: pl.DataFrame,
+    mass,
+    pfields=["particle_momentum_x", "particle_momentum_y", "particle_momentum_z"],
+    vfields=["particle_velocity_x", "particle_velocity_y", "particle_velocity_z"],
+    drop=True,
+):
+    new_df = df.with_columns(
+        pl.col(pfield).alias(vfield) / mass for pfield, vfield in zip(pfields, vfields)
     )
+    return new_df.drop(pfields) if drop else new_df
+
+
+def deposit_part(
+    part_df: pl.DataFrame, field_df: pl.DataFrame, direction="z", breaks=None
+):
     col = f"particle_position_{direction}"
+    rename_map = {"brk": direction}
+    index = f"{direction}_index"
 
-    rename_map = {
-        "brk": direction,
-        "particle_momentum_x_var": "p_xx",
-        "particle_momentum_y_var": "p_yy",
-        "particle_momentum_z_var": "p_zz",
-    }
-
-    return (
-        df.with_columns(
-            # pl.col(f"particle_position_{direction}").qcut(n).alias(direction),
-            pl.col(col).cut(breaks, include_breaks=True),
-        )
-        .with_columns(
-            (cs.contains("momentum") - cs.contains("momentum").mean().over(col))
-            .pow(2)
-            .name.suffix("_var"),
-            # cs.contains("momentum").mean().over(direction).name.suffix("_mean"),
-        )
-        .group_by(col)
-        .agg(cs.contains("var").sum(), pl.col("time").first())
+    p_df = (
+        part_df.drop(["particle_cpu", "particle_id", "particle_weight"])
+        .with_columns(pl.col(col).cut(breaks, include_breaks=True))
         .unnest(col)
         .rename(rename_map)
         .drop(cs.by_dtype(pl.Categorical))
     )
 
-#TODO
-def calc_pressure_parp_perp(df: pl.DataFrame):
-    return (
-        df.with_columns(Bmag=np.linalg.norm(b_df[Bfields], axis=1))
-        .with_columns(
-            p_parp=(
-                pl.col("p_xx") * pl.col("Bx").abs()
-                + pl.col("p_yy") * pl.col("By").abs()
-                + pl.col("p_zz") * pl.col("Bz").abs()
-            )
-            / pl.col("Bmag")
-        )
-        .with_columns(
-            p_perp=(pl.col("p_xx") + pl.col("p_yy") + pl.col("p_zz") - pl.col("p_parp"))
-            / 2
-        )
-        .with_columns(anisotropy=pl.col("p_perp") / pl.col("p_parp"))
+    p_df = p_df.with_columns(pl.col(direction).rank("dense").alias(index)).drop(
+        direction
     )
-    
-def export_pressure_field(ts_part, ts_field, step=8):
-    direction = "z"
-    Bfields = ["Bx", "By", "Bz"]
+    field_df = field_df.with_columns(pl.col(direction).rank("dense").alias(index))
 
-    p_df = pl.concat(calc_pressure(ds, direction) for ds in ts_part[::step])
-    b_df = pl.concat(pl.DataFrame(ds2df(ds, fields=Bfields)) for ds in ts_field[::step])
+    return p_df.join(field_df, on=["time", index]).drop(index)
 
-    index = f"{direction}_index"
-    p_df = p_df.with_columns(pl.col(direction).rank("dense").alias(index))
-    b_df = b_df.with_columns(pl.col(direction).rank("dense").alias(index))
-    df = b_df.join(p_df, on=["time", index]).drop(f"{direction}_right", index).drop(Bfields)
-    df.write_ipc("pressure.arrow")
+
+def calc_pressure(df: pl.DataFrame, mass: float, direction):
+
+    return (
+        df.with_columns(
+            (
+                cs.contains("velocity") - cs.contains("velocity").mean().over(direction)
+            ).pow(2)
+        )
+        .group_by(direction)
+        .agg(
+            (mass * cs.contains("velocity").sum()).name.map(
+                lambda x: x.replace("particle_velocity", "pressure")
+            ),
+            (~cs.contains("velocity")).first(),
+        )
+    )
+
+
+def calc_pressure_parp_perp(
+    part_df: pl.DataFrame,
+    field_df: pl.DataFrame,
+    mass: float,
+    direction="z",
+    breaks=None,
+    Bfields=["Bx", "By", "Bz"],
+    vfields=["particle_velocity_x", "particle_velocity_y", "particle_velocity_z"],
+):
+
+    field_df = field_df.with_columns(Bmag=np.linalg.norm(field_df[Bfields], axis=1))
+    p_mesh_df = deposit_part(part_df, field_df, direction=direction, breaks=breaks)
+
+    particle_velocity_parp_expr = sum(
+        pl.col(v_comp) * pl.col(B_comp) for v_comp, B_comp in zip(vfields, Bfields)
+    ) / pl.col("Bmag")
+
+    pressure_perp_expr = (
+        pl.col("pressure_x")
+        + pl.col("pressure_y")
+        + pl.col("pressure_z")
+        - pl.col("pressure_parp")
+    ) / 2
+
+    return (
+        p_mesh_df.with_columns(particle_velocity_parp=particle_velocity_parp_expr)
+        .pipe(calc_pressure, mass=mass, direction=direction)
+        .with_columns(pressure_perp=pressure_perp_expr)
+        .with_columns(anisotropy=pl.col("pressure_perp") / pl.col("pressure_parp"))
+    )
+
+
+def calc_pressure_parp_perp_ds(
+    ds_part,
+    ds_field,
+    meta,
+    direction="z",
+    breaks=None,
+    Bfields=["Bx", "By", "Bz"],
+):
+    mass = meta["m_ion"]
+    field_df = pl.DataFrame(ds2df(ds_field, fields=Bfields))
+    part_df = pl.DataFrame(ds2df(ds_part)).pipe(momentum2velocity, mass=mass)
+
+    i = 0 if ds_part.dimensionality == 1 else 2
+    breaks = breaks or np.linspace(
+        ds_part.domain_left_edge[i],
+        ds_part.domain_right_edge[i],
+        ds_part.domain_dimensions[i] + 1,
+    )
+    return calc_pressure_parp_perp(
+        part_df, field_df, mass=mass, direction=direction, breaks=breaks
+    )
+
+
+def calc_pressure_parp_perp_ts(ts_part, ts_field, step=1, **kwargs):
+    return pl.concat(
+        calc_pressure_parp_perp_ds(ds_part, ds_field, **kwargs)
+        for ds_part, ds_field in zip(tqdm(ts_part[::step]), ts_field[::step])
+    )
+
+def export_pressure_field(ts_part, ts_field, file="pressure.arrow", **kwargs):
+    return calc_pressure_parp_perp_ts(ts_part, ts_field, **kwargs).write_ipc(file)

@@ -1,13 +1,14 @@
 ## Energy evolution in the system with your input parameters
 import matplotlib.pyplot as plt
+import json
+from utils import export_ts, ts2xr, load_ts_all
+from utils.plot import plot_wk_spectrum_ds
 from utils.energy import plot_energy_evolution
 from utils.pressure import export_pressure_field
-import json
-from utils.plot import plot_wk_spectrum_ds
+
 import os
 from pathlib import Path
 
-from utils import export_ts, ts2xr, load_ts_all
 
 import typer
 
@@ -54,7 +55,7 @@ def main(
         
     if export or export_pressure:
         print("Exporting pressure field...")
-        export_pressure_field(ts_part, ts_field)
+        export_pressure_field(ts_part, ts_field, meta=meta)
 
 if __name__ == "__main__":
     app()

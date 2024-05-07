@@ -10,7 +10,6 @@ function setup(dim, beta, theta, eta)
         cd(dir)
     catch
     end
-
     # load simulation metadata (json)
     JSON.parsefile("sim_parameters.json")
 end
@@ -48,6 +47,6 @@ function load_field(meta;)
         df = innerjoin(df, df_p, on=["time", "x", "y", "z"], makeunique=true) 
     catch
     end
-
+    println(names(df))
     sort!(df, [:time, :z, :y, :x])
 end
