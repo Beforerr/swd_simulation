@@ -20,6 +20,7 @@ function plot_fields(df)
     pressure_fields = ["pressure_x", "pressure_y", "pressure_z"]
     pressure_f_fields = ["pressure_parp", "pressure_perp"]
     temp_f_fields = ["T_parp", "T_perp"]
+    temp_norm_fields = ["T_parp_norm", "T_perp_norm"]
 
 
     plot_fields(df, B_fields)
@@ -31,6 +32,9 @@ function plot_fields(df)
 
     plot_fields(df, "rho_n_norm")
     easy_save("rho_n_norm")
+
+    plot_fields(df, temp_norm_fields)
+    easy_save("temp_norm")
 
     plot_fields(df, "anisotropy")
     easy_save("anisotropy")

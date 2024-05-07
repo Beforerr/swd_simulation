@@ -3,6 +3,7 @@ using AlgebraOfGraphics,
 using DataFrames,
     DataFramesMeta,
     CategoricalArrays
+import JSON
 using Statistics
 using LinearAlgebra
 using beforerr
@@ -14,6 +15,20 @@ include("utils/analysis.jl")
 include("utils/plot.jl")
 
 
+function setup(dim, beta::Float64, theta, eta)
+    # change to simulation directory and load metadata
+    base_dir = @__DIR__ 
+    sub_dir = "01_oblique_linear_alfven/dim_$(dim)_beta_$(beta)_theta_$(theta)_eta_$(eta)"
+    directory = "$base_dir/$sub_dir"
+    try
+        cd(directory)
+        println("Changed to $directory")
+    catch
+    end
+    # load simulation metadata (json)
+    JSON.parsefile("sim_parameters.json")
+end
+
 """
 # Options
 
@@ -22,7 +37,7 @@ include("utils/plot.jl")
 
 # Flags
 """
-@cast function main(; dim::Int=1, beta::Float64=0.25, theta::Float64=60.0, eta::Float64=10.0)
+@cast function run(; dim::Int=1, beta::Float64=0.25, theta::Float64=60.0, eta::Float64=10.0)
     @show dim beta theta eta
 
     meta = setup(dim, beta, theta, eta)

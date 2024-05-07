@@ -41,8 +41,8 @@ def main(
     theta: float = 60,
     eta: float = 100,
     export: bool = True,
-    export_pressure: bool = False,
-    plot_wk_spectrum: bool = True,
+    export_pressure: bool = True,
+    plot_wk_spectrum: bool = False,
 ):
     
     meta = setup(dim, beta, theta, eta)

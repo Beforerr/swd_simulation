@@ -1,33 +1,20 @@
 using DataFrames,
     DataFramesMeta
 using Arrow
-import JSON
 using PhysicalConstants.CODATA2018: ElementaryCharge
 using Unitful
-
-function setup(dim, beta, theta, eta)
-    # change to simulation directory and load metadata
-    dir = "01_oblique_linear_alfven/dim_$(dim)_beta_$(beta)_theta_$(theta)_eta_$(eta)"
-    try
-        cd(dir)
-    catch
-    end
-    # load simulation metadata (json)
-    JSON.parsefile("sim_parameters.json")
-end
-
 
 function unit_df!(df)
     @chain df begin
         @transform!(
             :rho_c = :rho .* 1u"C/m^3",
+            :velocity_th_parp = :velocity_th_parp .* 1u"m/s",
+            :velocity_th_perp = :velocity_th_perp .* 1u"m/s",
         )
         @transform!(
             :rho_n = :rho_c ./ ElementaryCharge,
-        )
-        @transform!(
-            :pressure_perp_u = :pressure_perp .* 1u"kg*(m/s)^2" ./ :rho_n,
-            :pressure_parp_u = :pressure_parp .* 1u"kg*(m/s)^2" ./ :rho_n,
+
+            # T_plasma
         )
     end 
 end
@@ -35,10 +22,14 @@ end
 
 function normalize_df!(df, meta)
     n0 = meta["n0"] * u"1/m^3"
+    T0 = meta["T_plasma"] * u"eV"
+    mass = meta["m_ion"] * u"kg"
     @transform!(df,
         :rho_n_norm = :rho_n ./ n0,
         :time_norm = :time ./ meta["t_ci"],
         :z_norm = :z ./ meta["d_i"],
+        :T_parp_norm = mass * :velocity_th_parp.^2 / T0,
+        :T_perp_norm = mass * :velocity_th_perp.^2 / T0,
     )
 end
 
@@ -68,8 +59,8 @@ function load_field(meta;)
         df = innerjoin(df, df_p, on=["time", "x", "y", "z"], makeunique=true) 
     catch
     end
-    println(names(df))
     unit_df!(df)
     normalize_df!(df, meta) |> process_df!
+    println(names(df))
     sort!(df, [:time, :z, :y, :x])
 end

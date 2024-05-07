@@ -1,4 +1,4 @@
-# beta = 0.25, theta = 60.0, eta = 10.0
+# beta = 2, theta = 60.0, eta = 10.0
 
 ![](figures/energy_evolution.png)
 
