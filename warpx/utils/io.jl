@@ -28,8 +28,8 @@ function normalize_df!(df, meta)
         :rho_n_norm = :rho_n ./ n0,
         :time_norm = :time ./ meta["t_ci"],
         :z_norm = :z ./ meta["d_i"],
-        :T_parp_norm = mass * :velocity_th_parp.^2 / T0,
-        :T_perp_norm = mass * :velocity_th_perp.^2 / T0,
+        :T_parp_norm = convert.(Float64, mass * :velocity_th_parp.^2 / T0),
+        :T_perp_norm = convert.(Float64, mass * :velocity_th_perp.^2 / T0),
     )
 end
 

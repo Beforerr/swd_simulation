@@ -42,7 +42,9 @@ end
 
     meta = setup(dim, beta, theta, eta)
     df = load_field(meta)
-    plot_fields(df)
+    # plot_fields(df)
+    # plot_fields_time(df)
+    plot_overview_ts(df)
 end
 
 
