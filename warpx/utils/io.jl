@@ -14,7 +14,7 @@ function setup(dim, beta, theta, eta)
     JSON.parsefile("sim_parameters.json")
 end
 
-function normalize_df!(df)
+function normalize_df!(df, meta)
     @transform!(df,
         :time_norm = :time ./ meta["t_ci"],
         :z_norm = :z ./ meta["d_i"],
@@ -32,8 +32,9 @@ end
 function load_output_field(meta)
     field_diag_dir = (meta["diag_format"] == "openpmd" ? "diags/diag1" : "diags")
     files = filter(contains(r".*\.arrow"), readdir(field_diag_dir, join=true))
-    dfs = vcat(files .|> Arrow.Table .|> DataFrame)
-    reduce(vcat, dfs) |> normalize_df! |> process_df!
+    dfs = files .|> Arrow.Table .|> DataFrame
+    df = reduce(vcat, dfs)
+    normalize_df!(df, meta) |> process_df!
 end
 
 function load_pressure_df(fp="pressure.arrow")

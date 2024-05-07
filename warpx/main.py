@@ -9,7 +9,6 @@ from utils.pressure import export_pressure_field
 import os
 from pathlib import Path
 
-
 import typer
 
 app = typer.Typer()
@@ -21,9 +20,9 @@ def main(
     beta: float = 0.25,
     theta: float = 60,
     plasma_resistivity: float = 100,
-    export: bool = False,
+    export: bool = True,
     export_pressure: bool = False,
-    plot_wk_spectrum: bool = False,
+    plot_wk_spectrum: bool = True,
 ):
 
     base_dir = Path(os.getcwd()) / "01_oblique_linear_alfven"
