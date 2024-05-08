@@ -1,15 +1,21 @@
 using DataFrames,
     DataFramesMeta
 using Arrow
-using PhysicalConstants.CODATA2018: ElementaryCharge
+using PhysicalConstants.CODATA2018: ElementaryCharge, μ_0
 using Unitful
 
+B_components = ["Bx", "By", "Bz"]
+E_components = ["Ex", "Ey", "Ez"]
+j_components = ["jx", "jy", "jz"]
 velocity_components = [:velocity_th_x, :velocity_th_y, :velocity_th_z, :velocity_th_parp, :velocity_th_perp]
+T_components = [:T_x, :T_y, :T_z, :T_parp, :T_perp]
 T_norm_components = [:T_x_norm, :T_y_norm, :T_z_norm, :T_parp_norm, :T_perp_norm]
 
 function unit_df!(df)
     @chain df begin
-        transform!(velocity_components .=> v -> v .* 1u"m/s", renamecols=false)
+        transform!(
+            velocity_components .=> v -> v .* 1u"m/s", renamecols=false
+        )
         @transform!(
             :rho_c = :rho .* 1u"C/m^3",
         )
@@ -25,7 +31,7 @@ function transform_pair(func, x, y)
 end
 
 function transform_map(func, x, y)
-    return map(transform_pair $ func, x, y)
+    return map(transform_pair$func, x, y)
 end
 
 function normalize_df!(df, meta)
@@ -49,12 +55,33 @@ function normalize_df!(df, meta)
     end
 end
 
-function process_df!(df)
-    transform!(df,
-        names(df, r"B") => ByRow(norm ∘ vcat) => :Bmag,
-        names(df, r"E") => ByRow(norm ∘ vcat) => :Emag,
-        names(df, r"j") => ByRow(norm ∘ vcat) => :jmag,
-    )
+function process_df!(df, meta)
+    mass = meta["m_ion"] * u"kg"
+
+    function vth2temp(x)
+        mass * x .^ 2
+    end
+
+    @chain df begin
+        transform!(
+            B_components => ByRow(norm ∘ vcat) => :Bmag,
+            E_components => ByRow(norm ∘ vcat) => :Emag,
+            j_components => ByRow(norm ∘ vcat) => :jmag,
+            transform_map(vth2temp, velocity_components, T_components)...
+        )
+        @transform!(
+            :vA_x = :Bx * u"T" ./ sqrt.(μ_0 * mass * :rho_n),
+            :vA_y = :By * u"T" ./ sqrt.(μ_0 * mass * :rho_n),
+            :vA_z = :Bz * u"T" ./ sqrt.(μ_0 * mass * :rho_n),
+            :Λ_temp = :T_perp ./ :T_parp,
+            :Λ = convert.(Float64, μ_0 * :rho_n .* (:T_parp .- :T_perp ) ./ (:Bmag * u"T").^2 ),
+        )
+        @transform!( # pressure anisotropy modified Alfven speed
+            :vA_p_x = :vA_x .* sqrt.(1 .- :Λ),
+            :vA_p_y = :vA_y .* sqrt.(1 .- :Λ),
+            :vA_p_z = :vA_z .* sqrt.(1 .- :Λ),
+        )
+    end
 end
 
 function load_output_field(meta)
@@ -76,7 +103,8 @@ function load_field(meta;)
     catch
     end
     unit_df!(df)
-    normalize_df!(df, meta) |> process_df!
+    process_df!(df, meta)
+    normalize_df!(df, meta)
     println(names(df))
     sort!(df, [:time, :z, :y, :x])
 end

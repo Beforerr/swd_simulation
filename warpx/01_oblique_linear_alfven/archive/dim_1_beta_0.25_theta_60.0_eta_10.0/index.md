@@ -7,7 +7,7 @@
 ![](figures/E_field.png)
 ![](figures/j_field.png)
 
-![](figures/B_rho_time.png)
+
 
 ![](figures/rho_n_norm.png)
 <!-- ![](figures/rho_field.png) -->

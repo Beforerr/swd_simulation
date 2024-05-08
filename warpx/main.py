@@ -6,8 +6,9 @@ from utils.plot import (
     plot_wk_spectrum_ds,
     plot_field_with_plasma_profile_ts,
     plot_energy_evolution,
+    plot_plasma_velocity_profile_ts,
 )
-from utils.pressure import export_pressure_field
+from utils.pressure import export_part_field
 
 import os
 from pathlib import Path
@@ -42,9 +43,10 @@ def main(
     theta: float = 60,
     eta: float = 100,
     export: bool = True,
-    plot_energy = True,
+    plot_energy: bool = True,
     plot_wk_spectrum: bool = False,
-    plot_va_vl: bool = False
+    plot_va_vl: bool = False,
+    plot_plasma_velocity: bool = False
 ):
 
     meta = setup(dim, beta, theta, eta)
@@ -55,7 +57,7 @@ def main(
         print("Exporting data...")
         export_ts(ts_field)
         print("Exporting pressure field...")
-        export_pressure_field(ts_part, ts_field, meta=meta)
+        export_part_field(ts_part, ts_field, meta=meta)
 
     if plot_energy:
         plot_energy_evolution(meta=meta)
@@ -75,6 +77,9 @@ def main(
             name="va_vl"
         )
 
+    if plot_plasma_velocity:
+        print("Plotting plasma velocity profile...")
+        plot_plasma_velocity_profile_ts(ts_part=ts_part)
 
 if __name__ == "__main__":
     app()

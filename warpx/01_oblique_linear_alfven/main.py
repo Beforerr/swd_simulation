@@ -9,7 +9,6 @@ from rich import print
 
 constants = picmi.constants
 
-
 def init_obl_alfven(
     k,
     B0,
@@ -27,12 +26,9 @@ def init_obl_alfven(
     The initial waveis an Alfven mode in which the magnetic field fluctuation points along the y and z axis and has a relative amplitude $A = \delta B_y / B_0$
     """
 
-    B0k = B0 * cosd(theta)
-    B0k1 = B0 * sind(theta)
-
-    Bz_expression = f"{B0k}"
+    Bz_expression = f"{B0 * cosd(theta)}"
     By_expression = f"{A * B0} * cos({k} * z)"
-    Bx_expression = f"{B0k1}"
+    Bx_expression = f"{B0 * sind(theta)}"
     pz_expression = 0
     # py_expression = f"{A * vA * cosd(theta)} * cos({k} * z)"
     py_expression = f"{A * vA} * cos({k} * z)"
@@ -72,6 +68,11 @@ class AlfvenModes(HybridSimulation):
     nx: int = 16  # by default blocking_factor is 8 so at least 16
     ny: int = 16
 
+    @property
+    def _w_ci(self):
+        """Modified Ion cyclotron frequency (rad/s) due to large amplitude waves"""
+        return constants.q_e * abs(self.B0) * np.sqrt(1+self.A**2) / self.m_ion
+
     def setup_init_cond(self):
         """setup initial conditions"""
         self.k = 2 * np.pi / (self.Lz / self.wave_number)  # angular wavenumber
@@ -102,7 +103,7 @@ def main(
     dim: int = 1,
     beta: float = 0.25,
     theta: float = 60,
-    plasma_resistivity: float = 100,
+    eta: float = 100,
     wave_number: float = 1,
     dz_norm: float = 0.5,
     dt_norm: float = 1 / 64,
@@ -112,8 +113,8 @@ def main(
     dry_run: bool = False,
 ):
 
-    base_dir = Path(os.getcwd())
-    sub_dir = f"dim_{dim}_beta_{beta}_theta_{theta}_eta_{plasma_resistivity}"
+    base_dir = Path(__file__).parent
+    sub_dir = f"dim_{dim}_beta_{beta}_theta_{theta}_eta_{eta}"
     directory = base_dir / sub_dir
 
     os.makedirs(directory, exist_ok=True)
@@ -128,6 +129,7 @@ def main(
 
     simulation = AlfvenModes(
         **ctx.params,
+        plasma_resistivity=eta,
         diag_part=True,
         # Reduce the number of cells in x and y to accelerate the simulation
         grid_kwargs=grid_kwargs,

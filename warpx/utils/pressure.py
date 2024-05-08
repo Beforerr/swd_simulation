@@ -5,11 +5,13 @@ import numpy as np
 from tqdm import tqdm
 
 
+vfields = ["particle_velocity_x", "particle_velocity_y", "particle_velocity_z"]
+
 def momentum2velocity(
     df: pl.DataFrame,
     mass,
     pfields=["particle_momentum_x", "particle_momentum_y", "particle_momentum_z"],
-    vfields=["particle_velocity_x", "particle_velocity_y", "particle_velocity_z"],
+    vfields=vfields,
     drop=True,
 ):
     new_df = df.with_columns(
@@ -43,21 +45,31 @@ def deposit_part(
 
 def calc_pressure(df: pl.DataFrame, mass: float, direction):
     #: Note: pressure caculation needs to account for particle weight and hypercube volume
+    
+    _vfields = vfields + ["particle_velocity_parp"]
 
     return (
         df.with_columns(
-            (
-                cs.contains("velocity") - cs.contains("velocity").mean().over(direction)
-            ).pow(2)
+            (pl.col(v) - pl.col(v).mean().over(direction)).suffix("_diff")
+            for v in _vfields
         )
         .group_by(direction)
         .agg(
-            cs.contains("velocity").mean().sqrt().name.map(
-                lambda x: x.replace("particle_velocity", "velocity_th")
-            ),
-            (mass * cs.contains("velocity").sum()).name.map(
-                lambda x: x.replace("particle_velocity", "pressure")
-            ),
+            *[
+                pl.col(f"{v}_diff")
+                .pow(2)
+                .mean()
+                .sqrt()
+                .alias(v.replace("particle_velocity", "velocity_th"))
+                for v in _vfields
+            ],
+            *[
+                pl.col(v)
+                .mean()
+                .name
+                .map(lambda x: x.replace("particle_velocity", "velocity"))
+                for v in _vfields
+            ],
             (~cs.contains("velocity")).first(),
         )
     )
@@ -80,28 +92,22 @@ def calc_pressure_parp_perp(
         pl.col(v_comp) * pl.col(B_comp) for v_comp, B_comp in zip(vfields, Bfields)
     ) / pl.col("Bmag")
 
-    pressure_perp_expr = (
-        pl.col("pressure_x")
-        + pl.col("pressure_y")
-        + pl.col("pressure_z")
-        - pl.col("pressure_parp")
-    ) / 2
-    
-    velocity_th_perp_expr = ((
-        pl.col("velocity_th_x").pow(2)
-        + pl.col("velocity_th_y").pow(2)
-        + pl.col("velocity_th_z").pow(2)
-        - pl.col("velocity_th_parp").pow(2)
-    ) / 2).sqrt()
+    velocity_th_perp_expr = (
+        (
+            pl.col("velocity_th_x").pow(2)
+            + pl.col("velocity_th_y").pow(2)
+            + pl.col("velocity_th_z").pow(2)
+            - pl.col("velocity_th_parp").pow(2)
+        )
+        / 2
+    ).sqrt()
 
     return (
         p_mesh_df.with_columns(particle_velocity_parp=particle_velocity_parp_expr)
         .pipe(calc_pressure, mass=mass, direction=direction)
         .with_columns(
-            pressure_perp=pressure_perp_expr,
             velocity_th_perp=velocity_th_perp_expr,
         )
-        .with_columns(anisotropy=pl.col("pressure_perp") / pl.col("pressure_parp"))
     )
 
 
@@ -134,5 +140,5 @@ def calc_pressure_parp_perp_ts(ts_part, ts_field, step=1, **kwargs):
         for ds_part, ds_field in zip(tqdm(ts_part[::step]), ts_field[::step])
     )
 
-def export_pressure_field(ts_part, ts_field, file="pressure.arrow", **kwargs):
+def export_part_field(ts_part, ts_field, file="pressure.arrow", **kwargs):
     return calc_pressure_parp_perp_ts(ts_part, ts_field, **kwargs).write_ipc(file)

@@ -9,6 +9,8 @@ import xrft
 from .energy import plot_energy_evolution
 from .yt_warpx import add_field
 from matplotlib.axes import Axes
+from tqdm import tqdm
+
 
 def normalize_dft_xr(da, meta):
     k_norm = 1 / meta["d_i"]
@@ -70,6 +72,9 @@ def plot_wk_spectrum_ds(ds: xr.Dataset, fields, meta, step=8):
 
 ###
 
+
+###
+
 from functools import partial
 import yt
 
@@ -87,23 +92,24 @@ plot_field_profile = partial(
     y_log=False,
 )
 
+
 def plot_field_with_plasma_profile(ds_field, ds_part, field0, field1, twin=True):
 
     n_bins = ds_field.domain_dimensions[0]
-    
+
     if ds_part.dimensionality == 1:
         direction = "x"
         true_direction = "z"
-        
+
     field_profile = yt.create_profile(
-        ds_field.all_data(), 
+        ds_field.all_data(),
         fields=field0,
         n_bins=n_bins,
         bin_fields=direction,
         weight_field=_field_weight_field,
         deposition="cic",
     )
-        
+
     _part_bin_field = (ps, f"particle_position_{direction}")
     part_profile = yt.create_profile(
         ds_part.all_data(),
@@ -112,8 +118,8 @@ def plot_field_with_plasma_profile(ds_field, ds_part, field0, field1, twin=True)
         weight_field=_part_weight_field,
         deposition="cic",
     )
-    
 
+    # NOTE: from_profiles does not support different data sources
     p0 = yt.ProfilePlot.from_profiles(field_profile)
     p1 = yt.ProfilePlot.from_profiles(part_profile)
     p0.set_log(field0, False)
@@ -126,7 +132,7 @@ def plot_field_with_plasma_profile(ds_field, ds_part, field0, field1, twin=True)
     # Customizing the plot
     fig, ax = plt.subplots()
     ax: Axes
-    
+
     if twin:
         ax2 = ax.twinx()
     else:
@@ -157,6 +163,38 @@ def plot_field_with_plasma_profile(ds_field, ds_part, field0, field1, twin=True)
     return fig
 
 
+def plot_plasma_velocity_profile_ts(
+    ts_part,
+    step=8,
+    x_bins=128,
+    y_bins=64
+):
+    directory = "figures/plasma_velocity/"
+    os.makedirs(directory, exist_ok=True)
+    xfield = ("ions", "particle_position_x")
+    yfields = [
+        ("ions", "particle_momentum_y"),
+        ("ions", "particle_momentum_z"),
+        ("ions", "particle_momentum_x"),
+    ]
+
+    def plot(yfield):
+        p = yt.ParticlePlot(
+            ds_part,
+            xfield,
+            yfield,
+            z_fields=_part_weight_field,
+            x_bins=x_bins,
+            y_bins=y_bins
+        )
+        p.set_log(field="all", log=False)
+        p.save(directory)
+        return p
+
+    for ds_part in tqdm(ts_part[::step]):
+        list(map(plot, yfields))
+
+
 def plot_field_with_plasma_profile_ts(
     ts_field,
     ts_part,
@@ -176,23 +214,6 @@ def plot_field_with_plasma_profile_ts(
         fname = f"{name}_{round(ds_field.current_time.item())}.png"
         fig.savefig(f"{directory}/{fname}")
         plt.close(fig)
-
-
-def _plot_field_with_plasma_profile(ds_field, ds_part, field0, field1, twin=False):
-    # BUG: not working, from_profiles does not support different data sources
-
-    field_profile = create_field_profile(ds_field.all_data(), fields=field0)
-    part_profile = create_part_profile(ds_part.all_data(), fields=field1)
-
-    field_label = field0[-1]
-    part_label = field1[-1]
-
-    p = yt.ProfilePlot.from_profiles(
-        [field_profile, part_profile],
-        labels=[field_label, part_label],
-    )
-
-    return p.figure
 
 
 def hodogram_ds(ds, meta: dict, comp1="By", comp2="Bz"):

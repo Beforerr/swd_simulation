@@ -1,0 +1,87 @@
+# algo
+algo.current_deposition = direct
+algo.maxwell_solver = hybrid
+algo.particle_shape = 1
+
+# amr
+amr.max_grid_size = 32
+amr.max_level = 0
+amr.n_cell = 256
+
+# boundary
+boundary.field_hi = periodic
+boundary.field_lo = periodic
+boundary.particle_hi = periodic
+boundary.particle_lo = periodic
+
+# diag1
+diag1.diag_type = Full
+diag1.fields_to_plot = Bx By Bz Ex Ey Ez jx jy jz rho
+diag1.format = plotfile
+diag1.intervals = 64
+diag1.openpmd_backend = h5
+diag1.write_species = 0
+
+# diag2
+diag2.diag_type = Full
+diag2.fields_to_plot = none
+diag2.format = plotfile
+diag2.intervals = 64
+diag2.openpmd_backend = h5
+diag2.species = ions
+diag2.write_species = 1
+
+# diagnostics
+diagnostics.diags_names = diag1 diag2
+
+# field_energy
+field_energy.intervals = 64
+field_energy.type = FieldEnergy
+
+# geometry
+geometry.dims = 1
+geometry.prob_hi = 2914697.286273027
+geometry.prob_lo = 0
+
+# hybrid_pic_model
+hybrid_pic_model.elec_temp = 496.41315535304153
+hybrid_pic_model.n0_ref = 100000000.0
+hybrid_pic_model.n_floor = 1562500.0
+hybrid_pic_model.plasma_hyper_resistivity = 1e-06
+hybrid_pic_model.plasma_resistivity(rho,J) = 200.0
+hybrid_pic_model.substeps = 32
+
+# ions
+ions.charge = q_e
+ions.density_function(x,y,z) = 100000000.0
+ions.initialize_self_fields = 0
+ions.injection_style = nrandompercell
+ions.mass = 1.672621310227663e-27
+ions.momentum_distribution_type = gaussian_parse_momentum_function
+ions.momentum_function_ux_m(x,y,z) = (0.0)/299792458.0
+ions.momentum_function_ux_th(x,y,z) = (218061.01291934482)/299792458.0
+ions.momentum_function_uy_m(x,y,z) = (218061.01291934482 * cos(2.155690519482312e-06 * z))/299792458.0
+ions.momentum_function_uy_th(x,y,z) = (218061.01291934482)/299792458.0
+ions.momentum_function_uz_m(x,y,z) = (0)/299792458.0
+ions.momentum_function_uz_th(x,y,z) = (218061.01291934482)/299792458.0
+ions.num_particles_per_cell = 256
+ions.profile = parse_density_function
+
+# max_step
+max_step = 6400
+
+# part_energy
+part_energy.intervals = 64
+part_energy.type = ParticleEnergy
+
+# particles
+particles.species_names = ions
+
+# warpx
+warpx.B_ext_grid_init_style = parse_b_ext_grid_function
+warpx.Bx_external_grid_function(x,y,z) = 0.0
+warpx.By_external_grid_function(x,y,z) = 1.0000000000000001e-07 * cos(2.155690519482312e-06 * z)
+warpx.Bz_external_grid_function(x,y,z) = 1.0000000000000001e-07
+warpx.const_dt = 0.01024913293917317
+warpx.reduced_diags_names = part_energy field_energy
+warpx.serialize_initial_conditions = 1

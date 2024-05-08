@@ -4,8 +4,20 @@ default:
 
 plot:
     python main.py --plot-wk-spectrum --export
-    python main.py --plasma-resistivity 10 --plot-wk-spectrum --export
+    python main.py --eta 10 --plot-wk-spectrum --export
     julia main.jl run --eta 10
 
 log:
-    python main.py --beta 2 --plasma-resistivity 10
+    python main.py --beta 0.25 --eta 10 
+    julia main.jl run --beta 0.25 --eta 10
+
+    python main.py --beta 2 --eta 10 --plot-plasma-velocity
+    julia main.jl run --beta 2 --eta 10
+
+    python main.py --theta 0 --beta 0.25 --eta 100 --plot-plasma-velocity
+    julia main.jl run --theta 0 --beta 0.25 --eta 100
+
+    python main.py --theta 0 --beta 2 --eta 200  --plot-plasma-velocity
+    julia main.jl run --theta 0 --beta 2 --eta 200
+
+    julia main.jl run --beta 2

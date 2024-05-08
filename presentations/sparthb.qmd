@@ -16,6 +16,16 @@ format:
 slide-number: true
 ---
 
+## References
+
+- @shenComparingPlasmaAnisotropy2024
+- @artemyevKineticNatureSolar2019
+- @artemyevKineticPropertiesSolar2019
+- @hudsonRotationalDiscontinuitiesAnisotropic1971
+- @hudsonDiscontinuitiesAnisotropicPlasma1970
+
+For rotational discontinuities, the plasma velocity jump across them: the plasma ﬂow velocity $v_l$ (the solar wind velocity projected onto $l$) changes due to changes in $B_l$, $Δv_l=±Δv_A$ with $v_A= B_l / \sqrt{4 n m}$ [@hudsonDiscontinuitiesAnisotropicPlasma1970].
+
 ## Solar wind discontinuities (SWD)
 
 Discontinuous changes in plasmas parameters and magnetic fields
@@ -25,6 +35,26 @@ Discontinuous changes in plasmas parameters and magnetic fields
 - Very kinetic structure: interact with energetic part of the solar wind ions
 
 ## Pressure balance across discontinuities
+
+$$
+\Delta v_l= \pm \Delta v_A= \pm \frac{\Delta B_l}{\sqrt{4 \pi m n}} \sqrt{1-4 \pi \frac{p_{\|}-p_{\perp}}{B^2}}
+$$
+
+
+<!-- anisotropy=pl.col("pressure_perp") / pl.col("pressure_parp") -->
+<!-- Aa = T⊥,a∕T∥,a  -->
+
+## Observations
+
+PSP
+
+## Estimated Anistropy
+
+## Anistropy Observations
+
+
+
+---
 
 ## Motivation
 
@@ -136,7 +166,6 @@ In general discontinuities observed by PSP are with
 - large current density (100-1000 nA/m^2)
   
   compared with 1-10 nA/m^2
-
 
 
 ## Identification/Detection method
