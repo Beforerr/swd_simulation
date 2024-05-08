@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.31">
+<head>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta charset="utf-8" />
+<meta name="generator" content="quarto-1.5.31" />
 
-<meta name="author" content="Zijin Zhang">
-<meta name="author" content="Anton V. Artemyev">
-<meta name="author" content="Xin An">
-<meta name="author" content="Vassilis Angelopoulos">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+<meta name="author" content="Zijin Zhang" />
+<meta name="author" content="Anton V. Artemyev" />
+<meta name="author" content="Xin An" />
+<meta name="author" content="Vassilis Angelopoulos" />
 
 <title>Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations</title>
 <style>
@@ -46,23 +48,7 @@ div.csl-indent {
   margin-left: 2em;
 }</style>
 
-
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<!-- htmldependencies:E3FAD763 -->
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -123,24 +109,26 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+  aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"
+  onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="/index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../about.html" aria-current="page"> 
+    <a class="nav-link" href="/about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -151,11 +139,16 @@ window.Quarto = {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn"
+      data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" 
+      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
+      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../presentations/sparthb.html">Presentations</a></li><li class="breadcrumb-item"><a href="../presentations/sparthb.html">Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <h1 class="quarto-secondary-nav-title no-breadcrumbs"></h1>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" 
+        aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
+        onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -168,7 +161,7 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../about.html" class="sidebar-item-text sidebar-link">
+  <a href="/about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
 </li>
@@ -183,7 +176,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../presentations/sparthb.html" class="sidebar-item-text sidebar-link active">
+  <a href="/presentations/sparthb.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations</span></a>
   </div>
 </li>
@@ -200,13 +193,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../warpx/analysis.html" class="sidebar-item-text sidebar-link">
+  <a href="/warpx/analysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../warpx/analysis_jl.html" class="sidebar-item-text sidebar-link">
+  <a href="/warpx/analysis_jl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Analysis</span></a>
   </div>
 </li>
@@ -221,7 +214,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../warpx/00_EMModes/inputs.html" class="sidebar-item-text sidebar-link">
+  <a href="/warpx/00_EMModes/inputs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Inputs</span></a>
   </div>
 </li>
@@ -238,19 +231,19 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/index.html" class="sidebar-item-text sidebar-link">
+  <a href="/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">beta = 2, theta = 60.0, eta = 10.0</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/index.html" class="sidebar-item-text sidebar-link">
+  <a href="/warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">beta = 0.25, theta = 60.0, eta = 10.0</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../warpx/01_oblique_linear_alfven/inputs.html" class="sidebar-item-text sidebar-link">
+  <a href="/warpx/01_oblique_linear_alfven/inputs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Oblique linearly polarized Alfvén wave</span></a>
   </div>
 </li>
@@ -265,7 +258,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../warpx/01_oblique_linear_alfven/archive/dim_1_beta_0.25_theta_60.0_eta_10.0/index.html" class="sidebar-item-text sidebar-link">
+  <a href="/warpx/01_oblique_linear_alfven/archive/dim_1_beta_0.25_theta_60.0_eta_10.0/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">beta = 0.25, theta = 60.0, eta = 10.0</span></a>
   </div>
 </li>
@@ -284,7 +277,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../warpx/02_polar_alfven/inputs.html" class="sidebar-item-text sidebar-link">
+  <a href="/warpx/02_polar_alfven/inputs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Circularly polarized Alfvén waves</span></a>
   </div>
 </li>
@@ -295,41 +288,15 @@ window.Quarto = {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" ></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#references" id="toc-references" class="nav-link active" data-scroll-target="#references">References</a></li>
-  <li><a href="#solar-wind-discontinuities-swd" id="toc-solar-wind-discontinuities-swd" class="nav-link" data-scroll-target="#solar-wind-discontinuities-swd">Solar wind discontinuities (SWD)</a></li>
-  <li><a href="#pressure-balance-across-discontinuities" id="toc-pressure-balance-across-discontinuities" class="nav-link" data-scroll-target="#pressure-balance-across-discontinuities">Pressure balance across discontinuities</a></li>
-  <li><a href="#observations" id="toc-observations" class="nav-link" data-scroll-target="#observations">Observations</a></li>
-  <li><a href="#estimated-anistropy" id="toc-estimated-anistropy" class="nav-link" data-scroll-target="#estimated-anistropy">Estimated Anistropy</a></li>
-  <li><a href="#anistropy-observations" id="toc-anistropy-observations" class="nav-link" data-scroll-target="#anistropy-observations">Anistropy Observations</a></li>
-  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
-  <li><a href="#in-situ-synergistic-observations" id="toc-in-situ-synergistic-observations" class="nav-link" data-scroll-target="#in-situ-synergistic-observations">In-situ synergistic observations</a></li>
-  <li><a href="#orbits" id="toc-orbits" class="nav-link" data-scroll-target="#orbits">Orbits</a></li>
-  <li><a href="#enlil-simulation" id="toc-enlil-simulation" class="nav-link" data-scroll-target="#enlil-simulation">ENLIL simulation</a></li>
-  <li><a href="#observation" id="toc-observation" class="nav-link" data-scroll-target="#observation">Observation</a></li>
-  <li><a href="#observation-continued" id="toc-observation-continued" class="nav-link" data-scroll-target="#observation-continued">Observation (continued)</a></li>
-  <li><a href="#examples-of-discontinuities" id="toc-examples-of-discontinuities" class="nav-link" data-scroll-target="#examples-of-discontinuities">Examples of discontinuities</a></li>
-  <li><a href="#identificationdetection-method" id="toc-identificationdetection-method" class="nav-link" data-scroll-target="#identificationdetection-method">Identification/Detection method</a></li>
-  <li><a href="#properties-of-discontinuities" id="toc-properties-of-discontinuities" class="nav-link" data-scroll-target="#properties-of-discontinuities">Properties of discontinuities</a></li>
-  <li><a href="#plasma-adiabatic-evolution" id="toc-plasma-adiabatic-evolution" class="nav-link" data-scroll-target="#plasma-adiabatic-evolution">Plasma adiabatic evolution</a></li>
-  <li><a href="#comparison-with-discontinuities-properties" id="toc-comparison-with-discontinuities-properties" class="nav-link" data-scroll-target="#comparison-with-discontinuities-properties">Comparison with discontinuities properties</a></li>
-  <li><a href="#comparison-with-alfven-speed-and-plasma-speed-change" id="toc-comparison-with-alfven-speed-and-plasma-speed-change" class="nav-link" data-scroll-target="#comparison-with-alfven-speed-and-plasma-speed-change">Comparison with Alfven speed and plasma speed change</a></li>
-  <li><a href="#comparison-with-anisotropy" id="toc-comparison-with-anisotropy" class="nav-link" data-scroll-target="#comparison-with-anisotropy">Comparison with anisotropy</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  <li><a href="#references-1" id="toc-references-1" class="nav-link" data-scroll-target="#references-1">References</a></li>
-  </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="sparthb.pptx"><i class="bi bi-file-slides"></i>Powerpoint</a></li><li><a href="sparthb.revealjs.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+        <div id="quarto-toc-target"></div>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../presentations/sparthb.html">Presentations</a></li><li class="breadcrumb-item"><a href="../presentations/sparthb.html">Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations</h1>
 <p class="subtitle lead">SPARTHB</p>
@@ -357,9 +324,35 @@ window.Quarto = {
 
 </header>
 
-
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#references" id="toc-references">References</a></li>
+  <li><a href="#solar-wind-discontinuities-swd" id="toc-solar-wind-discontinuities-swd">Solar wind discontinuities (SWD)</a></li>
+  <li><a href="#pressure-balance-across-discontinuities" id="toc-pressure-balance-across-discontinuities">Pressure balance across discontinuities</a></li>
+  <li><a href="#observations" id="toc-observations">Observations</a></li>
+  <li><a href="#estimated-anistropy" id="toc-estimated-anistropy">Estimated Anistropy</a></li>
+  <li><a href="#anistropy-observations" id="toc-anistropy-observations">Anistropy Observations</a></li>
+  <li><a href="#motivation" id="toc-motivation">Motivation</a></li>
+  <li><a href="#in-situ-synergistic-observations" id="toc-in-situ-synergistic-observations">In-situ synergistic observations</a></li>
+  <li><a href="#orbits" id="toc-orbits">Orbits</a></li>
+  <li><a href="#enlil-simulation" id="toc-enlil-simulation">ENLIL simulation</a></li>
+  <li><a href="#observation" id="toc-observation">Observation</a></li>
+  <li><a href="#observation-continued" id="toc-observation-continued">Observation (continued)</a></li>
+  <li><a href="#examples-of-discontinuities" id="toc-examples-of-discontinuities">Examples of discontinuities</a></li>
+  <li><a href="#identificationdetection-method" id="toc-identificationdetection-method">Identification/Detection method</a></li>
+  <li><a href="#properties-of-discontinuities" id="toc-properties-of-discontinuities">Properties of discontinuities</a></li>
+  <li><a href="#plasma-adiabatic-evolution" id="toc-plasma-adiabatic-evolution">Plasma adiabatic evolution</a></li>
+  <li><a href="#comparison-with-discontinuities-properties" id="toc-comparison-with-discontinuities-properties">Comparison with discontinuities properties</a></li>
+  <li><a href="#comparison-with-alfven-speed-and-plasma-speed-change" id="toc-comparison-with-alfven-speed-and-plasma-speed-change">Comparison with Alfven speed and plasma speed change</a></li>
+  <li><a href="#comparison-with-anisotropy" id="toc-comparison-with-anisotropy">Comparison with anisotropy</a></li>
+  <li><a href="#conclusion" id="toc-conclusion">Conclusion</a></li>
+  <li><a href="#references-1" id="toc-references-1">References</a></li>
+  </ul>
+</nav>
 <section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
+<h2>References</h2>
 <ul>
 <li><span class="citation" data-cites="shenComparingPlasmaAnisotropy2024">Shen et al. (<a href="#ref-shenComparingPlasmaAnisotropy2024" role="doc-biblioref">2024</a>)</span></li>
 <li><span class="citation" data-cites="artemyevKineticNatureSolar2019">Artemyev et al. (<a href="#ref-artemyevKineticNatureSolar2019" role="doc-biblioref">2019</a>)</span></li>
@@ -370,7 +363,7 @@ window.Quarto = {
 <p>For rotational discontinuities, the plasma velocity jump across them: the plasma ﬂow velocity <span class="math inline">\(v_l\)</span> (the solar wind velocity projected onto <span class="math inline">\(l\)</span>) changes due to changes in <span class="math inline">\(B_l\)</span>, <span class="math inline">\(Δv_l=±Δv_A\)</span> with <span class="math inline">\(v_A= B_l / \sqrt{4 n m}\)</span> <span class="citation" data-cites="hudsonDiscontinuitiesAnisotropicPlasma1970">(<a href="#ref-hudsonDiscontinuitiesAnisotropicPlasma1970" role="doc-biblioref">Hudson 1970</a>)</span>.</p>
 </section>
 <section id="solar-wind-discontinuities-swd" class="level2">
-<h2 class="anchored" data-anchor-id="solar-wind-discontinuities-swd">Solar wind discontinuities (SWD)</h2>
+<h2>Solar wind discontinuities (SWD)</h2>
 <p>Discontinuous changes in plasmas parameters and magnetic fields</p>
 <ul>
 <li><p>Import element of solar wind turbulences</p></li>
@@ -378,7 +371,7 @@ window.Quarto = {
 </ul>
 </section>
 <section id="pressure-balance-across-discontinuities" class="level2">
-<h2 class="anchored" data-anchor-id="pressure-balance-across-discontinuities">Pressure balance across discontinuities</h2>
+<h2>Pressure balance across discontinuities</h2>
 <p><span class="math display">\[
 \Delta v_l= \pm \Delta v_A= \pm \frac{\Delta B_l}{\sqrt{4 \pi m n}} \sqrt{1-4 \pi \frac{p_{\|}-p_{\perp}}{B^2}}
 \]</span></p>
@@ -386,18 +379,18 @@ window.Quarto = {
 <!-- Aa = T⊥,a∕T∥,a  -->
 </section>
 <section id="observations" class="level2">
-<h2 class="anchored" data-anchor-id="observations">Observations</h2>
+<h2>Observations</h2>
 <p>PSP</p>
 </section>
 <section id="estimated-anistropy" class="level2">
-<h2 class="anchored" data-anchor-id="estimated-anistropy">Estimated Anistropy</h2>
+<h2>Estimated Anistropy</h2>
 </section>
 <section id="anistropy-observations" class="level2">
-<h2 class="anchored" data-anchor-id="anistropy-observations">Anistropy Observations</h2>
-<hr>
+<h2>Anistropy Observations</h2>
+<hr />
 </section>
 <section id="motivation" class="level2">
-<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<h2>Motivation</h2>
 <p>Studying the radial evolution of solar wind discontinuities from synergistic observations of PSP and Earth-orbiting missions (ARTEMIS, Wind) during aligned intervals.</p>
 <ul>
 <li><p>How does the discontinuities change with the radial distance from the Sun?</p></li>
@@ -409,7 +402,7 @@ window.Quarto = {
 </ul>
 </section>
 <section id="in-situ-synergistic-observations" class="level2">
-<h2 class="anchored" data-anchor-id="in-situ-synergistic-observations">In-situ synergistic observations</h2>
+<h2>In-situ synergistic observations</h2>
 <p><strong>Similar</strong> type of solar wind or <strong>Same</strong> solar solar wind</p>
 <p>How to define alignment?</p>
 <ul>
@@ -424,15 +417,15 @@ window.Quarto = {
 <!-- sensing solar wind emitted from the same region on the solar surface, with the caveat that dynamical processes at the chromosphere–corona interface have not dramatically altered the solar footpoint within the time corresponding to the radial propagation from the measurement of one spacecraft to that of the other. -->
 </section>
 <section id="orbits" class="level2">
-<h2 class="anchored" data-anchor-id="orbits">Orbits</h2>
+<h2>Orbits</h2>
 <div class="columns">
 <div class="column">
-<p><img src="https://psp-gateway.jhuapl.edu/website/SciencePlanning/Encounters/E4_orbit.png" class="img-fluid"></p>
+<p><img src="https://psp-gateway.jhuapl.edu/website/SciencePlanning/Encounters/E4_orbit.png" class="img-fluid" /></p>
 </div><div class="column">
-<p><img src="https://psp-gateway.jhuapl.edu/website/SciencePlanning/Encounters/Lag_from_PSP_to_STA_and_Earth.png" class="img-fluid"></p>
+<p><img src="https://psp-gateway.jhuapl.edu/website/SciencePlanning/Encounters/Lag_from_PSP_to_STA_and_Earth.png" class="img-fluid" /></p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../notebooks/events/images/paste-1.png" class="img-fluid figure-img"></p>
+<figure>
+<p><img src="../notebooks/events/images/paste-1.png" class="img-fluid" /></p>
 <figcaption>Heliographic frame (corotating with Sun)</figcaption>
 </figure>
 </div>
@@ -440,34 +433,34 @@ window.Quarto = {
 </div>
 </section>
 <section id="enlil-simulation" class="level2">
-<h2 class="anchored" data-anchor-id="enlil-simulation">ENLIL simulation</h2>
+<h2>ENLIL simulation</h2>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
+<figure>
 <p><video src="../images/enlil/tuz-a7b1-d4t05x1-d200t1-donki_den1-psp-x15wifs3z1fo_med_201903-201904.mp4" class="img-fluid" controls=""><a href="../images/enlil/tuz-a7b1-d4t05x1-d200t1-donki_den1-psp-x15wifs3z1fo_med_201903-201904.mp4">Video</a></video></p>
 <figcaption>Normalized solar wind density at the ecliptic and the IMF lines</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
+<figure>
 <p><video src="../images/enlil/tuz-a7b1-d4t05x1-d200t1-donki_vel2e1-psp-x15ifs3z1fr_med_201903-201904.mp4" class="img-fluid" controls=""><a href="../images/enlil/tuz-a7b1-d4t05x1-d200t1-donki_vel2e1-psp-x15ifs3z1fr_med_201903-201904.mp4">Video</a></video></p>
 <figcaption>Radial solar wind velocity at the ecliptic on the global and detail regions together with the temporal profile at spacecraft</figcaption>
 </figure>
 </div>
 </section>
 <section id="observation" class="level2">
-<h2 class="anchored" data-anchor-id="observation">Observation</h2>
+<h2>Observation</h2>
 <div class="columns">
 <div class="column">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/paste-19.png" class="img-fluid figure-img"></p>
+<figure>
+<p><img src="../images/paste-19.png" class="img-fluid" /></p>
 <figcaption>PSP Observation Overvall</figcaption>
 </figure>
 </div>
 </div><div class="column">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/paste-18.png" class="img-fluid figure-img"></p>
+<figure>
+<p><img src="../images/paste-18.png" class="img-fluid" /></p>
 <figcaption>PSP observation</figcaption>
 </figure>
 </div>
@@ -475,44 +468,44 @@ window.Quarto = {
 </div>
 </section>
 <section id="observation-continued" class="level2">
-<h2 class="anchored" data-anchor-id="observation-continued">Observation (continued)</h2>
+<h2>Observation (continued)</h2>
 <div class="columns">
 <div class="column">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/paste-18.png" class="img-fluid figure-img"></p>
+<figure>
+<p><img src="../images/paste-18.png" class="img-fluid" /></p>
 <figcaption>PSP observation</figcaption>
 </figure>
 </div>
 </div><div class="column">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/paste-16.png" class="img-fluid figure-img"></p>
+<figure>
+<p><img src="../images/paste-16.png" class="img-fluid" /></p>
 <figcaption>ACE observation</figcaption>
 </figure>
 </div>
 </div><div class="column">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/paste-17.png" class="img-fluid figure-img"></p>
+<figure>
+<p><img src="../images/paste-17.png" class="img-fluid" /></p>
 <figcaption>ACE observation (continued)</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<hr>
+<hr />
 <p>Time resolution (from high to low): SPC, SPI, SQTN, QTN</p>
 <p>Quality (fluctuating, from high to low): SQTN, QTN, SPC/SPI</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../figures/examples/psp_density_comparison.png" class="img-fluid figure-img"></p>
+<figure>
+<p><img src="../figures/examples/psp_density_comparison.png" class="img-fluid" /></p>
 <figcaption>Different Density Product</figcaption>
 </figure>
 </div>
 </section>
 <section id="examples-of-discontinuities" class="level2">
-<h2 class="anchored" data-anchor-id="examples-of-discontinuities">Examples of discontinuities</h2>
-<p><img src="../figures/examples/psp_e2_example.png" class="img-fluid"></p>
+<h2>Examples of discontinuities</h2>
+<p><img src="../figures/examples/psp_e2_example.png" class="img-fluid" /></p>
 <p>In general discontinuities observed by PSP are with</p>
 <ul>
 <li><p>shorter duration (1~5 secs)</p>
@@ -522,19 +515,19 @@ window.Quarto = {
 </ul>
 </section>
 <section id="identificationdetection-method" class="level2">
-<h2 class="anchored" data-anchor-id="identificationdetection-method">Identification/Detection method</h2>
-<p><img src="../figures/examples/detection_liu2022.png" class="img-fluid"></p>
+<h2>Identification/Detection method</h2>
+<p><img src="../figures/examples/detection_liu2022.png" class="img-fluid" /></p>
 <p><span class="citation" data-cites="liuMagneticDiscontinuitiesSolar2022">Liu et al. (<a href="#ref-liuMagneticDiscontinuitiesSolar2022" role="doc-biblioref">2022</a>)</span></p>
 <p>Compared with adjacent intervals without sampling</p>
 </section>
 <section id="properties-of-discontinuities" class="level2">
-<h2 class="anchored" data-anchor-id="properties-of-discontinuities">Properties of discontinuities</h2>
-<p><img src="../figures/examples/psp_e2_example.png" class="img-fluid"></p>
+<h2>Properties of discontinuities</h2>
+<p><img src="../figures/examples/psp_e2_example.png" class="img-fluid" /></p>
 <p>Every discontinuity’s <span class="math inline">\(l\)</span> component is fitted by a <span class="math inline">\(\tanh\)</span> (logistic) function.</p>
 <p>Combined with plasma data (<span class="math inline">\(n\)</span>, <span class="math inline">\(v\)</span>, <span class="math inline">\(T\)</span>)</p>
 <p><span class="math inline">\(L\)</span>: thickness of the discontinuity</p>
 <p><span class="math inline">\(J_0\)</span>: maxium current density</p>
-<hr>
+<hr />
 <p>If we expect the discontinuities to be generated locally, then the thickness of the discontinuities should be related to local plasma parameters:</p>
 <ul>
 <li>Normalize thickness by <span class="math inline">\(d_i\)</span> (ion inertial length) or <span class="math inline">\(r_i\)</span> (ion gyroradius)</li>
@@ -542,14 +535,14 @@ window.Quarto = {
 </ul>
 </section>
 <section id="plasma-adiabatic-evolution" class="level2">
-<h2 class="anchored" data-anchor-id="plasma-adiabatic-evolution">Plasma adiabatic evolution</h2>
+<h2>Plasma adiabatic evolution</h2>
 <div class="columns">
 <div class="column">
-<p><img src="../figures/evolution/plasma-adiabatic-evolution_e2-DSCOVR.svg" class="img-fluid"></p>
-<p><img src="../figures/evolution/plasma-adiabatic-evolution_e2-DSCOVR-next.svg" class="img-fluid"></p>
-<p><img src="../figures/evolution/plasma-adiabatic-evolution_e2-DSCOVR-previous.svg" class="img-fluid"></p>
+<p><img src="../figures/evolution/plasma-adiabatic-evolution_e2-DSCOVR.svg" class="img-fluid" /></p>
+<p><img src="../figures/evolution/plasma-adiabatic-evolution_e2-DSCOVR-next.svg" class="img-fluid" /></p>
+<p><img src="../figures/evolution/plasma-adiabatic-evolution_e2-DSCOVR-previous.svg" class="img-fluid" /></p>
 </div><div class="column">
-<p><img src="../images/sty3348fig5.jpeg" class="img-fluid"></p>
+<p><img src="../images/sty3348fig5.jpeg" class="img-fluid" /></p>
 <p><span class="citation" data-cites="perroneRadialEvolutionSolar2019">Perrone et al. (<a href="#ref-perroneRadialEvolutionSolar2019" role="doc-biblioref">2019</a>)</span></p>
 </div>
 </div>
@@ -571,28 +564,28 @@ $$
 $$ -->
 </section>
 <section id="comparison-with-discontinuities-properties" class="level2">
-<h2 class="anchored" data-anchor-id="comparison-with-discontinuities-properties">Comparison with discontinuities properties</h2>
-<p><img src="../figures/enc2/thickness_current.spi_n_spi.png" class="img-fluid"></p>
-<p><img src="../figures/enc2/density_distribution.spi_n_spi.png" class="img-fluid"></p>
+<h2>Comparison with discontinuities properties</h2>
+<p><img src="../figures/enc2/thickness_current.spi_n_spi.png" class="img-fluid" /></p>
+<p><img src="../figures/enc2/density_distribution.spi_n_spi.png" class="img-fluid" /></p>
 <p>K1: Normalized discontinuities properties does not vary much with radial distance</p>
-<hr>
-<p><img src="../figures/enc2/thickness_current.spc_n_spc.png" class="img-fluid"></p>
-<p><img src="../figures/enc2/density_distribution.spc_n_spc.png" class="img-fluid"></p>
+<hr />
+<p><img src="../figures/enc2/thickness_current.spc_n_spc.png" class="img-fluid" /></p>
+<p><img src="../figures/enc2/density_distribution.spc_n_spc.png" class="img-fluid" /></p>
 <p>K2: <span class="math inline">\(Δv_l\)</span>,l demonstrates a strong correlation with <span class="math inline">\(Δv_{A}\)</span>, albeit being consistently smaller.</p>
 </section>
 <section id="comparison-with-alfven-speed-and-plasma-speed-change" class="level2">
-<h2 class="anchored" data-anchor-id="comparison-with-alfven-speed-and-plasma-speed-change">Comparison with Alfven speed and plasma speed change</h2>
+<h2>Comparison with Alfven speed and plasma speed change</h2>
 <p>For rotational discontinuities, the plasma velocity jump across them: the plasma ﬂow velocity <span class="math inline">\(v_l\)</span> (the solar wind velocity projected onto <span class="math inline">\(l\)</span>) changes due to changes in <span class="math inline">\(B_l\)</span>, <span class="math inline">\(Δv_l=±Δv_A\)</span> with <span class="math inline">\(v_A= B_l / \sqrt{4 n m}\)</span> <span class="citation" data-cites="hudsonDiscontinuitiesAnisotropicPlasma1970">(<a href="#ref-hudsonDiscontinuitiesAnisotropicPlasma1970" role="doc-biblioref">Hudson 1970</a>)</span>.</p>
-<p><img src="../figures/enc2/dvl.spi_n_spi.png" class="img-fluid"></p>
+<p><img src="../figures/enc2/dvl.spi_n_spi.png" class="img-fluid" /></p>
 </section>
 <section id="comparison-with-anisotropy" class="level2">
-<h2 class="anchored" data-anchor-id="comparison-with-anisotropy">Comparison with anisotropy</h2>
+<h2>Comparison with anisotropy</h2>
 <p>The equation for <span class="math inline">\(Δv_A\)</span> includes a factor depending on the anisotropy of the plasma.</p>
-<p><img src="../figures/enc2/anisotropy.spi_n_spi.png" class="img-fluid"></p>
+<p><img src="../figures/enc2/anisotropy.spi_n_spi.png" class="img-fluid" /></p>
 <p>Pressure anisotropy <span class="math inline">\(Λ = \mu (P_∥ - P_⊥) / B^2\)</span>.</p>
 </section>
 <section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<h2>Conclusion</h2>
 <ul>
 <li>The properties of the discontinuities is related to the local plasma parameters
 <ul>
@@ -602,16 +595,17 @@ $$ -->
 <li>Normalized thickness and current density of discontinuities remain constant with radial distance</li>
 <li>Anisotropy of the plasma is expected to be larger near the sun to explain the observed speed change ratio <span class="math inline">\(Δv_i/Δv_A\)</span>.</li>
 </ul>
-<hr>
+<hr />
 </section>
 <section id="references-1" class="level2">
-
-
-
-
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<h2>References</h2>
+<div id="quarto-navigation-envelope" class="hidden">
+<p><span class="hidden" data-render-id="quarto-int-sidebar-title">Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations</span> <span class="hidden" data-render-id="quarto-int-navbar-title">Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations</span> <span class="hidden" data-render-id="quarto-int-next">Analysis</span> <span class="hidden" data-render-id="quarto-int-prev">About</span> <span class="hidden" data-render-id="quarto-int-sidebar:/about.htmlAbout">About</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-1">Presentations</span> <span class="hidden" data-render-id="quarto-int-sidebar:/presentations/sparthb.htmlSolar-Wind-Discontinuities:-Parker-Solar-Probe-vs-ARTEMIS-Observations">Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-2">Warpx</span> <span class="hidden" data-render-id="quarto-int-sidebar:/warpx/analysis.htmlAnalysis">Analysis</span> <span class="hidden" data-render-id="quarto-int-sidebar:/warpx/analysis_jl.htmlAnalysis">Analysis</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-3">00 EMModes</span> <span class="hidden" data-render-id="quarto-int-sidebar:/warpx/00_EMModes/inputs.htmlInputs">Inputs</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-4">01 Oblique Linear Alfven</span> <span class="hidden" data-render-id="quarto-int-sidebar:/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/index.htmlbeta-=-2,-theta-=-60.0,-eta-=-10.0">beta = 2, theta = 60.0, eta = 10.0</span> <span class="hidden" data-render-id="quarto-int-sidebar:/warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/index.htmlbeta-=-0.25,-theta-=-60.0,-eta-=-10.0">beta = 0.25, theta = 60.0, eta = 10.0</span> <span class="hidden" data-render-id="quarto-int-sidebar:/warpx/01_oblique_linear_alfven/inputs.htmlOblique-linearly-polarized-Alfvén-wave">Oblique linearly polarized Alfvén wave</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-5">Archive</span> <span class="hidden" data-render-id="quarto-int-sidebar:/warpx/01_oblique_linear_alfven/archive/dim_1_beta_0.25_theta_60.0_eta_10.0/index.htmlbeta-=-0.25,-theta-=-60.0,-eta-=-10.0">beta = 0.25, theta = 60.0, eta = 10.0</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-6">02 Polar Alfven</span> <span class="hidden" data-render-id="quarto-int-sidebar:/warpx/02_polar_alfven/inputs.htmlCircularly-polarized-Alfvén-waves">Circularly polarized Alfvén waves</span> <span class="hidden" data-render-id="quarto-int-navbar:Home">Home</span> <span class="hidden" data-render-id="quarto-int-navbar:/index.html">/index.html</span> <span class="hidden" data-render-id="quarto-int-navbar:About">About</span> <span class="hidden" data-render-id="quarto-int-navbar:/about.html">/about.html</span> <span class="hidden" data-render-id="quarto-breadcrumbs-Presentations">Presentations</span> <span class="hidden" data-render-id="quarto-breadcrumbs-Solar-Wind-Discontinuities:-Parker-Solar-Probe-vs-ARTEMIS-Observations">Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations</span></p>
+</div>
+<div id="quarto-meta-markdown" class="hidden">
+<p><span class="hidden" data-render-id="quarto-metatitle">Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations</span> <span class="hidden" data-render-id="quarto-twittercardtitle">Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations</span> <span class="hidden" data-render-id="quarto-ogcardtitle">Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations</span> <span class="hidden" data-render-id="quarto-twittercarddesc">SPARTHB</span> <span class="hidden" data-render-id="quarto-ogcardddesc">SPARTHB</span></p>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-artemyevKineticPropertiesSolar2019" class="csl-entry" role="listitem">
 Artemyev, A. V., V. Angelopoulos, and I. Y. Vasko. 2019. <span>“Kinetic Properties of Solar Wind Discontinuities at 1 <span>AU</span> Observed by <span>ARTEMIS</span>.”</span> <em>Journal of Geophysical Research: Space Physics</em> 124 (6): 3858–70. <a href="https://doi.org/10.1029/2019JA026597">https://doi.org/10.1029/2019JA026597</a>.
 </div>
@@ -633,8 +627,11 @@ Perrone, Denise, D Stansby, T S Horbury, and L Matteini. 2019. <span>“Radial E
 <div id="ref-shenComparingPlasmaAnisotropy2024" class="csl-entry" role="listitem">
 Shen, Yangyang, Anton Artemyev, Vassilis Angelopoulos, Terry Z. Liu, and Ivan Vasko. 2024. <span>“Comparing <span>Plasma Anisotropy Associated</span> with <span>Solar Wind Discontinuities</span> and <span class="nocase">Alfv<span class="nocase">é</span>nic Fluctuations</span>.”</span> <em>The Astrophysical Journal</em> 961 (1): 41. <a href="https://doi.org/10.3847/1538-4357/ad110b">https://doi.org/10.3847/1538-4357/ad110b</a>.
 </div>
-</div></section></div></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id = "quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1056,7 +1053,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 </div> <!-- /content -->
 
+</body>
 
-
-
-</body></html>
+</html>
