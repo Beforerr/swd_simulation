@@ -147,6 +147,7 @@ def main(
     if not dry_run:
         simulation._sim.step()
 
+    return simulation
 
 if __name__ == "__main__":
     app()

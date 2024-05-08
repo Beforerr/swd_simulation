@@ -49,7 +49,7 @@ hybrid_pic_model.n0_ref = 100000000.0
 hybrid_pic_model.n_floor = 1562500.0
 hybrid_pic_model.plasma_hyper_resistivity = 1e-06
 hybrid_pic_model.plasma_resistivity(rho,J) = 10.0
-hybrid_pic_model.substeps = 16
+hybrid_pic_model.substeps = 32
 
 # ions
 ions.charge = q_e
@@ -64,7 +64,7 @@ ions.momentum_function_uy_m(x,y,z) = (218061.01291934482 * cos(4.311381038964624
 ions.momentum_function_uy_th(x,y,z) = (77096.21047383804)/299792458.0
 ions.momentum_function_uz_m(x,y,z) = (0)/299792458.0
 ions.momentum_function_uz_th(x,y,z) = (77096.21047383804)/299792458.0
-ions.num_particles_per_cell = 64
+ions.num_particles_per_cell = 256
 ions.profile = parse_density_function
 
 # max_step

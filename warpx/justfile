@@ -5,6 +5,7 @@ default:
 plot:
     python main.py --plot-wk-spectrum --export
     python main.py --plasma-resistivity 10 --plot-wk-spectrum --export
+    julia main.jl run --eta 10
 
 log:
     python main.py --beta 2 --plasma-resistivity 10

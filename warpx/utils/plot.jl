@@ -9,6 +9,8 @@ E_fields = ["Ex", "Ey", "Ez", "Emag"]
 j_field = ["jx", "jy", "jz", "jmag"]
 temp_f_fields = ["T_parp", "T_perp"]
 temp_norm_fields = ["T_parp_norm", "T_perp_norm"]
+pressure_fields = ["pressure_x", "pressure_y", "pressure_z"]
+pressure_f_fields = ["pressure_parp", "pressure_perp"]
 
 function plot_fields(df, fields; axis=NamedTuple(), figure=NamedTuple(), fig_options=(size=(800, 800),))
 
@@ -19,9 +21,6 @@ function plot_fields(df, fields; axis=NamedTuple(), figure=NamedTuple(), fig_opt
 end
 
 function plot_fields(df)
-
-    pressure_fields = ["pressure_x", "pressure_y", "pressure_z"]
-    pressure_f_fields = ["pressure_parp", "pressure_perp"]
 
     plot_fields(df, B_fields)
     easy_save("B_field")
@@ -69,37 +68,50 @@ function plot_fields_time(df; window=(; step=16))
 end
 
 
-function plot_field(df, field)
+function _plot_field(df, field)
     temp_df = stack(df, field, ids)
     data(temp_df) * mapping(:z_norm => z_norm_lab, :value, color=:variable) * visual(Lines)
 end
 
+function plot_field(df; field, fig, ax, ylabel, )
+    plt = _plot_field(df, field)
+    ax.ylabel = ylabel
+    draw!(ax, plt)
+end
+
+
+plot_B = plot_field$(; field=B_fields, ylabel="Magnetic Field (T)")
+plot_j = plot_field$(; field=j_field, ylabel="Current Density (A/m^2)")
+plot_density = plot_field$(; field=["rho_n_norm"], ylabel="Normalized Density")
+plot_anisotropy = plot_field$(; field=["anisotropy"], ylabel="Anisotropy")
+
+# plot_temp = plot_field$(; field=["T_z_norm"; temp_norm_fields], ylabel="Normalized Temperature")
+function plot_temp(df; ax, fig, field=["T_z_norm"; temp_norm_fields], ylabel="Normalized Temperature")
+    temp_df = stack(df, field, ids)
+    plt = data(temp_df) * mapping(:z_norm => z_norm_lab, :value, color=:variable) * smooth()
+    fg = draw!(ax, plt)
+    legend!(fig[4,2], fg, framevisible=false)
+end
+
 function plot_overview_ts(df;
     window=(; step=8),
+    plot_funcs=(plot_B, plot_j, plot_density, plot_temp, plot_anisotropy)
 )
     temp_df = select_time(df; window...)
     gdf = groupby(temp_df, :time_norm)
 
-    fields = [B_fields, "rho_n_norm", j_field, temp_norm_fields, "anisotropy"]
-    labels = ["B", "Normalized Density", "Current Density", "Temperature", "Anisotropy"]
-    
     for (key, subdf) in pairs(gdf)
         fig = Figure(size=(1200, 1000),)
-        axs = [Axis(fig[i, 1]) for i in 1:length(fields)]
-    
-        plts = map(plot_field $ subdf , fields)
-        map(draw!, axs, plts)
-        map(hidexdecorations!, axs)
-    
-        # add labels
-        for (ax, label) in zip(axs, labels)
-            ax.ylabel = label
+        axs = [Axis(fig[i, 1]) for i in 1:length(plot_funcs)]
+
+        for (ax, plot_func) in zip(axs, plot_funcs)
+            plot_func(subdf; ax=ax, fig=fig)
         end
-    
-        axs[1].title = "Time: $(key.time_norm)"
+        map(hidexdecorations!, axs)
+        axs[1].title = "Time: $(key.time_norm|>round)"
         axs[end].xlabel = z_norm_lab
-    
-        easy_save("time_$(key.time_norm|>floor)", dir="figures/fields")
+
+        easy_save("time_$(key.time_norm|>round)", dir="figures/fields")
     end
 
 end
