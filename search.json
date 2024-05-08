@@ -197,7 +197,7 @@
     "href": "warpx/analysis.html",
     "title": "Analysis",
     "section": "",
-    "text": "%load_ext autoreload\n%autoreload 2\n\nThe autoreload extension is already loaded. To reload it, use:\n  %reload_ext autoreload\nimport matplotlib.pyplot as plt\nimport yt\nfrom rich import print\nfrom icecream import ic\nimport panel as pn\nimport json\nfrom yt.data_objects.time_series import SimulationTimeSeries\nfrom yt.data_objects.static_output import Dataset\nfrom main import setup\nfrom utils.plot import *\ndim = 1\nbeta = 0.25\ntheta = 60.0\neta = 100.0\n\nmeta = setup(dim, beta, theta, eta)\nmeta[\"n0\"]\n\n100000000.0\nps = \"ions\"",
+    "text": "%load_ext autoreload\n%autoreload 2\nimport matplotlib.pyplot as plt\nimport yt\nfrom rich import print\nfrom icecream import ic\nimport panel as pn\nfrom yt.data_objects.time_series import SimulationTimeSeries\nfrom yt.data_objects.static_output import Dataset\nfrom utils.plot import *\nfrom main import setup\ndim = 1\nbeta = 0.25\ntheta = 60.0\neta = 10.0\n\nmeta = setup(dim, beta, theta, eta)",
     "crumbs": [
       "Home",
       "Warpx",
@@ -209,7 +209,7 @@
     "href": "warpx/analysis.html#fields",
     "title": "Analysis",
     "section": "Fields",
-    "text": "Fields\n\nfrom utils import load_ts_all\nts_field, ts_part = load_ts_all(meta) \n\n\nic(len(ts_field))\nds_field: Dataset = ts_field[0]\npart_df: Dataset = ts_part[0]\n\nic| len(ts_field): 501",
+    "text": "Fields\n\nfrom utils import load_ts_all\nts_field, ts_part = load_ts_all(meta) \n\n\nic(len(ts_field))\nds_field: Dataset = ts_field[-1]\nds_part: Dataset = ts_part[0]\n\nic| len(ts_field): 101\n\n\n\nds_part.field_list\n\n[('all', 'particle_cpu'),\n ('all', 'particle_id'),\n ('all', 'particle_momentum_x'),\n ('all', 'particle_momentum_y'),\n ('all', 'particle_momentum_z'),\n ('all', 'particle_position_x'),\n ('all', 'particle_weight'),\n ('ions', 'particle_cpu'),\n ('ions', 'particle_id'),\n ('ions', 'particle_momentum_x'),\n ('ions', 'particle_momentum_y'),\n ('ions', 'particle_momentum_z'),\n ('ions', 'particle_position_x'),\n ('ions', 'particle_weight'),\n ('nbody', 'particle_cpu'),\n ('nbody', 'particle_id'),\n ('nbody', 'particle_momentum_x'),\n ('nbody', 'particle_momentum_y'),\n ('nbody', 'particle_momentum_z'),\n ('nbody', 'particle_position_x'),\n ('nbody', 'particle_weight')]\n\n\n\nps = \"ions\"\n_part_weight_field = (ps, \"particle_weight\")\n\np = yt.ParticlePlot(\n    ds_part, ('ions', 'particle_position_x'), [('ions', 'particle_momentum_y'), (\"ions\", \"particle_momentum_z\")],\n    z_fields=_part_weight_field\n)\np.set_log(field = 'all', log=False)",
     "crumbs": [
       "Home",
       "Warpx",
@@ -246,7 +246,7 @@
     "href": "warpx/analysis_jl.html",
     "title": "Analysis",
     "section": "",
-    "text": "include(\"main.jl\")\n\n┌ Warning: replacing command run in the registry\n└ @ Comonicon /Users/zijin/.julia/packages/Comonicon/F3QqZ/src/frontend/utils.jl:35\ndim = 1\nbeta = 2.0\n# beta = 0.25\ntheta = 60.0\neta = 10.0\n\nmeta = setup(dim, beta, theta, eta)\ndf = load_field(meta);\n\nChanged to /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0\n[\"Bx\", \"By\", \"Bz\", \"Ex\", \"Ey\", \"Ez\", \"jx\", \"jy\", \"jz\", \"rho\", \"z\", \"x\", \"y\", \"time\", \"velocity_th_x\", \"velocity_th_y\", \"velocity_th_z\", \"velocity_th_parp\", \"pressure_x\", \"pressure_y\", \"pressure_z\", \"pressure_parp\", \"Bx_1\", \"By_1\", \"Bz_1\", \"Bmag\", \"pressure_perp\", \"velocity_th_perp\", \"anisotropy\", \"rho_c\", \"rho_n\", \"rho_n_norm\", \"time_norm\", \"z_norm\", \"T_parp_norm\", \"T_perp_norm\", \"Emag\", \"jmag\"]\nplot_overview_ts(df; window=(; step=8),)\n\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/fields/time_0.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/fields/time_7.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/fields/time_15.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/fields/time_23.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/fields/time_31.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/fields/time_39.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/fields/time_47.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/fields/time_55.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/fields/time_63.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/fields/time_71.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/fields/time_79.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/fields/time_87.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/fields/time_95.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\nif dim == 1\n    z = :x\nelseif dim== 2\n    z = :y\nelse\n    z = :z\nend\n\n:x\nrho_field = names(df, r\"rho\")\n\npressure_fields = [\"pressure_x\", \"pressure_y\", \"pressure_z\"]\npressure_f_fields = [\"pressure_parp\", \"pressure_perp\"]\ntemp_f_fields = [\"T_parp\", \"T_perp\"]\n\nvariables = [B_fields; E_field; j_field]\n\n12-element Vector{String}:\n \"Bx\"\n \"By\"\n \"Bz\"\n \"Bmag\"\n \"Ex\"\n \"Ey\"\n \"Ez\"\n \"Emag\"\n \"jx\"\n \"jy\"\n \"jz\"\n \"jmag\"\nfig = plot_fields(df, \"anisotropy\")\nfig.figure.colorbar(label=\"Anisotropy\")\n\nErrorException: type Figure has no field colorbar\nplot_fields(df, pressure_f_fields)\n# easy_save(\"pressure_fields\")\nfunction plot_field(df, field; ids=ids)\n    temp_df = stack(df, field, ids)\n    data(temp_df) * mapping(:z_norm =&gt; z_norm_lab, :value, color=:variable) * visual(Lines)\nend\n\nplot_field (generic function with 1 method)\npressure_cols = names(df, r\"pressure\")\ntemp_cols = replace.(pressure_cols, r\"pressure\" =&gt; \"T\")\n\n# Define a function for the transformation to avoid repetition\ncalculate_temperature = (p, rho) -&gt; p ./ rho\n\n# Use a loop to transform multiple pressure columns\nfor (pressure_col, temp_col) in zip(pressure_cols, temp_cols)\n    transform!(df, [pressure_col, \"rho\"] =&gt; calculate_temperature =&gt; temp_col)\nend\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/fields/time_0.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/fields/time_15.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/fields/time_31.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/fields/time_47.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/fields/time_63.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/fields/time_79.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/fields/time_95.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\nvars = [:Bmag, :By, :rho, :p_zz, :T_z]\nfig_options = (size=(2400, 700),)\nfacet = (; linkxaxes = :all, linkyaxes = :rowwise)\n\ntemp_df = df |&gt; select_time $ window\nplt = plot_fields_time(temp_df, vars)\nplt *= mapping(col=:time_norm, row=:variable)\ndraw(plt; figure=fig_options, facet=facet)\n# easy_save(\"B_time\");\n\nArgumentError: ArgumentError: column name :p_zz not found in the data frame\nplot_fields_time(df, [:Bmag, :rho]; step=8, norm=true)\neasy_save(\"B_rho_time\")\nfunction plot_pressure_evolution(; cols = [:P_xx, :P_yy, :P_zz], norm=false)\n    df = load_pressure_df()\n    normalize_df!(df)\n    temp_df = stack(df, cols, ids)\n\n    if norm\n        temp_df = @by temp_df :variable begin\n            :value = :value / maximum(abs.(:value))\n            :time_norm\n            :z_norm\n        end\n    end\n\n    data(temp_df) * mapping(ids..., :value, row = :variable =&gt; latexify) * visual(Heatmap) |&gt; draw\nend\n\nplot_pressure_evolution()\neasy_save(\"pressure_xyz\")\ndf = load_pressure_df()\ndescribe(df)\nplot_pressure_evolution(cols = [:anisotropy], norm=false)\neasy_save(\"pressure_anisotropy\")\nplot_pressure_evolution(cols = [:p_parp, :p_perp], norm=true)\neasy_save(\"pressure_perp_parp\")",
+    "text": "include(\"main.jl\")\ndim = 1\nbeta = 2.0\nbeta = 0.25\ntheta = 60.0\neta = 10.0\n\nmeta = setup(dim, beta, theta, eta)\ndf = load_field(meta);\nplot_overview_ts(df; window=(; step=16),)\n\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/fields/time_0.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/fields/time_16.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/fields/time_32.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/fields/time_48.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/fields/time_64.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/fields/time_80.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/fields/time_96.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\nif dim == 1\n    z = :x\nelseif dim== 2\n    z = :y\nelse\n    z = :z\nend\n\n:x\nvariables = [B_fields; E_field; j_field]\n\n12-element Vector{String}:\n \"Bx\"\n \"By\"\n \"Bz\"\n \"Bmag\"\n \"Ex\"\n \"Ey\"\n \"Ez\"\n \"Emag\"\n \"jx\"\n \"jy\"\n \"jz\"\n \"jmag\"\nplot_fields(df, pressure_f_fields)\n# easy_save(\"pressure_fields\")\nfunction plot_field(df, field; ids=ids)\n    temp_df = stack(df, field, ids)\n    data(temp_df) * mapping(:z_norm =&gt; z_norm_lab, :value, color=:variable) * visual(Lines)\nend\n\nplot_field (generic function with 1 method)\npressure_cols = names(df, r\"pressure\")\ntemp_cols = replace.(pressure_cols, r\"pressure\" =&gt; \"T\")\n\n# Define a function for the transformation to avoid repetition\ncalculate_temperature = (p, rho) -&gt; p ./ rho\n\n# Use a loop to transform multiple pressure columns\nfor (pressure_col, temp_col) in zip(pressure_cols, temp_cols)\n    transform!(df, [pressure_col, \"rho\"] =&gt; calculate_temperature =&gt; temp_col)\nend\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/fields/time_0.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/fields/time_15.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/fields/time_31.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/fields/time_47.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/fields/time_63.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/fields/time_79.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\n┌ Info: Saved /Users/zijin/projects/swd_simulation/warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/fields/time_95.0.png\n└ @ beforerr /Users/zijin/.julia/dev/beforerr.jl/src/utils/makie.jl:34\nvars = [:Bmag, :By, :rho, :p_zz, :T_z]\nfig_options = (size=(2400, 700),)\nfacet = (; linkxaxes = :all, linkyaxes = :rowwise)\n\ntemp_df = df |&gt; select_time $ window\nplt = plot_fields_time(temp_df, vars)\nplt *= mapping(col=:time_norm, row=:variable)\ndraw(plt; figure=fig_options, facet=facet)\n# easy_save(\"B_time\");\n\nArgumentError: ArgumentError: column name :p_zz not found in the data frame\nplot_fields_time(df, [:Bmag, :rho]; step=8, norm=true)\neasy_save(\"B_rho_time\")\nfunction plot_pressure_evolution(; cols = [:P_xx, :P_yy, :P_zz], norm=false)\n    df = load_pressure_df()\n    normalize_df!(df)\n    temp_df = stack(df, cols, ids)\n\n    if norm\n        temp_df = @by temp_df :variable begin\n            :value = :value / maximum(abs.(:value))\n            :time_norm\n            :z_norm\n        end\n    end\n\n    data(temp_df) * mapping(ids..., :value, row = :variable =&gt; latexify) * visual(Heatmap) |&gt; draw\nend\n\nplot_pressure_evolution()\neasy_save(\"pressure_xyz\")\ndf = load_pressure_df()\ndescribe(df)\nplot_pressure_evolution(cols = [:anisotropy], norm=false)\neasy_save(\"pressure_anisotropy\")\nplot_pressure_evolution(cols = [:p_parp, :p_perp], norm=true)\neasy_save(\"pressure_perp_parp\")",
     "crumbs": [
       "Home",
       "Warpx",
@@ -302,7 +302,7 @@
     "href": "warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/index.html",
     "title": "beta = 0.25, theta = 60.0, eta = 10.0",
     "section": "",
-    "text": "beta = 0.25, theta = 60.0, eta = 10.0\n\n  \n\n \n \n\n\n\nOverview plot",
+    "text": "beta = 0.25, theta = 60.0, eta = 10.0\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOverview plot\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlasma Velocity Profiles",
     "crumbs": [
       "Home",
       "Warpx",
@@ -315,7 +315,7 @@
     "href": "warpx/01_oblique_linear_alfven/inputs.html",
     "title": "Oblique linearly polarized Alfvén wave",
     "section": "",
-    "text": "References:\n\nVasquez and Hollweg (1996)\n\n\nWe now consider hybrid simulations (see Vasquez [1995] for details of the code) of the evolution of an initially linearly polarized . Alfven wave train with A = 0.3 and traveling at OB = 60°. We choose a small wavenumher of 0.025(c/w¢) -1 where c/wm is an ion inertial length. At this wavenumber ion wave dispersion is negligible over the total simulation time. In the simulation box, 4 cycles of this wave will be included. Time in the simulation is normalized to an ion gyrocycle ft. In units of (c/c)f, the Alfvdn speed is 1, and the speed of the wave train is cos 60° = 0.5. The wave period is 502 ft-1. Electrons are treated as an isothermal fluid with temperature Te. Ions are assigned a Maxwellian velocity distribution with the bulk speed of an Alfvdn wave and temperature Ti equal to 2”,. The total plasma /3 ks taken to be 0.275. We are especially concerned here with small/3 since this condition characterizes re~ons near the Sun. The isothermal sound speed corresponding to this/3 is 0.37, and this value will be used for c, to evaluate Equations (8)-(9). Evaluated in this way, the correspondence with the simulations is close but not exact because ions in a hybrid simulation do not obey a predetermined equation of state.\n\nNotes:\n\nThere seems to have an initialization problem for 1D simulation.\nPolarization is dertemined by the wave dispersion relation.\n\nVerify the linear polarization\n\nNumerical heating may be a problem for long time simulation.\n\nSee issues Hybrid Code Crash · Issue #4883 · ECP-WarpX/WarpX\n\n\nHyper resistivity is added to the generalized Ohm’s law solver to suppress spurious whistler noise in low density regions.\n\n\nTODO:\n\n\\(\\gamma\\) in warpx_momentum_spread_expressions\n\n\n\n\n\nReferences\n\nVasquez, Bernard J., and Joseph V. Hollweg. 1996. “The Making of an Alfvénic Fluctuation: The Resolution of a Second-Order Analysis.” AIP Conference Proceedings 382 (1): 331–34. https://doi.org/10.1063/1.51407.",
+    "text": "References:\n\nVasquez and Hollweg (1996)\n\n\nWe now consider hybrid simulations (see Vasquez [1995] for details of the code) of the evolution of an initially linearly polarized . Alfven wave train with A = 0.3 and traveling at OB = 60°. We choose a small wavenumher of 0.025(c/w¢) -1 where c/wm is an ion inertial length. At this wavenumber ion wave dispersion is negligible over the total simulation time. In the simulation box, 4 cycles of this wave will be included. Time in the simulation is normalized to an ion gyrocycle ft. In units of (c/c)f, the Alfvdn speed is 1, and the speed of the wave train is cos 60° = 0.5. The wave period is 502 ft-1. Electrons are treated as an isothermal fluid with temperature Te. Ions are assigned a Maxwellian velocity distribution with the bulk speed of an Alfvdn wave and temperature Ti equal to 2”,. The total plasma /3 ks taken to be 0.275. We are especially concerned here with small/3 since this condition characterizes re~ons near the Sun. The isothermal sound speed corresponding to this/3 is 0.37, and this value will be used for c, to evaluate Equations (8)-(9). Evaluated in this way, the correspondence with the simulations is close but not exact because ions in a hybrid simulation do not obey a predetermined equation of state.\n\nNotes:\n\nThere seems to have an initialization problem for 1D simulation.\nPolarization is dertemined by the wave dispersion relation.\n\nVerify the linear polarization\n\nNumerical heating may be a problem for long time simulation.\n\nSee issues Hybrid Code Crash · Issue #4883 · ECP-WarpX/WarpX\n\n\nHyper resistivity is added to the generalized Ohm’s law solver to suppress spurious whistler noise in low density regions.\n\n\nTODO:\n\n\\(\\gamma\\) in warpx_momentum_spread_expressions\n\n\nfrom main import AlfvenModes\n\n\n\n\n\nReferences\n\nVasquez, Bernard J., and Joseph V. Hollweg. 1996. “The Making of an Alfvénic Fluctuation: The Resolution of a Second-Order Analysis.” AIP Conference Proceedings 382 (1): 331–34. https://doi.org/10.1063/1.51407.",
     "crumbs": [
       "Home",
       "Warpx",
@@ -334,6 +334,272 @@
       "Warpx",
       "01 Oblique Linear Alfven",
       "beta = 2, theta = 60.0, eta = 10.0"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html",
+    "href": "presentations/sparthb.html",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "",
+    "text": "Shen et al. (2024)\nArtemyev et al. (2019)\nArtemyev, Angelopoulos, and Vasko (2019)\nHudson (1971)\nHudson (1970)\n\nFor rotational discontinuities, the plasma velocity jump across them: the plasma ﬂow velocity \\(v_l\\) (the solar wind velocity projected onto \\(l\\)) changes due to changes in \\(B_l\\), \\(Δv_l=±Δv_A\\) with \\(v_A= B_l / \\sqrt{4 n m}\\) (Hudson 1970).",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#references",
+    "href": "presentations/sparthb.html#references",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "",
+    "text": "Shen et al. (2024)\nArtemyev et al. (2019)\nArtemyev, Angelopoulos, and Vasko (2019)\nHudson (1971)\nHudson (1970)\n\nFor rotational discontinuities, the plasma velocity jump across them: the plasma ﬂow velocity \\(v_l\\) (the solar wind velocity projected onto \\(l\\)) changes due to changes in \\(B_l\\), \\(Δv_l=±Δv_A\\) with \\(v_A= B_l / \\sqrt{4 n m}\\) (Hudson 1970).",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#solar-wind-discontinuities-swd",
+    "href": "presentations/sparthb.html#solar-wind-discontinuities-swd",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "Solar wind discontinuities (SWD)",
+    "text": "Solar wind discontinuities (SWD)\nDiscontinuous changes in plasmas parameters and magnetic fields\n\nImport element of solar wind turbulences\nVery kinetic structure: interact with energetic part of the solar wind ions",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#pressure-balance-across-discontinuities",
+    "href": "presentations/sparthb.html#pressure-balance-across-discontinuities",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "Pressure balance across discontinuities",
+    "text": "Pressure balance across discontinuities\n\\[\n\\Delta v_l= \\pm \\Delta v_A= \\pm \\frac{\\Delta B_l}{\\sqrt{4 \\pi m n}} \\sqrt{1-4 \\pi \\frac{p_{\\|}-p_{\\perp}}{B^2}}\n\\]",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#observations",
+    "href": "presentations/sparthb.html#observations",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "Observations",
+    "text": "Observations\nPSP",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#estimated-anistropy",
+    "href": "presentations/sparthb.html#estimated-anistropy",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "Estimated Anistropy",
+    "text": "Estimated Anistropy",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#anistropy-observations",
+    "href": "presentations/sparthb.html#anistropy-observations",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "Anistropy Observations",
+    "text": "Anistropy Observations",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#motivation",
+    "href": "presentations/sparthb.html#motivation",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "Motivation",
+    "text": "Motivation\nStudying the radial evolution of solar wind discontinuities from synergistic observations of PSP and Earth-orbiting missions (ARTEMIS, Wind) during aligned intervals.\n\nHow does the discontinuities change with the radial distance from the Sun?\nHow is solar wind discontinuities formed? What is the physical mechanisms?\n\nGenerated at or near the sun?\nLocally generated in the interplanetary space by turbulence?",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#in-situ-synergistic-observations",
+    "href": "presentations/sparthb.html#in-situ-synergistic-observations",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "In-situ synergistic observations",
+    "text": "In-situ synergistic observations\nSimilar type of solar wind or Same solar solar wind\nHow to define alignment?\n\nTrajectory & Orbits (theory): ballistic approximation of Parker spiral\nPlasma properties (observation):\n\nInvariants: plasma composition, ionization states, mass flux \\(n u r^2\\)\nCorrelation: magnetic field / plasma velocity\n\nSimulation: Trace plasma parcels evolution",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#orbits",
+    "href": "presentations/sparthb.html#orbits",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "Orbits",
+    "text": "Orbits\n\n\n\n\n\n\n\n\nHeliographic frame (corotating with Sun)",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#enlil-simulation",
+    "href": "presentations/sparthb.html#enlil-simulation",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "ENLIL simulation",
+    "text": "ENLIL simulation\n\n\nVideo\nNormalized solar wind density at the ecliptic and the IMF lines\n\n\n\n\nVideo\nRadial solar wind velocity at the ecliptic on the global and detail regions together with the temporal profile at spacecraft",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#observation",
+    "href": "presentations/sparthb.html#observation",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "Observation",
+    "text": "Observation\n\n\n\n\n\nPSP Observation Overvall\n\n\n\n\n\n\nPSP observation",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#observation-continued",
+    "href": "presentations/sparthb.html#observation-continued",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "Observation (continued)",
+    "text": "Observation (continued)\n\n\n\n\n\nPSP observation\n\n\n\n\n\n\nACE observation\n\n\n\n\n\n\nACE observation (continued)\n\n\n\n\n\nTime resolution (from high to low): SPC, SPI, SQTN, QTN\nQuality (fluctuating, from high to low): SQTN, QTN, SPC/SPI\n\n\n\nDifferent Density Product",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#examples-of-discontinuities",
+    "href": "presentations/sparthb.html#examples-of-discontinuities",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "Examples of discontinuities",
+    "text": "Examples of discontinuities\n\nIn general discontinuities observed by PSP are with\n\nshorter duration (1~5 secs)\ncompared with 5-10 secs\nlarge current density (100-1000 nA/m^2)\ncompared with 1-10 nA/m^2",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#identificationdetection-method",
+    "href": "presentations/sparthb.html#identificationdetection-method",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "Identification/Detection method",
+    "text": "Identification/Detection method\n\nLiu et al. (2022)\nCompared with adjacent intervals without sampling",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#properties-of-discontinuities",
+    "href": "presentations/sparthb.html#properties-of-discontinuities",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "Properties of discontinuities",
+    "text": "Properties of discontinuities\n\nEvery discontinuity’s \\(l\\) component is fitted by a \\(\\tanh\\) (logistic) function.\nCombined with plasma data (\\(n\\), \\(v\\), \\(T\\))\n\\(L\\): thickness of the discontinuity\n\\(J_0\\): maxium current density\n\nIf we expect the discontinuities to be generated locally, then the thickness of the discontinuities should be related to local plasma parameters:\n\nNormalize thickness by \\(d_i\\) (ion inertial length) or \\(r_i\\) (ion gyroradius)\nNormalize current density by \\(J_A\\) (Alfven current density)",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#plasma-adiabatic-evolution",
+    "href": "presentations/sparthb.html#plasma-adiabatic-evolution",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "Plasma adiabatic evolution",
+    "text": "Plasma adiabatic evolution\n\n\n\n\n\n\n\nPerrone et al. (2019)",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#comparison-with-discontinuities-properties",
+    "href": "presentations/sparthb.html#comparison-with-discontinuities-properties",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "Comparison with discontinuities properties",
+    "text": "Comparison with discontinuities properties\n\n\nK1: Normalized discontinuities properties does not vary much with radial distance\n\n\n\nK2: \\(Δv_l\\),l demonstrates a strong correlation with \\(Δv_{A}\\), albeit being consistently smaller.",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#comparison-with-alfven-speed-and-plasma-speed-change",
+    "href": "presentations/sparthb.html#comparison-with-alfven-speed-and-plasma-speed-change",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "Comparison with Alfven speed and plasma speed change",
+    "text": "Comparison with Alfven speed and plasma speed change\nFor rotational discontinuities, the plasma velocity jump across them: the plasma ﬂow velocity \\(v_l\\) (the solar wind velocity projected onto \\(l\\)) changes due to changes in \\(B_l\\), \\(Δv_l=±Δv_A\\) with \\(v_A= B_l / \\sqrt{4 n m}\\) (Hudson 1970).",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#comparison-with-anisotropy",
+    "href": "presentations/sparthb.html#comparison-with-anisotropy",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "Comparison with anisotropy",
+    "text": "Comparison with anisotropy\nThe equation for \\(Δv_A\\) includes a factor depending on the anisotropy of the plasma.\n\nPressure anisotropy \\(Λ = \\mu (P_∥ - P_⊥) / B^2\\).",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "presentations/sparthb.html#conclusion",
+    "href": "presentations/sparthb.html#conclusion",
+    "title": "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations",
+    "section": "Conclusion",
+    "text": "Conclusion\n\nThe properties of the discontinuities is related to the local plasma parameters\n\nThickness =&gt; ion inertial length\nCurrent density =&gt; Alfven velocity (current density)\n\nNormalized thickness and current density of discontinuities remain constant with radial distance\nAnisotropy of the plasma is expected to be larger near the sun to explain the observed speed change ratio \\(Δv_i/Δv_A\\).",
+    "crumbs": [
+      "Home",
+      "Presentations",
+      "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+    ]
+  },
+  {
+    "objectID": "warpx/01_oblique_linear_alfven/archive/dim_1_beta_0.25_theta_60.0_eta_10.0/index.html",
+    "href": "warpx/01_oblique_linear_alfven/archive/dim_1_beta_0.25_theta_60.0_eta_10.0/index.html",
+    "title": "beta = 0.25, theta = 60.0, eta = 10.0",
+    "section": "",
+    "text": "beta = 0.25, theta = 60.0, eta = 10.0\n\n  \n\n \n \n\n\n\nOverview plot",
+    "crumbs": [
+      "Home",
+      "Warpx",
+      "01 Oblique Linear Alfven",
+      "Archive",
+      "beta = 0.25, theta = 60.0, eta = 10.0"
     ]
   }
 ]
