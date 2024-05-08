@@ -1,0 +1,247 @@
+---
+title: "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+subtitle: SPARTHB
+author:
+  - name: Zijin Zhang
+  - name: Anton V. Artemyev
+  - name: Xin An
+  - name: Vassilis Angelopoulos
+# format: revealjs
+format:
+  html: default
+  pptx:
+    slide-level: 2
+  revealjs:
+    output-file: 'sparthb.revealjs.html'
+slide-number: true
+---
+
+## Solar wind discontinuities (SWD)
+
+Discontinuous changes in plasmas parameters and magnetic fields
+
+- Import element of solar wind turbulences
+
+- Very kinetic structure: interact with energetic part of the solar wind ions
+
+## Pressure balance across discontinuities
+
+## Motivation
+
+Studying the radial evolution of solar wind discontinuities from synergistic observations of PSP and Earth-orbiting missions (ARTEMIS, Wind) during aligned intervals.
+
+- How does the discontinuities change with the radial distance from the Sun?
+
+- How is solar wind discontinuities formed? What is the physical mechanisms?
+
+  - Generated at or near the sun?
+
+  - Locally generated in the interplanetary space by turbulence?
+
+## In-situ synergistic observations
+
+**Similar** type of solar wind or **Same** solar solar wind
+
+How to define alignment?
+
+- Trajectory & Orbits (theory): ballistic approximation of Parker spiral
+
+- Plasma properties (observation): 
+
+  - Invariants: plasma composition, ionization states, mass flux $n u r^2$
+
+  - Correlation: magnetic field / plasma velocity
+
+- Simulation: Trace plasma parcels evolution
+
+<!-- sensing solar wind emitted from the same region on the solar surface, with the caveat that dynamical processes at the chromosphere–corona interface have not dramatically altered the solar footpoint within the time corresponding to the radial propagation from the measurement of one spacecraft to that of the other. -->
+
+
+## Orbits
+
+:::: {.columns}
+
+::: {.column}
+![](https://psp-gateway.jhuapl.edu/website/SciencePlanning/Encounters/E4_orbit.png)
+:::
+
+::: {.column}
+![](https://psp-gateway.jhuapl.edu/website/SciencePlanning/Encounters/Lag_from_PSP_to_STA_and_Earth.png)
+
+![Heliographic frame (corotating with Sun)](../notebooks/events/images/paste-1.png)
+:::
+
+::::
+
+## ENLIL simulation
+
+::: {.content-visible when-format="html"}
+
+![Normalized solar wind density at the ecliptic and the IMF lines](../images/enlil/tuz-a7b1-d4t05x1-d200t1-donki_den1-psp-x15wifs3z1fo_med_201903-201904.mp4)
+
+![Radial solar wind velocity at the ecliptic on the global and detail regions together with the temporal profile at spacecraft](../images/enlil/tuz-a7b1-d4t05x1-d200t1-donki_vel2e1-psp-x15ifs3z1fr_med_201903-201904.mp4)
+:::
+
+## Observation
+
+:::: {.columns}
+
+::: {.column}
+![PSP Observation Overvall](../images/paste-19.png)
+:::
+
+::: {.column}
+![PSP observation](../images/paste-18.png)
+:::
+
+::::
+
+
+## Observation (continued)
+
+:::: {.columns}
+
+::: {.column}
+![PSP observation](../images/paste-18.png)
+:::
+
+::: {.column}
+![ACE observation](../images/paste-16.png)
+:::
+
+::: {.column}
+![ACE observation (continued)](../images/paste-17.png)
+:::
+::::
+
+---
+
+Time resolution (from high to low): SPC, SPI, SQTN, QTN
+
+Quality (fluctuating, from high to low): SQTN, QTN, SPC/SPI
+
+![Different Density Product ](../figures/examples/psp_density_comparison.png)
+
+
+## Examples of discontinuities
+
+![](../figures/examples/psp_e2_example.png)
+
+In general discontinuities observed by PSP are with
+
+- shorter duration (1~5 secs)
+  
+  compared with 5-10 secs
+
+- large current density (100-1000 nA/m^2)
+  
+  compared with 1-10 nA/m^2
+
+
+
+## Identification/Detection method
+
+![](../figures/examples/detection_liu2022.png)
+
+@liuMagneticDiscontinuitiesSolar2022
+
+Compared with adjacent intervals without sampling
+
+## Properties of discontinuities
+
+![](../figures/examples/psp_e2_example.png)
+
+Every discontinuity's $l$ component is fitted by a $\tanh$ (logistic) function.
+
+Combined with plasma data ($n$, $v$, $T$)
+
+$L$: thickness of the discontinuity
+
+$J_0$: maxium current density
+
+---
+
+If we expect the discontinuities to be generated locally, then the thickness of the discontinuities should be related to local plasma parameters:
+
+- Normalize thickness by $d_i$ (ion inertial length) or $r_i$ (ion gyroradius)
+- Normalize current density by $J_A$ (Alfven current density)
+
+## Plasma adiabatic evolution
+
+:::: {.columns}
+::: {.column}
+![](../figures/evolution/plasma-adiabatic-evolution_e2-DSCOVR.svg)
+
+![](../figures/evolution/plasma-adiabatic-evolution_e2-DSCOVR-next.svg)
+
+![](../figures/evolution/plasma-adiabatic-evolution_e2-DSCOVR-previous.svg)
+:::
+
+::: {.column}
+
+![](../images/sty3348fig5.jpeg)
+
+@perroneRadialEvolutionSolar2019
+:::
+::::
+
+
+<!-- 
+The radial dependence of the proton number density, $n_p$ and magnetic ﬁeld magnitude, $B$, is given by
+
+$$
+n_p = (2.4 ± 0.1)(R/R_0)^{−(1.96±0.07)} cm^{−3}
+$$
+
+$$
+B = (5.7 ± 0.2)(R/R_0)^{−(1.59±0.06)} nT
+$$
+
+The faster decrease of the magnetic than kinetic pressure is reﬂected in the radial proton plasma beta variation
+
+$$
+β_p = P_k/P_B = (0.55 ± 0.04)(R/R_0)^{(0.4±0.1)}
+$$ -->
+
+## Comparison with discontinuities properties
+
+
+![](../figures/enc2/thickness_current.spi_n_spi.png)
+
+![](../figures/enc2/density_distribution.spi_n_spi.png)
+
+K1: Normalized discontinuities properties does not vary much with radial distance
+
+---
+
+![](../figures/enc2/thickness_current.spc_n_spc.png)
+
+![](../figures/enc2/density_distribution.spc_n_spc.png)
+
+K2: $Δv_l$,l demonstrates a strong correlation with $Δv_{A}$, albeit being consistently smaller.
+
+## Comparison with Alfven speed and plasma speed change
+
+For rotational discontinuities, the plasma velocity jump across them: the plasma ﬂow velocity $v_l$ (the solar wind velocity projected onto $l$) changes due to changes in $B_l$, $Δv_l=±Δv_A$ with $v_A= B_l / \sqrt{4 n m}$ [@hudsonDiscontinuitiesAnisotropicPlasma1970].
+
+![](../figures/enc2/dvl.spi_n_spi.png)
+
+## Comparison with anisotropy
+
+The equation for $Δv_A$ includes a factor depending on the anisotropy of the plasma.
+
+![](../figures/enc2/anisotropy.spi_n_spi.png)
+
+Pressure anisotropy $Λ = \mu (P_∥ - P_⊥) / B^2$.
+
+## Conclusion
+
+- The properties of the discontinuities is related to the local plasma parameters
+  - Thickness => ion inertial length
+  - Current density => Alfven velocity (current density)
+- Normalized thickness and current density of discontinuities remain constant with radial distance
+- Anisotropy of the plasma is expected to be larger near the sun to explain the observed speed change ratio $Δv_i/Δv_A$.
+
+---
+
+## References

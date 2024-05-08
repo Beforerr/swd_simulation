@@ -6,6 +6,9 @@ import xarray as xr
 import numpy as np
 import xrft
 
+from .energy import plot_energy_evolution
+from .yt_warpx import add_field
+from matplotlib.axes import Axes
 
 def normalize_dft_xr(da, meta):
     k_norm = 1 / meta["d_i"]
@@ -71,8 +74,7 @@ from functools import partial
 import yt
 
 direction = "z"
-ps = "ion"
-
+ps = "ions"
 
 _field_weight_field = ("boxlib", "volume")
 _part_weight_field = (ps, "particle_weight")
@@ -85,42 +87,32 @@ plot_field_profile = partial(
     y_log=False,
 )
 
-create_field_profile = partial(
-    yt.create_profile,
-    bin_fields=direction,
-    weight_field=_field_weight_field,
-    deposition="cic",
-)
-
-bin_fields = (ps, f"particle_position_{direction}")
-
-plot_particle_profile = partial(
-    yt.ProfilePlot,
-    x_field=bin_fields,
-    weight_field=_part_weight_field,
-    x_log=False,
-    y_log=False,
-)
-
-create_part_profile = partial(
-    yt.create_profile,
-    bin_fields=bin_fields,
-    weight_field=_part_weight_field,
-    deposition="cic",
-)
-
-
-field = "particle_momentum_y"
-
-
 def plot_field_with_plasma_profile(ds_field, ds_part, field0, field1, twin=True):
 
     n_bins = ds_field.domain_dimensions[0]
-
-    field_profile = create_field_profile(
-        ds_field.all_data(), fields=field0, n_bins=n_bins
+    
+    if ds_part.dimensionality == 1:
+        direction = "x"
+        true_direction = "z"
+        
+    field_profile = yt.create_profile(
+        ds_field.all_data(), 
+        fields=field0,
+        n_bins=n_bins,
+        bin_fields=direction,
+        weight_field=_field_weight_field,
+        deposition="cic",
     )
-    part_profile = create_part_profile(ds_part.all_data(), fields=field1)
+        
+    _part_bin_field = (ps, f"particle_position_{direction}")
+    part_profile = yt.create_profile(
+        ds_part.all_data(),
+        fields=field1,
+        bin_fields=_part_bin_field,
+        weight_field=_part_weight_field,
+        deposition="cic",
+    )
+    
 
     p0 = yt.ProfilePlot.from_profiles(field_profile)
     p1 = yt.ProfilePlot.from_profiles(part_profile)
@@ -133,7 +125,8 @@ def plot_field_with_plasma_profile(ds_field, ds_part, field0, field1, twin=True)
 
     # Customizing the plot
     fig, ax = plt.subplots()
-
+    ax: Axes
+    
     if twin:
         ax2 = ax.twinx()
     else:
@@ -167,18 +160,23 @@ def plot_field_with_plasma_profile(ds_field, ds_part, field0, field1, twin=True)
 def plot_field_with_plasma_profile_ts(
     ts_field,
     ts_part,
+    meta,
     name=None,
     step=8,
     field0=("boxlib", "V_Alfven_y"),
     field1=("V_y"),
 ):
-    os.makedirs("figures/field_plasma_profile", exist_ok=True)
+    directory = "figures/field_plasma_profile"
+    os.makedirs(directory, exist_ok=True)
     for ds_field, ds_part in zip(ts_field[::step], ts_part[::step]):
-        add_field(ds_field)
-        add_field(ds_part)
+        add_field(ds_field, meta=meta)
+        add_field(ds_part, meta=meta)
         fig = plot_field_with_plasma_profile(ds_field, ds_part, field0, field1)
-        fig.savefig(f"figures/field_plasma_profile/{name}_{ds_field.current_time}.png")
+
+        fname = f"{name}_{round(ds_field.current_time.item())}.png"
+        fig.savefig(f"{directory}/{fname}")
         plt.close(fig)
+
 
 def _plot_field_with_plasma_profile(ds_field, ds_part, field0, field1, twin=False):
     # BUG: not working, from_profiles does not support different data sources
@@ -195,3 +193,12 @@ def _plot_field_with_plasma_profile(ds_field, ds_part, field0, field1, twin=Fals
     )
 
     return p.figure
+
+
+def hodogram_ds(ds, meta: dict, comp1="By", comp2="Bz"):
+    time = ds.current_time
+    time_norm = time.value / meta["t_ci"]
+    ad = ds.all_data()
+    plt.plot(ad[comp1], ad[comp2], label=f"t={time_norm:.2f}")
+    plt.xlabel(comp1)
+    plt.ylabel(comp2)

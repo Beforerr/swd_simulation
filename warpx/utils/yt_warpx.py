@@ -19,7 +19,7 @@ def add_V_field(ds: Dataset, direction: str, ion_mass: float = 1.0):
     def _V(field, data):
         return data[f"particle_momentum_{direction}"] / ion_mass / u.kg
 
-    name = ("ion", f"V_{direction}")
+    name = ("ions", f"V_{direction}")
     ds.add_field(name, function=_V, units="km/s", sampling_type="particle")
 
 

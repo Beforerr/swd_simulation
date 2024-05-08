@@ -65,7 +65,7 @@ class AlfvenModes(HybridSimulation):
 
     A: float = 1  # relative amplitude
     theta: float = 0  # angle with respect to the background magnetic field
-    wave_number: int = 2  # wave number
+    wave_number: int = 1  # wave number
 
     # Spatial domain
     Lz_norm: float = 128
@@ -103,6 +103,7 @@ def main(
     beta: float = 0.25,
     theta: float = 60,
     plasma_resistivity: float = 100,
+    wave_number: float = 1,
     dz_norm: float = 0.5,
     dt_norm: float = 1 / 64,
     time_norm: float = 100,
