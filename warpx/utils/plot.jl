@@ -56,8 +56,8 @@ function plot_fields_time(df; window=(; step=16))
     B_fields = names(df, r"^B(x|y|mag)$")
 
     df = select_time(df; window...)
-
-    figure = (size=(600, 800),)
+    height = 100 * length(df.time |> unique)
+    figure = (size=(600, height),)
 
     axis = (ylabel="Current Density (A/m^2)",)
     plot_fields_time(df, j_fields; figure=figure, axis=axis)

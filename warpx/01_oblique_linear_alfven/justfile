@@ -8,5 +8,5 @@ log:
     python main.py
     python main.py --plasma-resistivity 10 --nppc 256 --substeps 32
     python main.py --beta 2 --plasma-resistivity 10
-    python main.py --theta 0 --beta 0.25 --eta 100  --nppc 256 --substeps 32
+    python main.py --theta 0 --beta 0.25 --eta 200  --nppc 256 --substeps 32 --time-norm 1000
     python main.py --theta 0 --beta 2 --eta 200  --nppc 256 --substeps 32
