@@ -19,7 +19,7 @@ Backtrace*
 
 # temporarily ignore the following files
 *.arrow
-*.png
+warpx/**/*.png
 *.pdf
 
 /overleaf/

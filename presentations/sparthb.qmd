@@ -67,6 +67,21 @@ In general discontinuities observed by PSP have the following properties:
 From MHD theory, conservation of momentum could be reduced to the balance of pressure across the discontinuity for RDs [@hudsonDiscontinuitiesAnisotropicPlasma1970]
 
 $$
+\Delta v_l= \pm \Delta v_A
+$$
+
+<!-- anisotropy=pl.col("pressure_perp") / pl.col("pressure_parp") -->
+<!-- Aa = T⊥,a∕T∥,a  -->
+
+## Comparison with Alfven speed and plasma speed change
+
+For rotational discontinuities, the plasma velocity jump across them: the plasma ﬂow velocity $v_l$ (the solar wind velocity projected onto $l$) changes due to changes in $B_l$, $Δv_l=±Δv_A$ with $v_A= B_l / \sqrt{4 n m}$.
+
+![](../figures/dvl.spi_n_spi.png)
+
+## Pressure balance across discontinuities for aniostropic plasma
+
+$$
 \left(\mathbf{V}_1-\mathbf{V}_2\right)
 =
 \frac{\mathbf{B}_1}{\left(4 \pi \mu \rho_1\right)^{1 / 2}}\left(1-\frac{\left(p_{\| 1}-p_{\perp 1}\right) 4 \pi \mu}{{B_1}^2}\right)^{1 / 2}
@@ -80,27 +95,14 @@ $$
 \Delta v_l= \pm \Delta v_A= \pm \frac{\Delta B_l}{\sqrt{4 \pi m n}} \sqrt{1-4 \pi \frac{p_{\|}-p_{\perp}}{B^2}}
 $$
 
-<!-- anisotropy=pl.col("pressure_perp") / pl.col("pressure_parp") -->
-<!-- Aa = T⊥,a∕T∥,a  -->
-
-## Observations
-
-
-
-## Comparison with Alfven speed and plasma speed change
-
-PSP Observation 
-
-For rotational discontinuities, the plasma velocity jump across them: the plasma ﬂow velocity $v_l$ (the solar wind velocity projected onto $l$) changes due to changes in $B_l$, $Δv_l=±Δv_A$ with $v_A= B_l / \sqrt{4 n m}$ [@hudsonDiscontinuitiesAnisotropicPlasma1970].
-
-![](../figures/dvl.spi_n_spi.png)
-
-
 ## Estimated Anistropy
 
 The equation for $Δv_A$ includes a factor depending on the anisotropy of the plasma.
 
 Pressure anisotropy $Λ = \mu (P_∥ - P_⊥) / B^2$.
+
+![](../figures/anisotropy_comparison_2d.png)
+
 
 ## Anistropy Observations
 
