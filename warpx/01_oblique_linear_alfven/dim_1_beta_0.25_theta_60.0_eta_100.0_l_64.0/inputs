@@ -6,7 +6,7 @@ algo.particle_shape = 1
 # amr
 amr.max_grid_size = 32
 amr.max_level = 0
-amr.n_cell = 256
+amr.n_cell = 128
 
 # boundary
 boundary.field_hi = periodic
@@ -40,7 +40,7 @@ field_energy.type = FieldEnergy
 
 # geometry
 geometry.dims = 1
-geometry.prob_hi = 2914697.286273027
+geometry.prob_hi = 1457348.6431365134
 geometry.prob_lo = 0
 
 # hybrid_pic_model
@@ -48,8 +48,8 @@ hybrid_pic_model.elec_temp = 62.05164441913021
 hybrid_pic_model.n0_ref = 100000000.0
 hybrid_pic_model.n_floor = 1562500.0
 hybrid_pic_model.plasma_hyper_resistivity = 1e-06
-hybrid_pic_model.plasma_resistivity(rho,J) = 10.0
-hybrid_pic_model.substeps = 32
+hybrid_pic_model.plasma_resistivity(rho,J) = 100.0
+hybrid_pic_model.substeps = 16
 
 # ions
 ions.charge = q_e
@@ -58,13 +58,13 @@ ions.initialize_self_fields = 0
 ions.injection_style = nrandompercell
 ions.mass = 1.672621310227663e-27
 ions.momentum_distribution_type = gaussian_parse_momentum_function
-ions.momentum_function_ux_m(x,y,z) = (0.0)/299792458.0
+ions.momentum_function_ux_m(x,y,z) = (188846.37676311927)/299792458.0
 ions.momentum_function_ux_th(x,y,z) = (77096.21047383804)/299792458.0
-ions.momentum_function_uy_m(x,y,z) = (218061.01291934482 * cos(2.155690519482312e-06 * z))/299792458.0
+ions.momentum_function_uy_m(x,y,z) = (218061.01291934482 * cos(4.311381038964624e-06 * z))/299792458.0
 ions.momentum_function_uy_th(x,y,z) = (77096.21047383804)/299792458.0
 ions.momentum_function_uz_m(x,y,z) = (0)/299792458.0
 ions.momentum_function_uz_th(x,y,z) = (77096.21047383804)/299792458.0
-ions.num_particles_per_cell = 256
+ions.num_particles_per_cell = 64
 ions.profile = parse_density_function
 
 # max_step
@@ -79,9 +79,9 @@ particles.species_names = ions
 
 # warpx
 warpx.B_ext_grid_init_style = parse_b_ext_grid_function
-warpx.Bx_external_grid_function(x,y,z) = 0.0
-warpx.By_external_grid_function(x,y,z) = 1.0000000000000001e-07 * cos(2.155690519482312e-06 * z)
-warpx.Bz_external_grid_function(x,y,z) = 1.0000000000000001e-07
-warpx.const_dt = 0.01024913293917317
+warpx.Bx_external_grid_function(x,y,z) = 8.660254037844386e-08
+warpx.By_external_grid_function(x,y,z) = 1.0000000000000001e-07 * cos(4.311381038964624e-06 * z)
+warpx.Bz_external_grid_function(x,y,z) = 5.000000000000002e-08
+warpx.const_dt = 0.00724723140257176
 warpx.reduced_diags_names = part_energy field_energy
 warpx.serialize_initial_conditions = 1

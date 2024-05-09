@@ -14,11 +14,24 @@ include("utils/io.jl")
 include("utils/analysis.jl")
 include("utils/plot.jl")
 
+# set_aog_theme!()
+
+function setup(directory)
+    # change to simulation directory and load metadata
+    try
+        cd(directory)
+        println("Changed to $directory")
+    catch
+    end
+    # load simulation metadata (json)
+    JSON.parsefile("sim_parameters.json")
+end
+
 
 function setup(dim::Int, beta::Float64, theta::Float64, eta::Float64)
     # change to simulation directory and load metadata
-    base_dir = @__DIR__ 
-    sub_dir = "oblique_linear_alfven/dim_$(dim)_beta_$(beta)_theta_$(theta)_eta_$(eta)"
+    base_dir = @__DIR__
+    sub_dir = "01_oblique_linear_alfven/dim_$(dim)_beta_$(beta)_theta_$(theta)_eta_$(eta)"
     directory = "$base_dir/$sub_dir"
     try
         cd(directory)
@@ -37,14 +50,18 @@ end
 
 # Flags
 """
-@cast function run(; dim::Int=1, beta::Float64=0.25, theta::Float64=60.0, eta::Float64=10.0)
+@cast function run(;
+    dim::Int=1, beta::Float64=0.25, theta::Float64=60.0, eta::Float64=10.0,
+    noPlotFields::Bool=false, noPlotFieldsTime::Bool=false, noPlotOverviewTs::Bool=false
+)
     @show dim beta theta eta
 
     meta = setup(dim, beta, theta, eta)
     df = load_field(meta)
-    plot_fields(df)
-    plot_fields_time(df)
-    plot_overview_ts(df)
+
+    noPlotFields || plot_fields(df)
+    noPlotFieldsTime || plot_fields_time(df)
+    noPlotOverviewTs || plot_overview_ts(df)
 end
 
 

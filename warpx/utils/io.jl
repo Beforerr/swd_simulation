@@ -76,7 +76,9 @@ function process_df!(df, meta)
             :Λ_temp = :T_perp ./ :T_parp,
             :Λ = convert.(Float64, μ_0 * :rho_n .* (:T_parp .- :T_perp ) ./ (:Bmag * u"T").^2 ),
         )
-        @transform!( # pressure anisotropy modified Alfven speed
+        @transform!( 
+            :Λ_temp_log = log.(:Λ_temp),
+            # pressure anisotropy modified Alfven speed
             :vA_p_x = :vA_x .* sqrt.(1 .- :Λ),
             :vA_p_y = :vA_y .* sqrt.(1 .- :Λ),
             :vA_p_z = :vA_z .* sqrt.(1 .- :Λ),

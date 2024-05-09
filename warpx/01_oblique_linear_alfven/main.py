@@ -64,7 +64,7 @@ class AlfvenModes(HybridSimulation):
     wave_number: int = 1  # wave number
 
     # Spatial domain
-    Lz_norm: float = 128
+    Lz_norm: float = 64
     nx: int = 16  # by default blocking_factor is 8 so at least 16
     ny: int = 16
 
@@ -107,7 +107,7 @@ def main(
     wave_number: float = 1,
     dz_norm: float = 0.5,
     dt_norm: float = 1 / 64,
-    Lz_norm: float = 128,
+    Lz_norm: float = 64,
     time_norm: float = 100,
     substeps: int = 16,
     nppc: int = 64,
@@ -115,25 +115,25 @@ def main(
 ):
 
     wave_length = Lz_norm / wave_number
-    print(wave_length)
-
     change_dir(dim=dim, beta=beta, theta=theta, eta=eta, wave_length=wave_length)
 
-    grid_kwargs = dict()
+    sim_kwargs = dict()
     if dim == 3:
-        grid_kwargs.update(
-            warpx_blocking_factor_x=4,
-            warpx_blocking_factor_y=4,
+        # Reduce the number of cells in x and y to accelerate the simulation
+        sim_kwargs.update(
+            nx=8,
+            ny=8,
+            grid_kwargs=dict(
+                warpx_blocking_factor_x=4,
+                warpx_blocking_factor_y=4,
+            ),
         )
 
     simulation = AlfvenModes(
         **ctx.params,
         plasma_resistivity=eta,
         diag_part=True,
-        # Reduce the number of cells in x and y to accelerate the simulation
-        grid_kwargs=grid_kwargs,
-        nx=8,
-        ny=8,
+        **sim_kwargs
     )
 
     print(ctx.params)

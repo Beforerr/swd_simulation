@@ -7,7 +7,10 @@ plot:
     python main.py --eta 10 --plot-wk-spectrum --export
     julia main.jl run --eta 10
 
-log:
+log-v1:
+    directory
+
+log-v0:
     python main.py --beta 0.25 --eta 10 
     julia main.jl run --beta 0.25 --eta 10
 

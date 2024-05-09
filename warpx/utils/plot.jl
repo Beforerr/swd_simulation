@@ -12,12 +12,20 @@ temp_norm_fields = ["T_parp_norm", "T_perp_norm"]
 pressure_fields = ["pressure_x", "pressure_y", "pressure_z"]
 pressure_f_fields = ["pressure_parp", "pressure_perp"]
 
-function plot_fields(df, fields; axis=NamedTuple(), figure=NamedTuple(), fig_options=(size=(800, 800),))
+temp_norm_labs = ["Parallel Temperature", "Perpendicular Temperature"]
+
+temp_renamer = renamer(Pair.(temp_norm_fields, temp_norm_labs))
+
+Λ_renamer = renamer(
+    ["Λ_temp_log" => "Log Temperature Anisotropy"]
+)
+
+function plot_fields(df, fields; func=identity, vargs=NamedTuple(), kwargs...)
 
     temp_df = get_avg_fields(df, fields, ids=ids)
-    plt = data(temp_df) * mapping(Pair.(ids, labs)..., :value, layout=:variable) * visual(Heatmap)
+    plt = data(temp_df) * mapping(Pair.(ids, labs)..., :value, layout=:variable => func) * visual(Heatmap; vargs...)
 
-    draw(plt; figure=figure, axis=axis)
+    draw(plt; kwargs...)
 end
 
 function plot_fields(df)
@@ -34,22 +42,21 @@ function plot_fields(df)
     plot_fields(df, "rho_n_norm")
     easy_save("rho_n_norm")
 
-    plot_fields(df, temp_norm_fields)
+    plot_fields(df, temp_norm_fields; func=temp_renamer)
     easy_save("temp_norm")
 
-    plot_fields(df, "Λ_temp")
-    easy_save("Λ_temp")
+    plot_fields(df, "Λ_temp_log"; vargs=(colormap=:balance,), func=Λ_renamer)
+    easy_save("temp_anisotropy")
 end
 
 function plot_fields_time(
-    df, fields;
-    axis=NamedTuple(), figure=NamedTuple(), legend=(framevisible=false,)
+    df, fields; legend=(framevisible=false,), kwargs...
 )
     temp_df = get_avg_fields(df, fields, ids=ids)
-    temp_df.time_norm = CategoricalArray(temp_df.time_norm .|> floor)
+    temp_df.time_norm = CategoricalArray(temp_df.time_norm .|> round)
 
     plt = data(temp_df) * mapping(:z_norm => z_norm_lab, :value, color=:variable, row=:time_norm) * visual(Lines)
-    draw(plt; axis=axis, figure=figure, legend=legend)
+    draw(plt; legend=legend, kwargs...)
 end
 
 function plot_fields_time(df; window=(; step=16))

@@ -108,6 +108,8 @@ Pressure anisotropy $Λ = \mu (P_∥ - P_⊥) / B^2$.
 
 ![](../figures/apjad110bf8_hr.jpg)
 
+![](../figures/anisotropy_comparison_2d.png)
+
 ::: {.notes}
 - @shenComparingPlasmaAnisotropy2024
 
@@ -162,8 +164,61 @@ The kinetic-fluid hybrid extension mostly uses the same routines as the standard
 
 ## Results
 
+### $\beta = 0.25$, $\theta_B = 60°$, $\eta = 10$
 
+Formation of discontinuity
 
-![](../figures/anisotropy_comparison_2d.png)
+- Constant $B$
+- Reverse in $B_y$ and a bump in $B_x$
+
+Second order effects
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/B_time.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/j_time.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/temp_norm.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/temp_anisotropy.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/fields/time_0.0.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/fields/time_16.0.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/fields/time_56.0.png)
+
+### $\beta = 2$, $\theta_B = 60°$, $\eta = 10$
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/B_time.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/j_time.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/temp_norm.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/temp_anisotropy.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/fields/time_0.0.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/fields/time_16.0.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/fields/time_56.0.png)
+
+Discontinuities are formed in both cases, however, higher $\beta$ case has
+
+- Smaller area of structured temperature anisotropy
+- Larger temperature anisotropy
+
 
 ## Preliminary Conclusion
+
+
+## More results
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/B_field.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/j_field.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/rho_n_norm.png)
+
+
+

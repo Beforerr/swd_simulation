@@ -16,10 +16,7 @@ app = typer.Typer()
 
 @app.command()
 def main(
-    dim: int = 1,
-    beta: float = 0.25,
-    theta: float = 60,
-    eta: float = 100,
+    directory: str = "data",
     export: bool = True,
     plot_energy: bool = True,
     plot_wk_spectrum: bool = False,
@@ -27,7 +24,7 @@ def main(
     plot_plasma_velocity: bool = False
 ):
 
-    meta = setup(dim, beta, theta, eta)
+    meta = setup(directory)
 
     ts_field, ts_part = load_ts_all(meta)
 
