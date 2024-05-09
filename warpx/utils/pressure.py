@@ -1,6 +1,6 @@
 import polars as pl
 import polars.selectors as cs
-from utils import ds2df
+from .io import ds2df
 import numpy as np
 from tqdm import tqdm
 

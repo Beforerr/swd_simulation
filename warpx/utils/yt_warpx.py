@@ -1,6 +1,6 @@
 import numpy as np
 import unyt as u
-from utils import check_ds_type
+from .io import check_ds_type
 from yt.data_objects.static_output import Dataset
 from unyt.physical_constants import mu_0
 

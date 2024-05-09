@@ -18,7 +18,7 @@ include("utils/plot.jl")
 function setup(dim::Int, beta::Float64, theta::Float64, eta::Float64)
     # change to simulation directory and load metadata
     base_dir = @__DIR__ 
-    sub_dir = "01_oblique_linear_alfven/dim_$(dim)_beta_$(beta)_theta_$(theta)_eta_$(eta)"
+    sub_dir = "oblique_linear_alfven/dim_$(dim)_beta_$(beta)_theta_$(theta)_eta_$(eta)"
     directory = "$base_dir/$sub_dir"
     try
         cd(directory)

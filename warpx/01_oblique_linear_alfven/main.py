@@ -2,12 +2,12 @@ import numpy as np
 from pywarpx import picmi
 from space_analysis.utils.math import cosd, sind
 from space_analysis.simulation.warpx import HybridSimulation
-import os
-from pathlib import Path
 import typer
 from rich import print
+from utils import change_dir
 
 constants = picmi.constants
+
 
 def init_obl_alfven(
     k,
@@ -44,7 +44,7 @@ def init_obl_alfven(
     rms_velocity = [v_ti, v_ti, v_ti]
     dist = picmi.AnalyticDistribution(
         density_expression=n0,
-        momentum_expressions=momentum_expressions, #: Analytic expressions describing the gamma*velocity for each axis [m/s]
+        momentum_expressions=momentum_expressions,  #: Analytic expressions describing the gamma*velocity for each axis [m/s]
         warpx_momentum_spread_expressions=rms_velocity,  #: gamma*velocity spread for each axis
     )
 
@@ -71,7 +71,7 @@ class AlfvenModes(HybridSimulation):
     @property
     def _w_ci(self):
         """Modified Ion cyclotron frequency (rad/s) due to large amplitude waves"""
-        return constants.q_e * abs(self.B0) * np.sqrt(1+self.A**2) / self.m_ion
+        return constants.q_e * abs(self.B0) * np.sqrt(1 + self.A**2) / self.m_ion
 
     def setup_init_cond(self):
         """setup initial conditions"""
@@ -107,18 +107,17 @@ def main(
     wave_number: float = 1,
     dz_norm: float = 0.5,
     dt_norm: float = 1 / 64,
+    Lz_norm: float = 128,
     time_norm: float = 100,
     substeps: int = 16,
     nppc: int = 64,
     dry_run: bool = False,
 ):
 
-    base_dir = Path(__file__).parent
-    sub_dir = f"dim_{dim}_beta_{beta}_theta_{theta}_eta_{eta}"
-    directory = base_dir / sub_dir
+    wave_length = Lz_norm / wave_number
+    print(wave_length)
 
-    os.makedirs(directory, exist_ok=True)
-    os.chdir(directory)
+    change_dir(dim=dim, beta=beta, theta=theta, eta=eta, wave_length=wave_length)
 
     grid_kwargs = dict()
     if dim == 3:
@@ -151,6 +150,7 @@ def main(
         simulation._sim.step()
 
     return simulation
+
 
 if __name__ == "__main__":
     app()

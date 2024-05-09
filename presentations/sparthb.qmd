@@ -6,7 +6,6 @@ author:
   - name: Anton V. Artemyev
   - name: Xin An
   - name: Vassilis Angelopoulos
-# format: revealjs
 format:
   html: default
   pptx:
@@ -101,16 +100,29 @@ The equation for $Δv_A$ includes a factor depending on the anisotropy of the pl
 
 Pressure anisotropy $Λ = \mu (P_∥ - P_⊥) / B^2$.
 
-![](../figures/anisotropy_comparison_2d.png)
-
+![](../figures/anisotropy_theory.png)
 
 ## Anistropy Observations
 
+![](../figures/apjad110bf7_hr.jpg)
+
+![](../figures/apjad110bf8_hr.jpg)
+
+::: {.notes}
 - @shenComparingPlasmaAnisotropy2024
+
+Theory-predicted and directly measured anisotropies diverge for small-scale discontinuities that occur on the timescales of a few to tens of seconds. This likely can be explained by the lack of high-resolution ion anisotropy measurements. Such an inconsistency also suggests that small, kinetic-scale electron and ion characteristics must be investigated to fully understand the nature and origin of solar wind discontinuities.
+:::
 
 ## Motivation
 
-Hybrid Simulation to study anisotropy formation mechanism in the solar wind
+- Kinetic-scale electron and ion dynamics
+- Lack of high-resolution ion anisotropy measurements
+
+Hybrid Simulation to study anisotropy relationship with solar wind discontinuities
+
+- anisotropy formation mechanism
+- discontinuity formation and evolution
 
 ## Simulation Setup
 
@@ -121,10 +133,37 @@ Formation of arc-shaped Alfvén waves and rotational discontinuities
 - from oblique linearly polarized wave trains
 - Continuously injected plasma reflected by another boundary
 
-how RDs are initialized in the simulations and its effects on the resultingsolution
+how RDs are initialized in the simulations and its effects on the resulting solution
 
-<!-- Ideally, it is desirableto specifythe boundaryconditionsfar upstreamand downstreamof the discontinuityand let the plasmadetermintehestructur -->
+::: {.notes}
+Ideally, it is desirableto specifythe boundaryconditionsfar upstreamand downstream of the discontinuity and let the plasma determine the structure
+:::
+
+## Simulation Setup (Continued)
+
+- System Characteristics
+
+- $\beta$ : plasma beta, the ratio of the plasma pressure to the magnetic pressure - $0.25$ (near-Sun) and $2$ (near-Earth)
+- $\theta_B$ : the angle between the wave vector and the background magnetic field - $60°$ and $0°$
+- $A$ : the relative amplitude of the wave - $1$
+- $\lambda$ : the wavelength of the wave - $128$ ion inertial length
+
+Numerical parameters
+
+- $\eta$ : resistivity, to dampen the whistler waves - $10$
+
+$$
+\vec{E} = -\frac{1}{en_e}\left( \vec{J}_e\times\vec{B} + \nabla P_e \right)+\eta\vec{J}-\eta_h \nabla^2\vec{J}
+$$
+
+::: {.notes}
+The kinetic-fluid hybrid extension mostly uses the same routines as the standard electromagnetic PIC algorithm with the only exception that the E-field is calculated from the above equation rather than it being updated from the full Maxwell-Ampere equation.
+:::
 
 ## Results
+
+
+
+![](../figures/anisotropy_comparison_2d.png)
 
 ## Preliminary Conclusion
