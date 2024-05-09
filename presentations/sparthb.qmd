@@ -30,13 +30,28 @@ For rotational discontinuities, the plasma velocity jump across them: the plasma
 
 Discontinuous changes in plasmas parameters and magnetic fields
 
-- Import element of solar wind turbulences
+Magnetohydrodynamics theory: classified as rotational discontinuities (RD), tangential discontinuities (TD), and shock waves
 
-- Very kinetic structure: interact with energetic part of the solar wind ions
+![Sketch of types of discontinuity](../figures/discontinuity.jpeg)
+
+- Import element of solar wind turbulences @borovskyContributionStrongDiscontinuities2010
+
+- Very kinetic structure:
+
+  - Jumps in the electron density, temperature and pitch angle distribution @artemyevKineticNatureSolar2019
+
+  - Interact with energetic part of the solar wind ions
 
 ### Examples of discontinuities
 
-In general discontinuities observed by PSP are with
+![](../figures/psp_e2_example.png)
+
+![](../figures/themis_e2_examples.png)
+
+Most of the discontinuities observed have thickness about 1~20 ion inertial length (indepentent of the location in the heliosphere)
+
+<!-- 
+In general discontinuities observed by PSP have the following properties:
 
 - shorter duration (1~5 secs)
   
@@ -44,20 +59,33 @@ In general discontinuities observed by PSP are with
 
 - large current density (100-1000 nA/m^2)
   
-  compared with 1-10 nA/m^2
-
+  compared with 1-10 nA/m^2 
+-->
 
 ## Pressure balance across discontinuities
+
+From MHD theory, conservation of momentum could be reduced to the balance of pressure across the discontinuity for RDs [@hudsonDiscontinuitiesAnisotropicPlasma1970]
+
+$$
+\left(\mathbf{V}_1-\mathbf{V}_2\right)
+=
+\frac{\mathbf{B}_1}{\left(4 \pi \mu \rho_1\right)^{1 / 2}}\left(1-\frac{\left(p_{\| 1}-p_{\perp 1}\right) 4 \pi \mu}{{B_1}^2}\right)^{1 / 2}
+-
+\frac{\mathbf{B}_2}{\left(4 \pi \mu \rho_2\right)^{1 / 2}}\left(1-\frac{\left(p_{\| 2}-p_{\perp 2}\right) 4 \pi \mu}{{B_2}^2}\right)^{1 / 2}
+$$
+
+With first order approximation, the velocity jump across the discontinuity is
 
 $$
 \Delta v_l= \pm \Delta v_A= \pm \frac{\Delta B_l}{\sqrt{4 \pi m n}} \sqrt{1-4 \pi \frac{p_{\|}-p_{\perp}}{B^2}}
 $$
 
-
 <!-- anisotropy=pl.col("pressure_perp") / pl.col("pressure_parp") -->
 <!-- Aa = T⊥,a∕T∥,a  -->
 
 ## Observations
+
+
 
 ## Comparison with Alfven speed and plasma speed change
 
