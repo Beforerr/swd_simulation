@@ -18,4 +18,4 @@ format:
     toc: true
 
 bibliography:
-  - ../research.bib
+  - ../share/bibliography/research.bib
