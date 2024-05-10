@@ -17,17 +17,17 @@ slide-number: true
 
 ## Solar wind discontinuities (SWD)
 
-Discontinuous changes in plasmas parameters and magnetic fields
+> Discontinuous changes in plasmas parameters and magnetic fields. ~~Confucius~~ Colburn et al., 1966
 
 Magnetohydrodynamics theory: classified as rotational discontinuities (RD), tangential discontinuities (TD), and shock waves
 
 ![Sketch of types of discontinuity](../figures/discontinuity.jpeg)
 
-- Import element of solar wind turbulences ***@borovskyContributionStrongDiscontinuities2010***.
+- Import element of solar wind turbulences @borovskyContributionStrongDiscontinuities2010.
 
 - Very kinetic structure:
 
-  - Jumps in the electron density, temperature and pitch angle distribution ***@artemyevKineticNatureSolar2019***.
+  - Jumps in the electron density, temperature and pitch angle distribution @artemyevKineticNatureSolar2019.
 
   - Interact with energetic part of the solar wind ions
 
@@ -245,6 +245,11 @@ Change from perpendicular to parallel temperature anisotropy is observed.
 
 ![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/fields/time_56.0.png) 
 -->
+
+## Simulation Summary
+
+| beta | 
+
 
 ## Conclusion
 
