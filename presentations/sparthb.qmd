@@ -1,5 +1,5 @@
 ---
-title: "Solar Wind Discontinuities: Parker Solar Probe vs ARTEMIS Observations"
+title: "Anisotropy in Solar Wind Discontinuities: Observations and Hybrid Simulations"
 subtitle: SPARTHB
 author:
   - name: Zijin Zhang
@@ -15,16 +15,6 @@ format:
 slide-number: true
 ---
 
-## References
-
-- @shenComparingPlasmaAnisotropy2024
-- @artemyevKineticNatureSolar2019
-- @artemyevKineticPropertiesSolar2019
-- @hudsonRotationalDiscontinuitiesAnisotropic1971
-- @hudsonDiscontinuitiesAnisotropicPlasma1970
-
-For rotational discontinuities, the plasma velocity jump across them: the plasma ﬂow velocity $v_l$ (the solar wind velocity projected onto $l$) changes due to changes in $B_l$, $Δv_l=±Δv_A$ with $v_A= B_l / \sqrt{4 n m}$ [@hudsonDiscontinuitiesAnisotropicPlasma1970].
-
 ## Solar wind discontinuities (SWD)
 
 Discontinuous changes in plasmas parameters and magnetic fields
@@ -33,33 +23,29 @@ Magnetohydrodynamics theory: classified as rotational discontinuities (RD), tang
 
 ![Sketch of types of discontinuity](../figures/discontinuity.jpeg)
 
-- Import element of solar wind turbulences @borovskyContributionStrongDiscontinuities2010
+- Import element of solar wind turbulences ***@borovskyContributionStrongDiscontinuities2010***.
 
 - Very kinetic structure:
 
-  - Jumps in the electron density, temperature and pitch angle distribution @artemyevKineticNatureSolar2019
+  - Jumps in the electron density, temperature and pitch angle distribution ***@artemyevKineticNatureSolar2019***.
 
   - Interact with energetic part of the solar wind ions
 
-### Examples of discontinuities
+## Examples of discontinuities
 
-![](../figures/psp_e2_example.png)
+![PSP Observations](../figures/psp_e2_example.png)
 
-![](../figures/themis_e2_examples.png)
+![ARTEMIS Observations](../figures/themis_e2_examples.png)
 
 Most of the discontinuities observed have thickness about 1~20 ion inertial length (indepentent of the location in the heliosphere)
 
-<!-- 
+::: {.notes}
 In general discontinuities observed by PSP have the following properties:
 
-- shorter duration (1~5 secs)
-  
-  compared with 5-10 secs
+- shorter duration (1~5 secs), compared with 5-10 secs
 
-- large current density (100-1000 nA/m^2)
-  
-  compared with 1-10 nA/m^2 
--->
+- large current density (100-1000 nA/m^2), compared with 1-10 nA/m^2 
+:::
 
 ## Pressure balance across discontinuities
 
@@ -94,7 +80,7 @@ $$
 \Delta v_l= \pm \Delta v_A= \pm \frac{\Delta B_l}{\sqrt{4 \pi m n}} \sqrt{1-4 \pi \frac{p_{\|}-p_{\perp}}{B^2}}
 $$
 
-## Estimated Anistropy
+## Estimated Anisotropy
 
 The equation for $Δv_A$ includes a factor depending on the anisotropy of the plasma.
 
@@ -102,7 +88,7 @@ Pressure anisotropy $Λ = \mu (P_∥ - P_⊥) / B^2$.
 
 ![](../figures/anisotropy_theory.png)
 
-## Anistropy Observations
+## Anisotropy Observations
 
 ![](../figures/apjad110bf7_hr.jpg)
 
@@ -118,6 +104,8 @@ Theory-predicted and directly measured anisotropies diverge for small-scale disc
 
 ## Motivation
 
+Observations of anisotropy in solar wind discontinuities reveals
+
 - Kinetic-scale electron and ion dynamics
 - Lack of high-resolution ion anisotropy measurements
 
@@ -132,8 +120,8 @@ Hybrid Simulation to study anisotropy relationship with solar wind discontinuiti
 
 Formation of arc-shaped Alfvén waves and rotational discontinuities 
 
-- from oblique linearly polarized wave trains
-- Continuously injected plasma reflected by another boundary
+- Oblique linearly polarized wave trains @vasquezFormationArcshapedAlfven1996
+- Continuously injected plasma reflected by another boundary @omidiRotationalDiscontinuitiesAnisotropic1992
 
 how RDs are initialized in the simulations and its effects on the resulting solution
 
@@ -164,7 +152,7 @@ The kinetic-fluid hybrid extension mostly uses the same routines as the standard
 
 ## Results
 
-### $\beta = 0.25$, $\theta_B = 60°$, $\eta = 10$
+### $\beta = 0.25$, $\theta_B = 60°$
 
 Formation of discontinuity
 
@@ -172,6 +160,8 @@ Formation of discontinuity
 - Reverse in $B_y$ and a bump in $B_x$
 
 Second order effects
+
+temperature anisotropy $\Lambda_T = T_{\perp}/T_{\parallel}$
 
 ![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/B_time.png)
 
@@ -187,7 +177,7 @@ Second order effects
 
 ![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/fields/time_56.0.png)
 
-### $\beta = 2$, $\theta_B = 60°$, $\eta = 10$
+### $\beta = 2$, $\theta_B = 60°$
 
 ![](../warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/B_time.png)
 
@@ -206,10 +196,77 @@ Second order effects
 Discontinuities are formed in both cases, however, higher $\beta$ case has
 
 - Smaller area of structured temperature anisotropy
-- Larger temperature anisotropy
+- Larger pressure anisotropy
 
+### $\beta = 0.25$, $\theta_B = 0°$
 
-## Preliminary Conclusion
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_0.0_eta_100.0/figures/B_time.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_0.0_eta_100.0/figures/j_time.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_0.0_eta_100.0/figures/temp_norm.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_0.0_eta_100.0/figures/temp_anisotropy.png)
+
+No clear discontinuity is formed in this case, however, the temperature is dominated by the parallel component.
+
+To compare with larger $\theta_B$ case
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/temp_anisotropy.png)
+
+Let the simulation run for longer time to see if the discontinuity is formed.
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_0.0_eta_200.0/figures/B_time.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_0.0_eta_200.0/figures/temp_norm.png)
+
+### $\beta = 2$, $\theta_B = 0°$
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_0.0_eta_200.0/figures/B_time.png)
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_0.0_eta_200.0/figures/temp_anisotropy.png)
+
+To compare with larger $\theta_B$ case
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/temp_anisotropy.png)
+
+### $\beta = 0.25$, $\theta_B = 60°$, smaller wavelength
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_100.0_l_64.0/figures/temp_anisotropy.png)
+
+To compare with larger wavelength case
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/temp_anisotropy.png)
+
+Change from perpendicular to parallel temperature anisotropy is observed.
+
+<!-- 
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_100.0_l_64.0/figures/fields/time_56.0.png) 
+
+![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/fields/time_56.0.png) 
+-->
+
+## Conclusion
+
+- We observed systematic discrepancies between Alfven velocity and plasma velocity change across discontinuities
+
+- We observed systematic discrepancies between anisotropic MHD theory-predicted and directly measured ion anisotropies
+
+  - Imply the kinetic structure around discontinuities, ion/electron contribution to anisotropy may be significant
+
+- Preliminary results from hybrid simulations show that from **oblique** linearly polarized wave trains, rotational discontinuities can be formed
+
+  - No clear discrepancy between Alfven velocity and plasma velocity change across discontinuities
+
+    - Pressure aniostropy could not explain the difference
+
+  - Formation of temperature anisotropy near discontinuities
+
+    - Larger pressure anisotropy but less structured temperature anisotropy for higher $\beta$
+
+    - Change from perpendicular to parallel temperature anisotropy for smaller wavelength
+
+  - $\theta_B = 0°$: No clear signature of discontinuity, dominated by parallel temperature
 
 
 ## More results
@@ -220,5 +277,10 @@ Discontinuities are formed in both cases, however, higher $\beta$ case has
 
 ![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/rho_n_norm.png)
 
+## References
 
-
+- @shenComparingPlasmaAnisotropy2024
+- @artemyevKineticNatureSolar2019
+- @artemyevKineticPropertiesSolar2019
+- @hudsonRotationalDiscontinuitiesAnisotropic1971
+- @hudsonDiscontinuitiesAnisotropicPlasma1970

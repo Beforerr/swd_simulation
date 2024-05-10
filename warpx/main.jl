@@ -27,21 +27,6 @@ function setup(directory)
     JSON.parsefile("sim_parameters.json")
 end
 
-
-function setup(dim::Int, beta::Float64, theta::Float64, eta::Float64)
-    # change to simulation directory and load metadata
-    base_dir = @__DIR__
-    sub_dir = "01_oblique_linear_alfven/dim_$(dim)_beta_$(beta)_theta_$(theta)_eta_$(eta)"
-    directory = "$base_dir/$sub_dir"
-    try
-        cd(directory)
-        println("Changed to $directory")
-    catch
-    end
-    # load simulation metadata (json)
-    JSON.parsefile("sim_parameters.json")
-end
-
 """
 # Options
 
@@ -51,12 +36,11 @@ end
 # Flags
 """
 @cast function run(;
-    dim::Int=1, beta::Float64=0.25, theta::Float64=60.0, eta::Float64=10.0,
+    directory::String = ".",
     noPlotFields::Bool=false, noPlotFieldsTime::Bool=false, noPlotOverviewTs::Bool=false
+    # dim::Int=1, beta::Float64=0.25, theta::Float64=60.0, eta::Float64=10.0,
 )
-    @show dim beta theta eta
-
-    meta = setup(dim, beta, theta, eta)
+    meta = setup(directory)
     df = load_field(meta)
 
     noPlotFields || plot_fields(df)

@@ -22,6 +22,9 @@ $$
 - [x] beta and ion temperature
 
 
+# TODO
+
+- [] Check ion gyro-radius
 
 
 

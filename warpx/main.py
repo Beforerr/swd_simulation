@@ -10,13 +10,18 @@ from utils.plot import (
 )
 from utils.pressure import export_part_field
 
+
+from plasmapy.formulary import gyroradius
+
+gyroradius()
+
+
 import typer
 app = typer.Typer()
 
-
 @app.command()
 def main(
-    directory: str = "data",
+    directory: str = ".",
     export: bool = True,
     plot_energy: bool = True,
     plot_wk_spectrum: bool = False,

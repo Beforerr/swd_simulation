@@ -91,9 +91,7 @@ class AlfvenModes(HybridSimulation):
 
         return self
 
-
 app = typer.Typer()
-
 
 @app.command(
     context_settings={"allow_extra_args": True, "ignore_unknown_options": True}
@@ -112,6 +110,7 @@ def main(
     substeps: int = 16,
     nppc: int = 64,
     dry_run: bool = False,
+    verbose: bool = False,
 ):
 
     wave_length = Lz_norm / wave_number
@@ -146,9 +145,9 @@ def main(
     t_w_norm = t_w / simulation.t_ci
     t_w_norm
 
-    if not dry_run:
-        simulation._sim.step()
-
+    simulation._sim.verbose = verbose
+    dry_run or simulation._sim.step()
+    
     return simulation
 
 

@@ -7,8 +7,20 @@ plot:
     python main.py --eta 10 --plot-wk-spectrum --export
     julia main.jl run --eta 10
 
+run directory:
+    python main.py --directory {{directory}}
+    julia main.jl run --directory {{directory}}
+
 log-v1:
-    directory
+    python main.py --directory "01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_100.0_l_64.0"
+    julia main.jl run --directory "01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_100.0_l_64.0"
+
+    just run "01_oblique_linear_alfven/dim_1_beta_0.25_theta_0.0_eta_100.0"
+    just run "01_oblique_linear_alfven/dim_1_beta_2.0_theta_0.0_eta_200.0"
+    just run "01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_100.0_l_64.0"
+    just run "01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_100.0_l_32.0"
+    just run "01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0_l_64.0"
+
 
 log-v0:
     python main.py --beta 0.25 --eta 10 
