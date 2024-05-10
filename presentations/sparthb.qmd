@@ -104,10 +104,15 @@ Theory-predicted and directly measured anisotropies diverge for small-scale disc
 
 ## Motivation
 
-Observations of anisotropy in solar wind discontinuities reveals
+Observations of solar wind discontinuities reveals discrepancies between
 
-- Kinetic-scale electron and ion dynamics
+- Alfven velocity and plasma velocity change across discontinuities
+- Anisotropic MHD theory-predicted and directly measured ion anisotropies
+
+This imply
+
 - Lack of high-resolution ion anisotropy measurements
+- Kinetic-scale electron and ion dynamics (beyond anisotropic MHD thoery)
 
 Hybrid Simulation to study anisotropy relationship with solar wind discontinuities
 
@@ -161,13 +166,13 @@ Formation of discontinuity
 
 Second order effects
 
-temperature anisotropy $\Lambda_T = T_{\perp}/T_{\parallel}$
-
 ![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/B_time.png)
 
 ![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/j_time.png)
 
 ![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/temp_norm.png)
+
+temperature anisotropy $\Lambda_T = T_{\perp}/T_{\parallel}$
 
 ![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_10.0/figures/temp_anisotropy.png)
 
@@ -248,18 +253,25 @@ Change from perpendicular to parallel temperature anisotropy is observed.
 
 ## Simulation Summary
 
-| beta | 
-
+| $\beta$ | $\theta_B$ | $\lambda$ | Result |
+|---------|------------|-----------|--------|
+| 0.25 | 60° | 128 | RDs form with structured **perpendicular** temperature anisotropy |
+| 2 | 60° | 128 | RDs form |
+| 0.25 | 0° | 128 | No clear discontinuity, dominated by parallel temperature |
+| 2 | 0° | 128 | No clear discontinuity, dominated by parallel temperature |
+| 0.25 | 60° | 64 | RDs form with **parallel** temperature anisotropy |
 
 ## Conclusion
 
-- We observed systematic discrepancies between Alfven velocity and plasma velocity change across discontinuities
+Observation of solar wind discontinuities reveals systematic discrepancies between 
 
-- We observed systematic discrepancies between anisotropic MHD theory-predicted and directly measured ion anisotropies
+- Alfven velocity and plasma velocity change across discontinuities
 
-  - Imply the kinetic structure around discontinuities, ion/electron contribution to anisotropy may be significant
+- Anisotropic MHD theory-predicted and directly measured ion anisotropies
 
-- Preliminary results from hybrid simulations show that from **oblique** linearly polarized wave trains, rotational discontinuities can be formed
+  <!-- - Imply the kinetic structure around discontinuities, ion/electron contribution to anisotropy may be significant -->
+
+Preliminary results from hybrid simulations show that from **oblique** linearly polarized wave trains could produce rotational discontinuities
 
   - No clear discrepancy between Alfven velocity and plasma velocity change across discontinuities
 
@@ -267,11 +279,9 @@ Change from perpendicular to parallel temperature anisotropy is observed.
 
   - Formation of temperature anisotropy near discontinuities
 
-    - Larger pressure anisotropy but less structured temperature anisotropy for higher $\beta$
+    - Less structured temperature anisotropy butlLarger pressure anisotropy for higher $\beta$
 
-    - Change from perpendicular to parallel temperature anisotropy for smaller wavelength
-
-  - $\theta_B = 0°$: No clear signature of discontinuity, dominated by parallel temperature
+    - Change from perpendicular to parallel temperature anisotropy for smaller wavelength. Why?
 
 
 ## More results
