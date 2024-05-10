@@ -235,7 +235,8 @@ To compare with larger $\theta_B$ case
 
 ![](../warpx/01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0/figures/temp_anisotropy.png)
 
-### $\beta = 0.25$, $\theta_B = 60°$, smaller wavelength
+### $\beta = 0.25$, $\theta_B = 60°$, $\lambda = 64 d_i$
+<!-- smaller wavelength -->
 
 ![](../warpx/01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_100.0_l_64.0/figures/temp_anisotropy.png)
 
@@ -254,7 +255,7 @@ Change from perpendicular to parallel temperature anisotropy is observed.
 ## Simulation Summary
 
 | $\beta$ | $\theta_B$ | $\lambda$ | Result |
-|---------|------------|-----------|--------|
+|--|--|--|----------|
 | 0.25 | 60° | 128 | RDs form with structured **perpendicular** temperature anisotropy |
 | 2 | 60° | 128 | RDs form |
 | 0.25 | 0° | 128 | No clear discontinuity, dominated by parallel temperature |
@@ -275,11 +276,11 @@ Preliminary results from hybrid simulations show that from **oblique** linearly 
 
   - No clear discrepancy between Alfven velocity and plasma velocity change across discontinuities
 
-    - Pressure aniostropy could not explain the difference
+    - Pressure anisotropy could not explain the difference
 
   - Formation of temperature anisotropy near discontinuities
 
-    - Less structured temperature anisotropy butlLarger pressure anisotropy for higher $\beta$
+    - Less structured temperature anisotropy but larger pressure anisotropy for higher $\beta$
 
     - Change from perpendicular to parallel temperature anisotropy for smaller wavelength. Why?
 
