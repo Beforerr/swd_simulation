@@ -19,8 +19,6 @@ slide-number: true
 
 > Discontinuous changes in plasmas parameters and magnetic fields. ~~Confucius~~ Colburn et al., 1966
 
-Magnetohydrodynamics theory: classified as rotational discontinuities (RD), tangential discontinuities (TD), and shock waves
-
 ![Sketch of types of discontinuity](../figures/discontinuity.jpeg)
 
 - Import element of solar wind turbulences @borovskyContributionStrongDiscontinuities2010.
@@ -30,6 +28,10 @@ Magnetohydrodynamics theory: classified as rotational discontinuities (RD), tang
   - Jumps in the electron density, temperature and pitch angle distribution @artemyevKineticNatureSolar2019.
 
   - Interact with energetic part of the solar wind ions
+
+::: {.notes}
+Magnetohydrodynamics theory: classified as rotational discontinuities (RD), tangential discontinuities (TD), and shock waves
+:::
 
 ## Examples of discontinuities
 

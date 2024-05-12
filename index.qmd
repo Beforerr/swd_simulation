@@ -1,7 +1,10 @@
 ---
-title: Alfven Hybrid Simulation
+title: Hybrid Simulation of Alfven Wave and Rotational Discontinuities
 ---
 
+::: {.callout-note}
+Note that this is a work in progress. The content is subject to change and the website is not well organized.
+:::
 
 $$
 P_{parp} = |P_{xx} \cdot B_x + P_{yy} \cdot B_y + P_{zz} \cdot B_z| / |B|
