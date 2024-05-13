@@ -6,7 +6,7 @@ algo.particle_shape = 1
 # amr
 amr.max_grid_size = 32
 amr.max_level = 0
-amr.n_cell = 256
+amr.n_cell = 128
 
 # boundary
 boundary.field_hi = periodic
@@ -16,7 +16,7 @@ boundary.particle_lo = periodic
 
 # diag1
 diag1.diag_type = Full
-diag1.fields_to_plot = Bx By Bz Ex Ey Ez jx jy jz rho
+diag1.fields_to_plot = Bx By Bz Ex Ey Ez jx jx_displacement jy jy_displacement jz jz_displacement rho
 diag1.format = plotfile
 diag1.intervals = 64
 diag1.openpmd_backend = h5

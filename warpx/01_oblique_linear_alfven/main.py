@@ -102,7 +102,7 @@ def main(
     beta: float = 0.25,
     theta: float = 60,
     eta: float = 100,
-    wave_number: float = 1,
+    wave_number: int = 1,
     dz_norm: float = 0.5,
     dt_norm: float = 1 / 64,
     Lz_norm: float = 64,

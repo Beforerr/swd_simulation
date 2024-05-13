@@ -9,14 +9,17 @@ from utils.plot import (
     plot_plasma_velocity_profile_ts,
 )
 from utils.pressure import export_part_field
-
-
-from plasmapy.formulary import gyroradius
-
-gyroradius()
-
-
 import typer
+
+def info(meta):
+    from plasmapy.formulary import gyroradius
+    import astropy.units as u
+    B = meta["B0"] * u.T
+    T = meta["T_plasma"] * u.eV
+    
+    r = gyroradius(B, particle="p+", T=T)
+    print(f"Gyroradius: {r.to(u.km)}")
+    
 app = typer.Typer()
 
 @app.command()
@@ -30,6 +33,7 @@ def main(
 ):
 
     meta = setup(directory)
+    info(meta)
 
     ts_field, ts_part = load_ts_all(meta)
 

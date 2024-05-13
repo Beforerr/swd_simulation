@@ -1,3 +1,5 @@
+include("warpx.jl")
+
 z_norm_lab = L"z~(d_i)"
 time_norm_lab = L"T~(T_{ci})"
 
@@ -6,7 +8,8 @@ labs = [z_norm_lab, time_norm_lab]
 
 B_fields = ["Bx", "By", "Bz", "Bmag"]
 E_fields = ["Ex", "Ey", "Ez", "Emag"]
-j_fields = ["jx", "jy", "jz", "jmag"]
+j_fields = [j_comps ; "jMag"]
+j_e_fields = [j_e_comps ; "jeMag"]
 temp_f_fields = ["T_parp", "T_perp"]
 temp_norm_fields = ["T_parp_norm", "T_perp_norm"]
 pressure_fields = ["pressure_x", "pressure_y", "pressure_z"]
@@ -38,6 +41,9 @@ function plot_fields(df)
 
     plot_fields(df, j_fields)
     easy_save("j_field")
+
+    plot_fields(df, j_e_fields)
+    easy_save("je_field")
 
     plot_fields(df, "rho_n_norm")
     easy_save("rho_n_norm")

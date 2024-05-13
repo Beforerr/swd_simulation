@@ -4,17 +4,16 @@ using Arrow
 using PhysicalConstants.CODATA2018: ElementaryCharge, μ_0
 using Unitful
 
-B_components = ["Bx", "By", "Bz"]
-E_components = ["Ex", "Ey", "Ez"]
-j_components = ["jx", "jy", "jz"]
-velocity_components = [:velocity_th_x, :velocity_th_y, :velocity_th_z, :velocity_th_parp, :velocity_th_perp]
-T_components = [:T_x, :T_y, :T_z, :T_parp, :T_perp]
-T_norm_components = [:T_x_norm, :T_y_norm, :T_z_norm, :T_parp_norm, :T_perp_norm]
+include("warpx.jl")
+
+velocity_comps = [:velocity_th_x, :velocity_th_y, :velocity_th_z, :velocity_th_parp, :velocity_th_perp]
+T_comps = [:T_x, :T_y, :T_z, :T_parp, :T_perp]
+T_norm_comps = [:T_x_norm, :T_y_norm, :T_z_norm, :T_parp_norm, :T_perp_norm]
 
 function unit_df!(df)
     @chain df begin
         transform!(
-            velocity_components .=> v -> v .* 1u"m/s", renamecols=false
+            velocity_comps .=> v -> v .* 1u"m/s", renamecols=false
         )
         @transform!(
             :rho_c = :rho .* 1u"C/m^3",
@@ -50,7 +49,7 @@ function normalize_df!(df, meta)
             :z_norm = :z ./ meta["d_i"],
         )
         transform!(
-            transform_map(normalize_temp, velocity_components, T_norm_components)...
+            transform_map(normalize_temp, velocity_comps, T_norm_comps)...
         )
     end
 end
@@ -64,10 +63,11 @@ function process_df!(df, meta)
 
     @chain df begin
         transform!(
-            B_components => ByRow(norm ∘ vcat) => :Bmag,
-            E_components => ByRow(norm ∘ vcat) => :Emag,
-            j_components => ByRow(norm ∘ vcat) => :jmag,
-            transform_map(vth2temp, velocity_components, T_components)...
+            B_comps => ByRow(norm ∘ vcat) => :Bmag,
+            E_comps => ByRow(norm ∘ vcat) => :Emag,
+            j_comps => ByRow(norm ∘ vcat) => :jMag,
+            j_e_comps => ByRow(norm ∘ vcat) => :jeMag,
+            transform_map(vth2temp, velocity_comps, T_comps)...
         )
         @transform!(
             :vA_x = :Bx * u"T" ./ sqrt.(μ_0 * mass * :rho_n),
