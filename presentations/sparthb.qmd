@@ -13,6 +13,7 @@ format:
   revealjs:
     output-file: 'sparthb.revealjs.html'
 slide-number: true
+date: "2024-05"
 ---
 
 ## Solar wind discontinuities (SWD)
@@ -62,7 +63,7 @@ $$
 
 ## Comparison with Alfven speed and plasma speed change
 
-For rotational discontinuities, the plasma velocity jump across them: the plasma ﬂow velocity $v_l$ (the solar wind velocity projected onto $l$) changes due to changes in $B_l$, $Δv_l=±Δv_A$ with $v_A= B_l / \sqrt{4 n m}$.
+For rotational discontinuities, the plasma velocity jump across them: the plasma flow velocity $v_l$ (the solar wind velocity projected onto $l$) changes due to changes in $B_l$, $Δv_l=±Δv_A$ with $v_A= B_l / \sqrt{4 n m}$.
 
 ![](../figures/dvl.spi_n_spi.png)
 
