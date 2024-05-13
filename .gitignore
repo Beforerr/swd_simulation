@@ -22,7 +22,7 @@ Backtrace*
 warpx/**/*.png
 *.pdf
 
-/overleaf/
+**/overleaf/
 /_manuscript/
 *_files/
 
