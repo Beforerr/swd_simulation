@@ -134,6 +134,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/lz4-c-1.9.4-hb7217d7_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/markdown-it-py-3.0.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/markupsafe-2.1.5-py312he37b823_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/matplotlib-3.8.4-py312h1f38498_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/matplotlib-base-3.8.4-py312h4479663_2.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/matplotlib-inline-0.1.7-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/mdurl-0.1.2-pyhd8ed1ab_0.conda
@@ -263,18 +264,6 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/zipp-3.17.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zlib-1.2.13-h53f4e23_5.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.6-hb46c0d2_0.conda
-      - pypi: https://files.pythonhosted.org/packages/3b/00/2344469e2084fb287c2e0b57b72910309874c3245463acd6cf5e3db69324/appdirs-1.4.4-py2.py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/77/24/3f78dc9e4357159ae223390a8ddbcf8d30c71b19896ab461214b1b4a71de/astroquery-0.4.7-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/4e/b7/e6bef0e4be7bea6336f36859517bb1dc6a4f64c78ff7ccc1381a00c294e7/cdasws-1.7.47-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/3f/27/4570e78fc0bf5ea0ca45eb1de3818a23787af9b390c0b0a0033a1b8236f9/diskcache-5.6.3-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/7f/66/b15ce62552d84bbfcec9a4873ab79d993a1dd4edb922cbfccae192bd5b5f/jaraco.classes-3.4.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/d2/40/11b7bc1898cf1dcb87ccbe09b39f5088634ac78bb25f3383ff541c2b40aa/jaraco.context-5.3.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/c3/ac/d0bf0d37a9f95f69a5efc5685d9166ee34a664d3cd29a9c139989512fe14/jaraco.functools-4.0.1-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/92/91/901f5cfeaaea04cf15f5ddf41ee053a5c9e389166477a3427fcfd055e1d9/keyring-25.2.1-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/9c/e6/0c63d84e83ea6da29685cfd1a6de0992920b46b3e5fe183cd9352d175aa8/pycdfpp-0.7.0-cp312-cp312-macosx_11_0_arm64.whl
-      - pypi: https://files.pythonhosted.org/packages/e8/36/3ccb099e8728b33b0de40ad5434d2ea2196611b34d959b6c77aa3beeefc4/pyistp-0.5.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/c7/b9/f1c3ff8603cd1b8a38167027cc647642f743b934ed1cfb2118d1712cb156/pyvo-1.5.2-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/df/cf/929c432923509dd122a87e1bb7ac8eef8bb14fa8046a6053689fdbefe67f/speasy-1.2.7-py3-none-any.whl
       - pypi: ../beforerr_dev
       - pypi: ../space-analysis.py
 packages:
@@ -376,11 +365,6 @@ packages:
   - pkg:pypi/anyio
   size: 102331
   timestamp: 1708355504396
-- kind: pypi
-  name: appdirs
-  version: 1.4.4
-  url: https://files.pythonhosted.org/packages/3b/00/2344469e2084fb287c2e0b57b72910309874c3245463acd6cf5e3db69324/appdirs-1.4.4-py2.py3-none-any.whl
-  sha256: a841dacd6b99318a741b166adb07e19ee71a274450e68237b4650ca1055ab128
 - kind: conda
   name: appnope
   version: 0.1.4
@@ -522,32 +506,6 @@ packages:
   - pkg:pypi/astropy-iers-data
   size: 1237684
   timestamp: 1716183712452
-- kind: pypi
-  name: astroquery
-  version: 0.4.7
-  url: https://files.pythonhosted.org/packages/77/24/3f78dc9e4357159ae223390a8ddbcf8d30c71b19896ab461214b1b4a71de/astroquery-0.4.7-py3-none-any.whl
-  sha256: dfa8ca46ca0a983f66e9547c774601b331770242f9f6245df5e603f795d75540
-  requires_dist:
-  - numpy>=1.18
-  - astropy>=4.2.1
-  - requests>=2.19
-  - beautifulsoup4>=4.8
-  - html5lib>=0.999
-  - keyring>=15.0
-  - pyvo>=1.1
-  - mocpy>=0.9 ; extra == 'all'
-  - astropy-healpix ; extra == 'all'
-  - boto3 ; extra == 'all'
-  - regions ; extra == 'all'
-  - matplotlib ; extra == 'docs'
-  - sphinx-astropy>=1.5 ; extra == 'docs'
-  - scipy ; extra == 'docs'
-  - fsspec[http] ; extra == 'docs'
-  - pytest-astropy ; extra == 'test'
-  - matplotlib ; extra == 'test'
-  - pytest-dependency ; extra == 'test'
-  - pytest-rerunfailures ; extra == 'test'
-  requires_python: '>=3.7'
 - kind: conda
   name: asttokens
   version: 2.4.1
@@ -834,17 +792,6 @@ packages:
   - pkg:pypi/cached-property
   size: 11065
   timestamp: 1615209567874
-- kind: pypi
-  name: cdasws
-  version: 1.7.47
-  url: https://files.pythonhosted.org/packages/4e/b7/e6bef0e4be7bea6336f36859517bb1dc6a4f64c78ff7ccc1381a00c294e7/cdasws-1.7.47-py3-none-any.whl
-  sha256: cbda904bd5daa9cb5f7e15be6245661c54462119e05aa2eec263db8504211bfd
-  requires_dist:
-  - python-dateutil>=2.8.0
-  - requests>=2.20
-  - urllib3>=1.24.1
-  - spacepy>=0.5.0 ; extra == 'spdm'
-  - cdflib>=0.4.4 ; extra == 'xarray'
 - kind: conda
   name: certifi
   version: 2024.2.2
@@ -1061,12 +1008,6 @@ packages:
   - pkg:pypi/defusedxml
   size: 24062
   timestamp: 1615232388757
-- kind: pypi
-  name: diskcache
-  version: 5.6.3
-  url: https://files.pythonhosted.org/packages/3f/27/4570e78fc0bf5ea0ca45eb1de3818a23787af9b390c0b0a0033a1b8236f9/diskcache-5.6.3-py3-none-any.whl
-  sha256: 5e31b2d5fbad117cc363ebaf6b689474db18a1f6438bc82358b024abd4c2ca19
-  requires_python: '>=3'
 - kind: conda
   name: entrypoints
   version: '0.4'
@@ -1619,69 +1560,6 @@ packages:
   - pkg:pypi/isoduration
   size: 17189
   timestamp: 1638811664194
-- kind: pypi
-  name: jaraco-classes
-  version: 3.4.0
-  url: https://files.pythonhosted.org/packages/7f/66/b15ce62552d84bbfcec9a4873ab79d993a1dd4edb922cbfccae192bd5b5f/jaraco.classes-3.4.0-py3-none-any.whl
-  sha256: f662826b6bed8cace05e7ff873ce0f9283b5c924470fe664fff1c2f00f581790
-  requires_dist:
-  - more-itertools
-  - sphinx>=3.5 ; extra == 'docs'
-  - jaraco-packaging>=9.3 ; extra == 'docs'
-  - rst-linker>=1.9 ; extra == 'docs'
-  - furo ; extra == 'docs'
-  - sphinx-lint ; extra == 'docs'
-  - jaraco-tidelift>=1.4 ; extra == 'docs'
-  - pytest>=6 ; extra == 'testing'
-  - pytest-checkdocs>=2.4 ; extra == 'testing'
-  - pytest-cov ; extra == 'testing'
-  - pytest-mypy ; extra == 'testing'
-  - pytest-enabler>=2.2 ; extra == 'testing'
-  - pytest-ruff>=0.2.1 ; extra == 'testing'
-  requires_python: '>=3.8'
-- kind: pypi
-  name: jaraco-context
-  version: 5.3.0
-  url: https://files.pythonhosted.org/packages/d2/40/11b7bc1898cf1dcb87ccbe09b39f5088634ac78bb25f3383ff541c2b40aa/jaraco.context-5.3.0-py3-none-any.whl
-  sha256: 3e16388f7da43d384a1a7cd3452e72e14732ac9fe459678773a3608a812bf266
-  requires_dist:
-  - backports-tarfile ; python_version < '3.12'
-  - sphinx>=3.5 ; extra == 'docs'
-  - jaraco-packaging>=9.3 ; extra == 'docs'
-  - rst-linker>=1.9 ; extra == 'docs'
-  - furo ; extra == 'docs'
-  - sphinx-lint ; extra == 'docs'
-  - jaraco-tidelift>=1.4 ; extra == 'docs'
-  - pytest!=8.1.1,>=6 ; extra == 'testing'
-  - pytest-checkdocs>=2.4 ; extra == 'testing'
-  - pytest-cov ; extra == 'testing'
-  - pytest-mypy ; extra == 'testing'
-  - pytest-enabler>=2.2 ; extra == 'testing'
-  - pytest-ruff>=0.2.1 ; extra == 'testing'
-  - portend ; extra == 'testing'
-  requires_python: '>=3.8'
-- kind: pypi
-  name: jaraco-functools
-  version: 4.0.1
-  url: https://files.pythonhosted.org/packages/c3/ac/d0bf0d37a9f95f69a5efc5685d9166ee34a664d3cd29a9c139989512fe14/jaraco.functools-4.0.1-py3-none-any.whl
-  sha256: 3b24ccb921d6b593bdceb56ce14799204f473976e2a9d4b15b04d0f2c2326664
-  requires_dist:
-  - more-itertools
-  - sphinx>=3.5 ; extra == 'docs'
-  - sphinx<7.2.5 ; extra == 'docs'
-  - jaraco-packaging>=9.3 ; extra == 'docs'
-  - rst-linker>=1.9 ; extra == 'docs'
-  - furo ; extra == 'docs'
-  - sphinx-lint ; extra == 'docs'
-  - jaraco-tidelift>=1.4 ; extra == 'docs'
-  - pytest>=6 ; extra == 'testing'
-  - pytest-checkdocs>=2.4 ; extra == 'testing'
-  - pytest-cov ; extra == 'testing'
-  - pytest-enabler>=2.2 ; extra == 'testing'
-  - pytest-ruff>=0.2.1 ; extra == 'testing'
-  - jaraco-classes ; extra == 'testing'
-  - pytest-mypy ; platform_python_implementation != 'PyPy' and extra == 'testing'
-  requires_python: '>=3.8'
 - kind: conda
   name: jedi
   version: 0.19.1
@@ -2107,34 +1985,6 @@ packages:
   - pkg:pypi/jupyterlab-widgets
   size: 187135
   timestamp: 1707422097508
-- kind: pypi
-  name: keyring
-  version: 25.2.1
-  url: https://files.pythonhosted.org/packages/92/91/901f5cfeaaea04cf15f5ddf41ee053a5c9e389166477a3427fcfd055e1d9/keyring-25.2.1-py3-none-any.whl
-  sha256: 2458681cdefc0dbc0b7eb6cf75d0b98e59f9ad9b2d4edd319d18f68bdca95e50
-  requires_dist:
-  - jaraco-classes
-  - jaraco-functools
-  - jaraco-context
-  - importlib-metadata>=4.11.4 ; python_version < '3.12'
-  - importlib-resources ; python_version < '3.9'
-  - secretstorage>=3.2 ; sys_platform == 'linux'
-  - jeepney>=0.4.2 ; sys_platform == 'linux'
-  - pywin32-ctypes>=0.2.0 ; sys_platform == 'win32'
-  - shtab>=1.1.0 ; extra == 'completion'
-  - sphinx>=3.5 ; extra == 'docs'
-  - jaraco-packaging>=9.3 ; extra == 'docs'
-  - rst-linker>=1.9 ; extra == 'docs'
-  - furo ; extra == 'docs'
-  - sphinx-lint ; extra == 'docs'
-  - jaraco-tidelift>=1.4 ; extra == 'docs'
-  - pytest!=8.1.*,>=6 ; extra == 'testing'
-  - pytest-checkdocs>=2.4 ; extra == 'testing'
-  - pytest-cov ; extra == 'testing'
-  - pytest-mypy ; extra == 'testing'
-  - pytest-enabler>=2.2 ; extra == 'testing'
-  - pytest-ruff>=0.2.1 ; extra == 'testing'
-  requires_python: '>=3.8'
 - kind: conda
   name: kiwisolver
   version: 1.4.5
@@ -2832,6 +2682,24 @@ packages:
   - pkg:pypi/markupsafe
   size: 26382
   timestamp: 1706900495057
+- kind: conda
+  name: matplotlib
+  version: 3.8.4
+  build: py312h1f38498_2
+  build_number: 2
+  subdir: osx-arm64
+  url: https://conda.anaconda.org/conda-forge/osx-arm64/matplotlib-3.8.4-py312h1f38498_2.conda
+  sha256: 5dca57eb2aac0fc1847e9957f3f647dc1fc94c2f8c6fc320f8e78cb9712a293a
+  md5: 4a1e2726be0a5378e1fc207716dff763
+  depends:
+  - matplotlib-base >=3.8.4,<3.8.5.0a0
+  - python >=3.12,<3.13.0a0
+  - python_abi 3.12.* *_cp312
+  - tornado >=5
+  license: PSF-2.0
+  license_family: PSF
+  size: 8519
+  timestamp: 1715976654609
 - kind: conda
   name: matplotlib-base
   version: 3.8.4
@@ -3796,15 +3664,6 @@ packages:
   license_family: BSD
   size: 9906
   timestamp: 1610372835205
-- kind: pypi
-  name: pycdfpp
-  version: 0.7.0
-  url: https://files.pythonhosted.org/packages/9c/e6/0c63d84e83ea6da29685cfd1a6de0992920b46b3e5fe183cd9352d175aa8/pycdfpp-0.7.0-cp312-cp312-macosx_11_0_arm64.whl
-  sha256: 9b4d04991312877d1d960e798bcdfa9a5b950bcb51f9ca30a227425be1d9d3c5
-  requires_dist:
-  - numpy
-  - pyyaml
-  requires_python: '>=3.8'
 - kind: conda
   name: pycparser
   version: '2.22'
@@ -3902,14 +3761,6 @@ packages:
   - pkg:pypi/pygments
   size: 879295
   timestamp: 1714846885370
-- kind: pypi
-  name: pyistp
-  version: 0.5.0
-  url: https://files.pythonhosted.org/packages/e8/36/3ccb099e8728b33b0de40ad5434d2ea2196611b34d959b6c77aa3beeefc4/pyistp-0.5.0-py3-none-any.whl
-  sha256: f25378faa2f3aed68ef937fb88c794dca433dc7a925b8b5bc3f8fbf14b230056
-  requires_dist:
-  - pycdfpp>=0.6.0
-  requires_python: '>=3.8'
 - kind: conda
   name: pyobjc-core
   version: '10.2'
@@ -4113,20 +3964,6 @@ packages:
   - pkg:pypi/pytz
   size: 188538
   timestamp: 1706886944988
-- kind: pypi
-  name: pyvo
-  version: 1.5.2
-  url: https://files.pythonhosted.org/packages/c7/b9/f1c3ff8603cd1b8a38167027cc647642f743b934ed1cfb2118d1712cb156/pyvo-1.5.2-py3-none-any.whl
-  sha256: f4306d4e8f21c604dbd5df65ce101101633d62d854b0fc9c7746f342877e99f6
-  requires_dist:
-  - astropy>=4.1
-  - requests
-  - pillow ; extra == 'all'
-  - sphinx-astropy ; extra == 'docs'
-  - pytest-doctestplus>=0.13 ; extra == 'test'
-  - pytest-astropy ; extra == 'test'
-  - requests-mock ; extra == 'test'
-  requires_python: '>=3.8'
 - kind: conda
   name: pyyaml
   version: 6.0.1
@@ -4515,38 +4352,11 @@ packages:
   timestamp: 1693929424267
 - kind: pypi
   name: space-analysis-py
-  version: 0.0.1
+  version: 0.1.0
   path: ../space-analysis.py
-  sha256: dce0e732a2cdf95d154a7d358f3e13a8e89e03f917b8357e7fbe94b5dce120d4
-  requires_dist:
-  - pycdfpp
-  - cdasws
-  - speasy
-  - pydantic>2
-  requires_python: '>=3.7'
+  sha256: 1132e91caca5acf95dcef82cdb8196bf7b11522b4ae9d1837e0072d71bf6accf
+  requires_python: '>=3.11'
   editable: true
-- kind: pypi
-  name: speasy
-  version: 1.2.7
-  url: https://files.pythonhosted.org/packages/df/cf/929c432923509dd122a87e1bb7ac8eef8bb14fa8046a6053689fdbefe67f/speasy-1.2.7-py3-none-any.whl
-  sha256: 55d3ecf70963578384602641844cdfe081b838b5086381ad3c0497c912757a01
-  requires_dist:
-  - requests
-  - pandas
-  - diskcache
-  - appdirs
-  - numpy
-  - packaging
-  - python-dateutil
-  - astropy
-  - astroquery
-  - pyistp>=0.4.0
-  - tqdm
-  - matplotlib
-  - urllib3>=1.26.0
-  - pyyaml
-  - zstd ; extra == 'zstd'
-  requires_python: '>=3.8'
 - kind: conda
   name: stack_data
   version: 0.6.2

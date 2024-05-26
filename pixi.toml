@@ -12,6 +12,7 @@ platforms = ["osx-arm64"]
 jupyter = "*"
 warpx = "*"
 yt = "*"
+matplotlib = "*"
 plasmapy = "*"
 pydantic = "*"
 polars = "*"
@@ -23,6 +24,7 @@ typer = ">=0.12.3,<0.13"
 [pypi-dependencies]
 beforerr = { path = "../beforerr_dev", editable = true}
 space_analysis = { path = "../space-analysis.py", editable = true }
+# space_analysis = { path = "../space-analysis.py"}
 
 [target.osx-arm64.dependencies]
 # python = "<3.12"

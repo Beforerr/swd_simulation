@@ -53,8 +53,6 @@ def init_obl_alfven(
 class AlfvenModes(HybridSimulation):
     # Applied field parameters
     dim: int = 1
-    B0: float = 100 * 1e-9
-    """Initial magnetic field strength (T)"""
     n0: float = 100 * 1e6
     """Initial plasma density (m^-3)"""
 
@@ -102,6 +100,7 @@ def main(
     theta: float = 60,
     eta: float = 100,
     wave_number: int = 1,
+    Te_norm: float = 1,
     dz_norm: float = 0.5,
     dt_norm: float = 1 / 64,
     Lz_norm: float = 64,
@@ -113,7 +112,7 @@ def main(
 ):
 
     wave_length = Lz_norm / wave_number
-    setup_run_dir(ctx.params, accesses=["dim", "beta", "theta", "eta", "wave_number", "Te"])
+    setup_run_dir(ctx.params, accesses=["dim", "beta", "theta", "eta", "wave_number", "Te_norm"])
 
     sim_kwargs = dict()
     if dim == 3:
