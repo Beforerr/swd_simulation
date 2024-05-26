@@ -1047,9 +1047,8 @@ packages:
   name: beforerr
   version: 0.1.0
   path: ../beforerr_dev
-  sha256: faf27f672565e45d9a682004d56e594e687dd370a8eb630abbb5786db6c5939c
+  sha256: e4c38c07759823d738ab9c849d64311c6504be798d0fcd9ddf57112777f4b2da
   requires_dist:
-  - loguru
   - rpy2 ; extra == 'r'
   - rpy2-arrow ; extra == 'r'
   requires_python: '>=3.10'
@@ -8056,7 +8055,7 @@ packages:
   name: warpx
   version: 0.1.0
   path: .
-  sha256: 4139c4bd92587a640fd66a82d57b521341826ee87a76f81e50204ca74a8cd9ae
+  sha256: 0ddef5977188f53c58dbca7fd7bd2156bb3df6b5fc2633e3ca442cc6529e0519
   requires_dist:
   - matplotlib
   requires_python: '>=3.10'
