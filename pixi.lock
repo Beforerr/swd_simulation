@@ -7560,7 +7560,7 @@ packages:
   name: space-analysis-py
   version: 0.1.0
   path: ../space-analysis.py
-  sha256: e43acbbe7d7f7782d5b6928024aa358d550a047082ce764ceb6675bab9147178
+  sha256: 5d57860faf9e94a666e51505d1d089efce852717abb02c0394798dad85bddfb5
   requires_python: '>=3.10'
   editable: true
 - kind: conda
@@ -8056,7 +8056,9 @@ packages:
   name: warpx
   version: 0.1.0
   path: .
-  sha256: 1885e80f4e79e00f0e0f180bb1208cd760574cb5cd3ef5483a8be3e881306db3
+  sha256: 4139c4bd92587a640fd66a82d57b521341826ee87a76f81e50204ca74a8cd9ae
+  requires_dist:
+  - matplotlib
   requires_python: '>=3.10'
   editable: true
 - kind: conda

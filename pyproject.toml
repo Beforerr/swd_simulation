@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Add a short description here"
 authors = [{name = "Beforerr", email = "zzj956959688@gmail.com"}]
 requires-python = ">= 3.10"
-dependencies = []
+dependencies = ["matplotlib"]
 
 [build-system]
 requires = ["pdm-backend"]
@@ -22,7 +22,6 @@ space_analysis = { path = "../space-analysis.py", editable = true }
 [tool.pixi.dependencies]
 jupyter = "*"
 yt = "*"
-matplotlib = "*"
 plasmapy = "*"
 pydantic = "*"
 polars = "*"
@@ -30,7 +29,7 @@ rich = "*"
 loguru = "*"
 icecream = "*"
 typer = "*"
-sacred = ">=0.8.5,<0.9"
+sacred = "*"
 
 [tool.pixi.tasks]
 
