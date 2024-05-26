@@ -34,8 +34,6 @@ dependencies:
   - pip
   - pip:
     - ../space_analysis
-    - git+https://github.com/AngelFP/VisualPIC.git@dev
-    - git+https://bitbucket.org/ecp_warpx/picviewer/
     # - mpi4py
     # - h5py
     # - openpmd-api

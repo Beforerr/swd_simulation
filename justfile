@@ -1,23 +1,9 @@
+import 'files/quarto.just'
+overleaf_repo := ""
 home_dir := env_var('HOME')
-vpic := home_dir + "/src/vpic-kokkos/build/bin/vpic"
-project := "UCLA0040"
-queue := "main"
 
 default:
   just --list
-
-compile:
-  cd {{invocation_directory()}}; {{vpic}} *.cxx
-
-q-sub:
-  cd {{invocation_directory()}}; qsub -A {{project}} -q {{queue}}  *.pbs
-
-q-subf file:
-  cd {{invocation_directory()}}; qsub -A {{project}} -q {{queue}}  {{file}}
-
-q-info:
-  qhist -u $USER
-  -qstat -u $USER
 
 env-install file="environment.yml":
   micromamba env create --file {{file}}
@@ -51,11 +37,6 @@ py-warpx:
     -DWarpX_PYTHON=ON
   cmake --build build --target pip_install -j 8
 
-install-warpx-ncar:
-  #!/bin/bash
-  # DEBUG: not working
-  spack install warpx%dpcpp
-
 clean:
   #!/usr/bin/env bash
   cd {{invocation_directory()}}
@@ -69,25 +50,6 @@ run:
   #!/usr/bin/env bash
   cd {{invocation_directory()}}
   ipython inputs.ipynb
-
-preview:
-  quarto preview --no-render
-
-publish:
-  quarto publish gh-pages --no-render --no-prompt
-
-vpic:
-  micromamba env create vtk pyvista pyqt VisualPIC --name vpic
-  micromamba run -n vpic vpic -h
-  pipx install VisualPIC --preinstall pyqt5 --preinstall vtk --preinstall pyvista
-  pipx inject visualpic pyqt5 vtk pyvista
-  vpic dim_2_beta_0.25_theta_60/diags/diag1/ -Bx -By -Bz
-  vpic dim_2_beta_0.25_theta_60/diags/diag1/ -Jx -Jy -Jz
-
-  micromamba run -n vpic vpic3d dim_3_beta_0.25_theta_60/diags/diag1/ -Bx -By -Bz
-  micromamba run -n vpic vpic3d dim_3_beta_0.25_theta_60/diags/diag1/ -Jx
-  micromamba run -n vpic vpic3d dim_3_beta_0.25_theta_60/diags/diag1/ -Jz
-
 
 picviewer:
   cd dim_2_beta_0.25_theta_60/diags && picviewer

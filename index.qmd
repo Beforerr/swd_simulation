@@ -1,5 +1,9 @@
 ---
 title: Hybrid Simulation of Alfven Wave and Rotational Discontinuities
+draft: true
+code-links:
+  - text: Zotero
+    href: zotero://select/library/collections/STTJNMAQ/
 ---
 
 ::: {.callout-note}
@@ -9,8 +13,6 @@ Note that this is a work in progress. The content is subject to change and the w
 $$
 P_{parp} = |P_{xx} \cdot B_x + P_{yy} \cdot B_y + P_{zz} \cdot B_z| / |B|
 $$
-
-[Zotero Collection](zotero://select/library/collections/STTJNMAQ/)
 
 - Compare $ \delta v_A ?= \delta v_i $ first
 - One step back, how the RD evolve after generation?
@@ -27,7 +29,10 @@ $$
 
 # TODO
 
+- [] Ion anisotropy depends on electron beta
+- [] Dimension difference when go to 2D/3D
 - [] Check ion gyro-radius
+- [] Why constant B? (Marco Velli)
 
 
 

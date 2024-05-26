@@ -36,3 +36,5 @@ _proc/
 
 /.quarto/
 /_site/
+
+.pixi
