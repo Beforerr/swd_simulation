@@ -2,9 +2,6 @@ import numpy as np
 from pywarpx import picmi
 from space_analysis.utils.math import cosd, sind
 from space_analysis.simulation.warpx import HybridSimulation
-import typer
-from rich import print
-from beforerr.project import setup_run_dir
 
 constants = picmi.constants
 
@@ -58,7 +55,7 @@ class AlfvenModes(HybridSimulation):
 
     A: float = 1  # relative amplitude
     theta: float = 0  # angle with respect to the background magnetic field
-    wave_number: int = 1  # wave number
+    wave_length: float  # wave length normalized to the ion inertial length
 
     # Spatial domain
     Lz_norm: float = 64
@@ -72,7 +69,7 @@ class AlfvenModes(HybridSimulation):
 
     def setup_init_cond(self):
         """setup initial conditions"""
-        self.k = 2 * np.pi / (self.Lz / self.wave_number)  # angular wavenumber
+        self.k = 2 * np.pi / self.wave_length  # angular wavenumber
 
         B_ext, dist = init_obl_alfven(
             k=self.k,
@@ -88,66 +85,3 @@ class AlfvenModes(HybridSimulation):
 
         return self
 
-app = typer.Typer()
-
-@app.command(
-    context_settings={"allow_extra_args": True, "ignore_unknown_options": True}
-)
-def main(
-    ctx: typer.Context,
-    dim: int = 1,
-    beta: float = 0.25,
-    theta: float = 60,
-    eta: float = 100,
-    wave_number: int = 1,
-    Te_norm: float = 1,
-    dz_norm: float = 0.5,
-    dt_norm: float = 1 / 64,
-    Lz_norm: float = 64,
-    time_norm: float = 100,
-    substeps: int = 16,
-    nppc: int = 64,
-    dry_run: bool = False,
-    verbose: bool = False,
-):
-
-    wave_length = Lz_norm / wave_number
-    setup_run_dir(ctx.params, accesses=["dim", "beta", "theta", "eta", "wave_number", "Te_norm"])
-
-    sim_kwargs = dict()
-    if dim == 3:
-        # Reduce the number of cells in x and y to accelerate the simulation
-        sim_kwargs.update(
-            nx=8,
-            ny=8,
-            grid_kwargs=dict(
-                warpx_blocking_factor_x=4,
-                warpx_blocking_factor_y=4,
-            ),
-        )
-
-    simulation = AlfvenModes(
-        **ctx.params,
-        plasma_resistivity=eta,
-        diag_part=True,
-        **sim_kwargs
-    )
-
-    print(ctx.params)
-    # wavenumber
-    print("wavenumer (1 / ion inertial length):", simulation.k * simulation.d_i)
-
-    # wave period
-    w = simulation.k * simulation.vA
-    t_w = 2 * np.pi / w
-    t_w_norm = t_w / simulation.t_ci
-    t_w_norm
-
-    simulation._sim.verbose = verbose
-    dry_run or simulation._sim.step()
-    
-    return simulation
-
-
-if __name__ == "__main__":
-    app()

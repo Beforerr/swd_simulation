@@ -264,6 +264,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/zipp-3.17.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zlib-1.2.13-h53f4e23_5.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.6-hb46c0d2_0.conda
+      - pypi: .
       - pypi: ../beforerr_dev
       - pypi: ../space-analysis.py
 packages:
@@ -4354,8 +4355,8 @@ packages:
   name: space-analysis-py
   version: 0.1.0
   path: ../space-analysis.py
-  sha256: 1132e91caca5acf95dcef82cdb8196bf7b11522b4ae9d1837e0072d71bf6accf
-  requires_python: '>=3.11'
+  sha256: e43acbbe7d7f7782d5b6928024aa358d550a047082ce764ceb6675bab9147178
+  requires_python: '>=3.10'
   editable: true
 - kind: conda
   name: stack_data
@@ -4775,6 +4776,13 @@ packages:
   - pkg:pypi/voila
   size: 3050807
   timestamp: 1716470446680
+- kind: pypi
+  name: warpx
+  version: 0.1.0
+  path: .
+  sha256: 23b1444021c4c07f2d43c10300901098736bb64d0b506bdef97b6e3c770fd188
+  requires_python: '>=3.10'
+  editable: true
 - kind: conda
   name: warpx
   version: '24.05'
