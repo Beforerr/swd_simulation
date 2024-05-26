@@ -11,20 +11,28 @@ platforms = ["osx-arm64"]
 [dependencies]
 jupyter = "*"
 warpx = "*"
+yt = "*"
+plasmapy = "*"
+pydantic = "*"
+polars = "*"
+rich = "*"
+loguru = "*"
+icecream = "*"
+typer = ">=0.12.3,<0.13"
 
 [pypi-dependencies]
 beforerr = { path = "../beforerr_dev", editable = true}
-space_analysis = { path = "../space-analysis.py", editable = true}
+space_analysis = { path = "../space-analysis.py", editable = true }
 
 [target.osx-arm64.dependencies]
-python = "<3.12"
-ccache = "*"
-cmake = "*"
-llvm-openmp = "*"
-ninja = "*"
-blaspp = "*"
-lapackpp = "*"
-pkg-config = "*"
-openmpi = "*"
-fftw = { version = "*", build = "mpi_openmpi*" }
-h5py = { version = "*", build = "mpi_openmpi*" }
+# python = "<3.12"
+# ccache = "*"
+# cmake = "*"
+# llvm-openmp = "*"
+# ninja = "*"
+# blaspp = "*"
+# lapackpp = "*"
+# pkg-config = "*"
+# openmpi = "*"
+# fftw = { version = "*", build = "mpi_openmpi*" }
+# h5py = { version = "*", build = "mpi_openmpi*" }

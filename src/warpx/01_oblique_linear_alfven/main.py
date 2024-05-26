@@ -4,10 +4,9 @@ from space_analysis.utils.math import cosd, sind
 from space_analysis.simulation.warpx import HybridSimulation
 import typer
 from rich import print
-from utils import change_dir
+from beforerr.project import setup_run_dir
 
 constants = picmi.constants
-
 
 def init_obl_alfven(
     k,
@@ -93,8 +92,6 @@ class AlfvenModes(HybridSimulation):
 
 app = typer.Typer()
 
-
-
 @app.command(
     context_settings={"allow_extra_args": True, "ignore_unknown_options": True}
 )
@@ -116,7 +113,7 @@ def main(
 ):
 
     wave_length = Lz_norm / wave_number
-    change_dir(dim=dim, beta=beta, theta=theta, eta=eta, wave_length=wave_length)
+    setup_run_dir(ctx.params, accesses=["dim", "beta", "theta", "eta", "wave_number", "Te"])
 
     sim_kwargs = dict()
     if dim == 3:
