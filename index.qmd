@@ -29,11 +29,11 @@ $$
 
 # TODO:
 
-- [] Ion anisotropy depends on electron beta
-- [] Dimension difference when go to 2D/3D
-- [] Check ion gyro-radius
-- [] Propagation direction (ion or electron sense RD)
-- [] Why constant B? (Marco Velli)
+- [ ] Ion anisotropy depends on electron beta
+- [ ] Dimension difference when go to 2D/3D
+- [ ] Check ion gyro-radius
+- [ ] Propagation direction (ion or electron sense RD)
+- [ ] Why constant B? (Marco Velli)
 
 
 

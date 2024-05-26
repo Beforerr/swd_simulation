@@ -5,9 +5,6 @@ home_dir := env_var('HOME')
 default:
   just --list
 
-spack-compilers:
-  code $HOME/.spack/darwin/compilers.yaml
-
 # install/update warpx
 install-warpx:
   just py-warpx
