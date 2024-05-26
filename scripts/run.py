@@ -52,9 +52,6 @@ def main(
 
     # wave period
     w = simulation.k * simulation.vA
-    t_w = 2 * np.pi / w
-    t_w_norm = t_w / simulation.t_ci
-    t_w_norm
 
     simulation._sim.verbose = verbose
     dry_run or simulation._sim.step()
