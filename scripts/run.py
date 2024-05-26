@@ -1,63 +1,49 @@
-import typer
 from rich import print
 from beforerr.project import setup_run_dir
 from warpx.oblique_linear_alfven import AlfvenModes
-app = typer.Typer()
 
-@app.command(
-    context_settings={"allow_extra_args": True, "ignore_unknown_options": True}
+from sacred import Experiment
+
+ex = Experiment()
+
+DefaultParams = dict(
+    dim=1, beta=0.25, theta=60, plasma_resistivity=100, wave_length=64, Te_norm=1
 )
+DefaultOtherParams = dict(
+    dz_norm=0.5, dt_norm=1 / 64, Lz_norm=64, time_norm=100, substeps=16, nppc=64
+)
+
+ex.add_config(
+    key_params=DefaultParams,
+    other_params=DefaultOtherParams,
+)
+
+
+def setup_sim_params(key_params):
+    sim_kwargs = dict()
+    grid_kwargs = dict(warpx_blocking_factor_x=4, warpx_blocking_factor_y=4)
+    if key_params.get("dim") == 3:
+        # Reduce the number of cells in x and y to accelerate the simulation
+        sim_kwargs.update(nx=8, ny=8, grid_kwargs=grid_kwargs)
+    return sim_kwargs
+
+
+@ex.automain
 def main(
-    ctx: typer.Context,
-    dim: int = 1,
-    beta: float = 0.25,
-    theta: float = 60,
-    eta: float = 100,
-    wave_length: float = 64,
-    Te_norm: float = 1,
-    dz_norm: float = 0.5,
-    dt_norm: float = 1 / 64 ,
-    Lz_norm: float = 64,
-    time_norm: float = 100,
-    substeps: int = 16,
-    nppc: int = 64,
+    key_params: dict,
+    other_params: dict,
     dry_run: bool = False,
     verbose: bool = False,
 ):
+    setup_run_dir(key_params, sort=False)
+    sim_kwargs = setup_sim_params(key_params)
 
-    setup_run_dir(ctx.params, accesses=["dim", "beta", "theta", "eta", "wave_length", "Te_norm"])
+    simulation = AlfvenModes(**key_params, **other_params, **sim_kwargs, diag_part=True)
 
-    sim_kwargs = dict()
-    if dim == 3:
-        # Reduce the number of cells in x and y to accelerate the simulation
-        sim_kwargs.update(
-            nx=8,
-            ny=8,
-            grid_kwargs=dict(
-                warpx_blocking_factor_x=4,
-                warpx_blocking_factor_y=4,
-            ),
-        )
-
-    simulation = AlfvenModes(
-        **ctx.params,
-        plasma_resistivity=eta,
-        diag_part=True,
-        **sim_kwargs
-    )
-
-    print(ctx.params)
     # wavenumber
     print("wavenumer (1 / ion inertial length):", simulation.k * simulation.d_i)
 
-    # wave period
-    w = simulation.k * simulation.vA
-
     simulation._sim.verbose = verbose
     dry_run or simulation._sim.step()
-    
+
     return simulation
-
-
-if __name__ == "__main__":
-    app()

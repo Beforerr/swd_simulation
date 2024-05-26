@@ -5,16 +5,6 @@ home_dir := env_var('HOME')
 default:
   just --list
 
-env-install file="environment.yml":
-  micromamba env create --file {{file}}
-
-env-update file="environment.yml":
-  micromamba install --file {{file}}
-
-env-macos:
-  micromamba env create --file environment.deps.yml
-  just env-update
-
 spack-compilers:
   code $HOME/.spack/darwin/compilers.yaml
 
