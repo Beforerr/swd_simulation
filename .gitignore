@@ -28,9 +28,6 @@ Backtrace*
 
 *.html
 
-data/
-*.cdf
-
 _docs/
 _proc/
 
@@ -44,7 +41,6 @@ _proc/
 ################################################################################
 
 # Folders to ignore - files may be too large, too many, etc. NOTE: EDIT IF NEEDED.
-/data
 /videos
 /plots
 /notebooks

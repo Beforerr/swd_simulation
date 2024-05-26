@@ -18,8 +18,6 @@ log-v1:
     just run "01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_100.0_l_32.0"
     just run "01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0_l_64.0"
 
-
-
 log-v0:
     python main.py --beta 0.25 --eta 10 
     julia main.jl run --beta 0.25 --eta 10

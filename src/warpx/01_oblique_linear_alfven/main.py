@@ -93,6 +93,8 @@ class AlfvenModes(HybridSimulation):
 
 app = typer.Typer()
 
+
+
 @app.command(
     context_settings={"allow_extra_args": True, "ignore_unknown_options": True}
 )

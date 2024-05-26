@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from loguru import logger
 
+
 def change_dir(dim, beta, theta, eta, wave_length, base_dir: Path = Path().cwd()):
     sub_dir = f"dim_{dim}_beta_{beta}_theta_{theta}_eta_{eta}_l_{wave_length}"
     directory = base_dir / sub_dir
