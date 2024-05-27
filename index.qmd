@@ -30,6 +30,7 @@ $$
 # TODO:
 
 - [ ] Ion anisotropy depends on electron beta
+- [ ] Large Temperature or Two Beam?
 - [ ] Dimension difference when go to 2D/3D
 - [ ] Check ion gyro-radius
 - [ ] Propagation direction (ion or electron sense RD)

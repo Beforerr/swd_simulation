@@ -1,3 +1,6 @@
+using DrWatson
+@quickactivate "IDsHybridSimulation"
+
 using AlgebraOfGraphics,
     CairoMakie
 using DataFrames,
@@ -10,16 +13,17 @@ using beforerr
 using LaTeXStrings
 using PartialFunctions
 using Comonicon
+
 include("utils/io.jl")
 include("utils/analysis.jl")
 include("utils/plot.jl")
 
 # set_aog_theme!()
 
-function setup(directory)
+function setup(directory; base_dir=datadir())
     # change to simulation directory and load metadata
     try
-        cd(directory)
+        cd(joinpath(base_dir, directory))
         println("Changed to $directory")
     catch
     end
@@ -36,7 +40,7 @@ end
 # Flags
 """
 @cast function run(;
-    directory::String = ".",
+    directory::String=".",
     noPlotFields::Bool=false, noPlotFieldsTime::Bool=false, noPlotOverviewTs::Bool=false
     # dim::Int=1, beta::Float64=0.25, theta::Float64=60.0, eta::Float64=10.0,
 )

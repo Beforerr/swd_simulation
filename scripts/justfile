@@ -1,5 +1,6 @@
 default:
-    python main.py --help
+    typer main.py --help
+    python run.py help
     julia main.jl --help
 
 plot:
@@ -12,7 +13,9 @@ run directory:
     julia main.jl run --directory {{directory}}
 
 log-sim:
-    python run.py print_config --help
+    python run.py print_config
+    python run.py help
+    python run.py with params.Te_norm=10
 
     # python main.py
     # python main.py --eta 10 --nppc 256 --substeps 32
@@ -21,13 +24,13 @@ log-sim:
     # python main.py --theta 0 --beta 2 --eta 200  --nppc 256 --substeps 32
     # python main.py --lz-norm 32 --dz-norm 0.25
 
-
 log-v1:
-    just run "01_oblique_linear_alfven/dim_1_beta_0.25_theta_0.0_eta_100.0"
-    just run "01_oblique_linear_alfven/dim_1_beta_2.0_theta_0.0_eta_200.0"
-    just run "01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_100.0_l_64.0"
-    just run "01_oblique_linear_alfven/dim_1_beta_0.25_theta_60.0_eta_100.0_l_32.0"
-    just run "01_oblique_linear_alfven/dim_1_beta_2.0_theta_60.0_eta_10.0_l_64.0"
+    just run "dim=1_beta=0.25_theta=60_plasma_resistivity=100_wave_length=64_Te_norm=10"
+    just run "dim_1_beta_0.25_theta_0.0_eta_100.0"
+    just run "dim_1_beta_2.0_theta_0.0_eta_200.0"
+    just run "dim_1_beta_0.25_theta_60.0_eta_100.0_l_64.0"
+    just run "dim_1_beta_0.25_theta_60.0_eta_100.0_l_32.0"
+    just run "dim_1_beta_2.0_theta_60.0_eta_10.0_l_64.0"
 
 log-v0:
     python main.py --beta 0.25 --eta 10 

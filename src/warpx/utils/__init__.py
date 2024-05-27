@@ -1,8 +1,11 @@
 import os
 import json
+from beforerr.project import datadir
 
-def setup(directory):
+
+def setup(sub_dir, base_dir=datadir()):
     # change to simulation directory and load metadata
+    directory = base_dir / sub_dir
     try:
         os.makedirs(directory, exist_ok=True)
         os.chdir(directory)

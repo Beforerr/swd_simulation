@@ -14,15 +14,15 @@ DefaultOtherParams = dict(
 )
 
 ex.add_config(
-    key_params=DefaultParams,
-    other_params=DefaultOtherParams,
+    params=DefaultParams,
+    params_s=DefaultOtherParams,
 )
 
 
-def setup_sim_params(key_params):
+def setup_sim_params(params):
     sim_kwargs = dict()
     grid_kwargs = dict(warpx_blocking_factor_x=4, warpx_blocking_factor_y=4)
-    if key_params.get("dim") == 3:
+    if params.get("dim") == 3:
         # Reduce the number of cells in x and y to accelerate the simulation
         sim_kwargs.update(nx=8, ny=8, grid_kwargs=grid_kwargs)
     return sim_kwargs
@@ -30,15 +30,15 @@ def setup_sim_params(key_params):
 
 @ex.automain
 def main(
-    key_params: dict,
-    other_params: dict,
+    params: dict,
+    params_s: dict,
     dry_run: bool = False,
     verbose: bool = False,
 ):
-    setup_run_dir(key_params, sort=False)
-    sim_kwargs = setup_sim_params(key_params)
+    setup_run_dir(params, sort=False)
+    sim_kwargs = setup_sim_params(params)
 
-    simulation = AlfvenModes(**key_params, **other_params, **sim_kwargs, diag_part=True)
+    simulation = AlfvenModes(**params, **params_s, **sim_kwargs, diag_part=True)
 
     # wavenumber
     print("wavenumer (1 / ion inertial length):", simulation.k * simulation.d_i)

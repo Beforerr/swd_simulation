@@ -69,7 +69,7 @@ class AlfvenModes(HybridSimulation):
 
     def setup_init_cond(self):
         """setup initial conditions"""
-        self.k = 2 * np.pi / self.wave_length  # angular wavenumber
+        self.k = 2 * np.pi / (self.wave_length * self.d_i)  # angular wavenumber
 
         B_ext, dist = init_obl_alfven(
             k=self.k,

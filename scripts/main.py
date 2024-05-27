@@ -1,15 +1,14 @@
 ## Energy evolution in the system with your input parameters
 import matplotlib.pyplot as plt
-from utils import setup
-from utils.io import export_ts, ts2xr, load_ts_all
-from utils.plot import (
+from warpx.utils import setup
+from warpx.utils.io import export_ts, ts2xr, load_ts_all
+from warpx.utils.plot import (
     plot_wk_spectrum_ds,
     plot_field_with_plasma_profile_ts,
     plot_energy_evolution,
     plot_plasma_velocity_profile_ts,
 )
-from utils.pressure import export_part_field
-import typer
+from warpx.utils.pressure import export_part_field
 
 def info(meta):
     from plasmapy.formulary import gyroradius
@@ -20,9 +19,6 @@ def info(meta):
     r = gyroradius(B, particle="p+", T=T)
     print(f"Gyroradius: {r.to(u.km)}")
     
-app = typer.Typer()
-
-@app.command()
 def main(
     directory: str = ".",
     export: bool = True,
@@ -64,6 +60,8 @@ def main(
     if plot_plasma_velocity:
         print("Plotting plasma velocity profile...")
         plot_plasma_velocity_profile_ts(ts_part=ts_part)
+        
 
+import typer
 if __name__ == "__main__":
-    app()
+    typer.run(main)
