@@ -115,7 +115,7 @@ function load_pressure_df(filename="pressure.arrow")
     Arrow.Table(filename) |> DataFrame
 end
 
-function load_field(meta)
+function load_field(meta::AbstractDict)
     df = load_output_field(meta)
     try
         df_p = load_pressure_df()
@@ -129,8 +129,24 @@ function load_field(meta)
 end
 
 load_field() = load_field(load_meta())
+load_field(path::AbstractString) = cd(load_field, path)
 
-load_field(path::AbstractString) = cd(path) do
-    load_field()
+
+using DrWatson
+
+function collect_results(folder=datadir();
+    valid_filetypes=[".json"],
+    subfolders=true,
+    white_list=["dim", "beta", "theta", "plasma_resistivity", "wave_length", "path"]
+)
+
+    results = DrWatson.collect_results(folder, subfolders=subfolders, valid_filetypes=valid_filetypes)
+    return @chain results begin
+        select!(white_list)
+        @transform!(
+            :df = load_field.(dirname.(:path))
+            # :dir = dirname.(:path),
+            # :meta = load_meta.(:path),
+        )
+    end
 end
-
