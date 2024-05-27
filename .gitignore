@@ -42,7 +42,7 @@ _proc/
 ################################################################################
 
 # Folders to ignore - files may be too large, too many, etc. NOTE: EDIT IF NEEDED.
+# /notebooks
 /videos
 /plots
-/notebooks
 /_research
