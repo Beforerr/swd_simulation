@@ -125,6 +125,7 @@ function load_field(meta)
 end
 
 load_field() = load_field(load_meta())
-load_field(meta, path) = cd(path) do
-    load_field(meta)
+
+load_field(path::AbstractString) = cd(path) do
+    load_field()
 end

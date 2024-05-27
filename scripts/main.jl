@@ -1,16 +1,12 @@
 using DrWatson
 @quickactivate "IDsHybridSimulation"
+include(srcdir("WarpX.jl", "WarpX.jl"))
 
 using Statistics
 # using LinearAlgebra
 using beforerr
 using LaTeXStrings
-using PartialFunctions
 using Comonicon
-
-include("utils/io.jl")
-include("utils/analysis.jl")
-include("utils/plot.jl")
 
 """
 # Options
