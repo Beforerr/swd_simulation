@@ -2,7 +2,7 @@ using DrWatson
 @quickactivate "IDsHybridSimulation"
 
 using Statistics
-using LinearAlgebra
+# using LinearAlgebra
 using beforerr
 using LaTeXStrings
 using PartialFunctions
