@@ -1,7 +1,7 @@
 using DataFrames,
     DataFramesMeta,
     CategoricalArrays
-using Arrow
+using FileIO
 import JSON
 using PhysicalConstants.CODATA2018: ElementaryCharge, μ_0
 using Unitful
@@ -22,7 +22,7 @@ load simulation output field data
 function load_output_field(meta)
     field_diag_dir = (meta["diag_format"] == "openpmd" ? "diags/diag1" : "diags")
     files = filter(contains(r".*\.arrow"), readdir(field_diag_dir, join=true))
-    dfs = files .|> Arrow.Table .|> DataFrame
+    dfs = files .|> load .|> DataFrame
     reduce(vcat, dfs)
 end
 
@@ -107,7 +107,7 @@ function process_df!(df, meta)
 end
 
 function load_pressure_df(filename="pressure.arrow")
-    Arrow.Table(filename) |> DataFrame
+    load(filename) |> DataFrame
 end
 
 function load_field(meta)
@@ -125,3 +125,6 @@ function load_field(meta)
 end
 
 load_field() = load_field(load_meta())
+load_field(meta, path) = cd(path) do
+    load_field(meta)
+end

@@ -2,6 +2,7 @@ name = "IDsHybridSimulation"
 
 [deps]
 Arrow = "69666777-d1a9-59fb-9406-91d4454c9d45"
+CategoricalArrays = "324d7699-5711-5eae-9e2f-1d82baa6b597"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 DataFramesMeta = "1313f7d8-7da2-5740-9ea0-a2ca25f37964"
 DrWatson = "634d3b9d-ee7a-5ddf-bec9-22491ea816e1"
