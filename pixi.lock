@@ -6727,16 +6727,16 @@ packages:
 - kind: pypi
   name: pyarrow
   version: 16.1.0
-  url: https://files.pythonhosted.org/packages/08/4a/668e7fb6bc564e5361097f1f160b2891ca40bcacfe018638e2841073ec3d/pyarrow-16.1.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-  sha256: 0d32000693deff8dc5df444b032b5985a48592c0697cb6e3071a5d59888714e2
+  url: https://files.pythonhosted.org/packages/9b/73/560ef6bf05f16305502b8e368c771e8f82d774898b37a3fb231f89c13342/pyarrow-16.1.0-cp312-cp312-macosx_11_0_arm64.whl
+  sha256: 06ebccb6f8cb7357de85f60d5da50e83507954af617d7b05f48af1621d331c9a
   requires_dist:
   - numpy>=1.16.6
   requires_python: '>=3.8'
 - kind: pypi
   name: pyarrow
   version: 16.1.0
-  url: https://files.pythonhosted.org/packages/9b/73/560ef6bf05f16305502b8e368c771e8f82d774898b37a3fb231f89c13342/pyarrow-16.1.0-cp312-cp312-macosx_11_0_arm64.whl
-  sha256: 06ebccb6f8cb7357de85f60d5da50e83507954af617d7b05f48af1621d331c9a
+  url: https://files.pythonhosted.org/packages/08/4a/668e7fb6bc564e5361097f1f160b2891ca40bcacfe018638e2841073ec3d/pyarrow-16.1.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  sha256: 0d32000693deff8dc5df444b032b5985a48592c0697cb6e3071a5d59888714e2
   requires_dist:
   - numpy>=1.16.6
   requires_python: '>=3.8'

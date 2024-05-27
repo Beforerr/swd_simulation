@@ -2,8 +2,11 @@ using DataFrames,
     DataFramesMeta,
     CategoricalArrays
 using FileIO
+using Arrow
 import JSON
 using PhysicalConstants.CODATA2018: ElementaryCharge, μ_0
+# using Statistics
+using LinearAlgebra
 using Unitful
 
 include("warpx.jl")
@@ -12,7 +15,8 @@ include("warpx.jl")
 load simulation metadata (json)
 """
 function load_meta(filename="sim_parameters.json")
-    data = JSON.parsefile(filename)
+    # data = JSON.parsefile(filename)
+    data = load(filename)
     return data
 end
 
@@ -22,7 +26,7 @@ load simulation output field data
 function load_output_field(meta)
     field_diag_dir = (meta["diag_format"] == "openpmd" ? "diags/diag1" : "diags")
     files = filter(contains(r".*\.arrow"), readdir(field_diag_dir, join=true))
-    dfs = files .|> load .|> DataFrame
+    dfs = files .|> Arrow.Table .|> DataFrame
     reduce(vcat, dfs)
 end
 
@@ -86,7 +90,7 @@ function process_df!(df, meta)
             B_comps => ByRow(norm ∘ vcat) => :Bmag,
             E_comps => ByRow(norm ∘ vcat) => :Emag,
             j_comps => ByRow(norm ∘ vcat) => :jMag,
-            j_e_comps => ByRow(norm ∘ vcat) => :jeMag,
+            # j_e_comps => ByRow(norm ∘ vcat) => :jeMag,
             transform_map(vth2temp, velocity_comps, T_comps)...
         )
         @transform!(
@@ -107,7 +111,8 @@ function process_df!(df, meta)
 end
 
 function load_pressure_df(filename="pressure.arrow")
-    load(filename) |> DataFrame
+    # load(filename) |> DataFrame
+    Arrow.Table(filename) |> DataFrame
 end
 
 function load_field(meta)
@@ -120,7 +125,6 @@ function load_field(meta)
     unit_df!(df)
     process_df!(df, meta)
     normalize_df!(df, meta)
-    println(names(df))
     sort!(df, [:time, :z, :y, :x])
 end
 
@@ -129,3 +133,4 @@ load_field() = load_field(load_meta())
 load_field(path::AbstractString) = cd(path) do
     load_field()
 end
+
