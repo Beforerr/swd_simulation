@@ -1,10 +1,30 @@
 using DataFrames,
-    DataFramesMeta
+    DataFramesMeta,
+    CategoricalArrays
 using Arrow
+import JSON
 using PhysicalConstants.CODATA2018: ElementaryCharge, μ_0
 using Unitful
 
 include("warpx.jl")
+
+"""
+load simulation metadata (json)
+"""
+function load_meta(filename="sim_parameters.json")
+    data = JSON.parsefile(filename)
+    return data
+end
+
+"""
+load simulation output field data
+"""
+function load_output_field(meta)
+    field_diag_dir = (meta["diag_format"] == "openpmd" ? "diags/diag1" : "diags")
+    files = filter(contains(r".*\.arrow"), readdir(field_diag_dir, join=true))
+    dfs = files .|> Arrow.Table .|> DataFrame
+    reduce(vcat, dfs)
+end
 
 velocity_comps = [:velocity_th_x, :velocity_th_y, :velocity_th_z, :velocity_th_parp, :velocity_th_perp]
 T_comps = [:T_x, :T_y, :T_z, :T_parp, :T_perp]
@@ -74,9 +94,9 @@ function process_df!(df, meta)
             :vA_y = :By * u"T" ./ sqrt.(μ_0 * mass * :rho_n),
             :vA_z = :Bz * u"T" ./ sqrt.(μ_0 * mass * :rho_n),
             :Λ_temp = :T_perp ./ :T_parp,
-            :Λ = convert.(Float64, μ_0 * :rho_n .* (:T_parp .- :T_perp ) ./ (:Bmag * u"T").^2 ),
+            :Λ = convert.(Float64, μ_0 * :rho_n .* (:T_parp .- :T_perp) ./ (:Bmag * u"T") .^ 2),
         )
-        @transform!( 
+        @transform!(
             :Λ_temp_log = log.(:Λ_temp),
             # pressure anisotropy modified Alfven speed
             :vA_p_x = :vA_x .* sqrt.(1 .- :Λ),
@@ -86,18 +106,11 @@ function process_df!(df, meta)
     end
 end
 
-function load_output_field(meta)
-    field_diag_dir = (meta["diag_format"] == "openpmd" ? "diags/diag1" : "diags")
-    files = filter(contains(r".*\.arrow"), readdir(field_diag_dir, join=true))
-    dfs = files .|> Arrow.Table .|> DataFrame
-    reduce(vcat, dfs)
+function load_pressure_df(filename="pressure.arrow")
+    Arrow.Table(filename) |> DataFrame
 end
 
-function load_pressure_df(fp="pressure.arrow")
-    Arrow.Table(fp) |> DataFrame
-end
-
-function load_field(meta;)
+function load_field(meta)
     df = load_output_field(meta)
     try
         df_p = load_pressure_df()
@@ -110,3 +123,5 @@ function load_field(meta;)
     println(names(df))
     sort!(df, [:time, :z, :y, :x])
 end
+
+load_field() = load_field(load_meta())

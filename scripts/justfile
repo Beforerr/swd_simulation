@@ -1,12 +1,10 @@
 default:
-    typer main.py --help
+    python main.py --help
     python run.py help
     julia main.jl --help
 
 plot:
     python main.py --plot-wk-spectrum --export
-    python main.py --eta 10 --plot-wk-spectrum --export
-    julia main.jl run --eta 10
 
 run directory:
     python main.py --directory {{directory}}

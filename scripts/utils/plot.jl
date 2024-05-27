@@ -1,3 +1,6 @@
+using AlgebraOfGraphics,
+    CairoMakie
+
 include("warpx.jl")
 
 z_norm_lab = L"z~(d_i)"
