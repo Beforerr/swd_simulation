@@ -340,6 +340,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/ba/a3/16e9fe32187e9c8bc7f9b7bcd9728529faa725231a0c96f2f98714ff2fc5/fsspec-2024.5.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/db/bc/83e112abc66cd466c6b83f99118035867cecd41802f8d044638aa78a106e/locket-1.0.0-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/71/e7/40fb618334dcdf7c5a316c0e7343c5cd82d3d866edc100d98e29bc945ecd/partd-1.4.2-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/1f/21/96f1508f67fadb4ab7e5df7c3389e4a2f03cba92f62846f99f6301cf0735/pipe-2.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/02/f6/cd88bc72fbe08a84f99d9eafe4d29926b2c3fd29dfa49a7ad5b1d093f50c/plum_dispatch-2.3.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/08/4a/668e7fb6bc564e5361097f1f160b2891ca40bcacfe018638e2841073ec3d/pyarrow-16.1.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/b7/8a/d82202c9f89eab30f9fc05380daae87d617e2ad11571ab23d7c13a29bb54/toolz-0.12.1-py3-none-any.whl
@@ -621,6 +622,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/ba/a3/16e9fe32187e9c8bc7f9b7bcd9728529faa725231a0c96f2f98714ff2fc5/fsspec-2024.5.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/db/bc/83e112abc66cd466c6b83f99118035867cecd41802f8d044638aa78a106e/locket-1.0.0-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/71/e7/40fb618334dcdf7c5a316c0e7343c5cd82d3d866edc100d98e29bc945ecd/partd-1.4.2-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/1f/21/96f1508f67fadb4ab7e5df7c3389e4a2f03cba92f62846f99f6301cf0735/pipe-2.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/02/f6/cd88bc72fbe08a84f99d9eafe4d29926b2c3fd29dfa49a7ad5b1d093f50c/plum_dispatch-2.3.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/9b/73/560ef6bf05f16305502b8e368c771e8f82d774898b37a3fb231f89c13342/pyarrow-16.1.0-cp312-cp312-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/b7/8a/d82202c9f89eab30f9fc05380daae87d617e2ad11571ab23d7c13a29bb54/toolz-0.12.1-py3-none-any.whl
@@ -1100,8 +1102,9 @@ packages:
   name: beforerr
   version: 0.1.0
   path: ../beforerr_dev
-  sha256: f4361bfb8a2d6ae04aba3aaddadd87dfb6bb2af008e83c46d5466c2c30163060
+  sha256: cad3c2843127a0a499182fefc385cdcc27fcc008b2a9850daa05b2d6fb3b176d
   requires_dist:
+  - pipe
   - loguru
   - rpy2 ; extra == 'r'
   - rpy2-arrow ; extra == 'r'
@@ -6342,6 +6345,12 @@ packages:
   - pkg:pypi/pip
   size: 1398245
   timestamp: 1706960660581
+- kind: pypi
+  name: pipe
+  version: '2.2'
+  url: https://files.pythonhosted.org/packages/1f/21/96f1508f67fadb4ab7e5df7c3389e4a2f03cba92f62846f99f6301cf0735/pipe-2.2-py3-none-any.whl
+  sha256: 0a5c3202ff35122f69a34ccbd40c9658646f033cc941055304fe8bfa7e13376e
+  requires_python: '>=3.8'
 - kind: conda
   name: pixman
   version: 0.43.2
@@ -6727,16 +6736,16 @@ packages:
 - kind: pypi
   name: pyarrow
   version: 16.1.0
-  url: https://files.pythonhosted.org/packages/9b/73/560ef6bf05f16305502b8e368c771e8f82d774898b37a3fb231f89c13342/pyarrow-16.1.0-cp312-cp312-macosx_11_0_arm64.whl
-  sha256: 06ebccb6f8cb7357de85f60d5da50e83507954af617d7b05f48af1621d331c9a
+  url: https://files.pythonhosted.org/packages/08/4a/668e7fb6bc564e5361097f1f160b2891ca40bcacfe018638e2841073ec3d/pyarrow-16.1.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  sha256: 0d32000693deff8dc5df444b032b5985a48592c0697cb6e3071a5d59888714e2
   requires_dist:
   - numpy>=1.16.6
   requires_python: '>=3.8'
 - kind: pypi
   name: pyarrow
   version: 16.1.0
-  url: https://files.pythonhosted.org/packages/08/4a/668e7fb6bc564e5361097f1f160b2891ca40bcacfe018638e2841073ec3d/pyarrow-16.1.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-  sha256: 0d32000693deff8dc5df444b032b5985a48592c0697cb6e3071a5d59888714e2
+  url: https://files.pythonhosted.org/packages/9b/73/560ef6bf05f16305502b8e368c771e8f82d774898b37a3fb231f89c13342/pyarrow-16.1.0-cp312-cp312-macosx_11_0_arm64.whl
+  sha256: 06ebccb6f8cb7357de85f60d5da50e83507954af617d7b05f48af1621d331c9a
   requires_dist:
   - numpy>=1.16.6
   requires_python: '>=3.8'

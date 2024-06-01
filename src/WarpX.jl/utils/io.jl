@@ -15,15 +15,15 @@ include("warpx.jl")
 load simulation metadata (json)
 """
 function load_meta(filename="sim_parameters.json")
-    # data = JSON.parsefile(filename)
-    data = load(filename)
+    data = JSON.parsefile(filename)
+    # data = load(filename)
     return data
 end
 
 """
 load simulation output field data
 """
-function load_output_field(meta)
+function load_output_field(meta::AbstractDict)
     field_diag_dir = (meta["diag_format"] == "openpmd" ? "diags/diag1" : "diags")
     files = filter(contains(r".*\.arrow"), readdir(field_diag_dir, join=true))
     dfs = files .|> Arrow.Table .|> DataFrame
@@ -137,7 +137,7 @@ using DrWatson
 function collect_results(folder=datadir();
     valid_filetypes=[".json"],
     subfolders=true,
-    white_list=["dim", "beta", "theta", "plasma_resistivity", "wave_length", "path"]
+    white_list=["dim", "beta", "theta", "plasma_resistivity", "wave_length", "Te_norm", "path"]
 )
 
     results = DrWatson.collect_results(folder, subfolders=subfolders, valid_filetypes=valid_filetypes)

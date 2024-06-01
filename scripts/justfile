@@ -14,6 +14,7 @@ log-sim:
     python run.py print_config
     python run.py help
     python run.py with params.Te_norm=10
+    python run.py with params.Te_norm=0.1
 
     # python main.py
     # python main.py --eta 10 --nppc 256 --substeps 32
@@ -24,6 +25,7 @@ log-sim:
 
 log-v1:
     just run "dim=1_beta=0.25_theta=60_plasma_resistivity=100_wave_length=64_Te_norm=10"
+    just run "dim=1_beta=0.25_theta=60_plasma_resistivity=100_wave_length=64_Te_norm=0.1"
     just run "dim_1_beta_0.25_theta_0.0_eta_100.0"
     just run "dim_1_beta_2.0_theta_0.0_eta_200.0"
     just run "dim_1_beta_0.25_theta_60.0_eta_100.0_l_64.0"

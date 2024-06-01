@@ -1,6 +1,7 @@
 using DataFrames,
     DataFramesMeta,
     CategoricalArrays
+using Statistics
 
 function get_avg_fields(df, fields; ids=ids)
     @chain df begin

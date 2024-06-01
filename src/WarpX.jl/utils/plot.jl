@@ -23,7 +23,7 @@ temp_norm_labs = ["Parallel Temperature", "Perpendicular Temperature"]
 temp_renamer = renamer(Pair.(temp_norm_fields, temp_norm_labs))
 
 Λ_renamer = renamer(
-    ["Λ_temp_log" => "Log Temperature Anisotropy"]
+    ["Λ_temp_log" => "Log Temperature Anisotropy (Tperp/Tparp)"]
 )
 
 function plot_fields(df, fields; func=identity, vargs=NamedTuple(), kwargs...)
@@ -45,8 +45,7 @@ function plot_fields(df)
     plot_fields(df, j_fields)
     easy_save("j_field")
 
-    plot_fields(df, j_e_fields)
-    easy_save("je_field")
+    "jeMag" in names(df) && plot_fields(df, j_e_fields) && easy_save("je_field")
 
     plot_fields(df, "rho_n_norm")
     easy_save("rho_n_norm")
